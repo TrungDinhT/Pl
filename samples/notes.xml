@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notes>
+    <article>
+        <id>id:avant_propos</id>
+        <title>Avant Propos</title>
+        <text>Il faut toujours bien lire un sujet avant de commencer.</text>
+    </article>
+    <article>
+        <id>id:objectifs</id>
+        <title>Objectifs</title>
+        <text>Se familiariser avec le framework Qt</text>
+    </article>
+    <article>
+        <id>id:to_read</id>
+        <title>À lire</title>
+        <text>
+- Hyperion, D. Simmons
+- All clear, C. Willis
+- Spin, R.-C. Wilson
+		</text>
+    </article>
+    <article>
+        <id>id:citation_babage</id>
+        <title>Une citation de Charles Babbage</title>
+        <text>Les erreurs occasionnées par l'utilisation de fausses données sont moindres que celles n'utilisant aucune donnée.
+		</text>
+    </article>
+</notes>
