@@ -1,11 +1,11 @@
 #ifndef UI_H
 #define UI_H
 
-/*#include "ArticleInterface.h"
-#include "TacheInterface.h"
+#include "ArticleInterface.h"
+/*#include "TacheInterface.h"
 #include "ImageInterface.h"
 */
-#include <QtWidgets>
+
 
 class fenetre: public QMainWindow{
    Q_OBJECT
@@ -14,20 +14,24 @@ public:
     fenetre();
 
 public slots:
-
+    void creerArticle();
+    //void creerTache();
+    //void creerImage();
 
 private:
-    QWidget *zoneCentrale;
+    QMdiArea *zoneCentrale;
 
     //modulariser les creation des widgets
     void creerAction();
     void creerMenu();
-    void creerOutils();
+    void creerBarreOutils();
     void creerBarreEtat();
     //void creerDocker();
 
     //les widgets
-    QAction *nouveau;
+    QAction *nouvArticle;
+    QAction *nouvImage;
+    QAction *nouvTache;
     QAction *quitter;
     QAction *sauvegarder;
     //QAction *sauvergarderSous;

@@ -9,17 +9,6 @@
 #include <QtXml>
 #include <QMessageBox>
 
-Article::Article(const QString& i, const QString& ti, const QString& te):
-	id(i),title(ti),text(te)
-{}
-
-void Article::setTitle(const QString& t) {
-	title=t;
-}
-
-void Article::setText(const QString& t) {
-	text=t;
-}
 
 NotesManager::Handler NotesManager::handler=Handler();
 
@@ -48,6 +37,7 @@ void NotesManager::addArticle(Article* a){
 	articles[nbArticles++]=a;
 }
 
+/*
 void NotesManager::addArticle(const QString& id, const QString& ti, const QString& te){
     for(unsigned int i=0; i<nbArticles; i++){
         if (articles[i]->getId()==id) throw NotesException("Error : id already existed");
@@ -65,6 +55,7 @@ Article& NotesManager::getArticle(const QString& id){
     Article* a=new Article(id,"","");
     addArticle(a);
 }
+*/
 
 NotesManager::NotesManager():articles(nullptr),nbArticles(0),nbMaxArticles(0),filename(""){}
 

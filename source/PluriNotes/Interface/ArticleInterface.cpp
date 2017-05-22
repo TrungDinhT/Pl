@@ -1,6 +1,6 @@
 #include "ArticleInterface.h"
 
-articleInterface::articleInterface(const QString ti, const QString te): Article(ti,te),QDialog(){
+articleInterface::articleInterface(): QDialog(){
     //texte et titre layout
     QFormLayout *layoutT = new QFormLayout;
     titre = new QLineEdit;
@@ -21,7 +21,7 @@ articleInterface::articleInterface(const QString ti, const QString te): Article(
 
     //decorer la fenetre
     setLayout(layout);
-    setTitle(titre->text());
+    setWindowTitle(titre->text());
     setMinimumSize(200,200);
 
     //connecter
@@ -34,9 +34,12 @@ articleInterface::articleInterface(const QString ti, const QString te): Article(
 
 }
 
+
 void articleInterface::saveArticle(){
-    Article->setTitle(titre->text());
-    Article->setText(text->toPlainText());
+    //create objet Article et puis sauvegarder
+    //Article* a = new Article(titre->text(),text->toPlainText());
+    //a->autoSave();
+
     QMessageBox::information(this, "Sauvegarde", "Votre article a bien ete sauvegarde...");
     save->setEnabled(false); // le bouton est de nouveau desactive
 }

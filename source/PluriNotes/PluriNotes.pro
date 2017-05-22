@@ -7,7 +7,7 @@ HEADERS += \
 #    Corbeille/corbeille.h \
 #    NoteManager/NoteManager.h \
 #    NoteManager/notes.h \
-#    Interface/ArticleInterface.h \
+    Interface/ArticleInterface.h \
 #    Interface/TacheInterface.h \
 #    Interface/ImageInterface.h \
     Interface/UI.h
@@ -16,7 +16,7 @@ HEADERS += \
 SOURCES += \
  #   Corbeille/corbeille.cpp \
  #   NoteManager/notes.cpp \
- #   Interface/ArticleInterface.cpp \
+    Interface/ArticleInterface.cpp \
     Interface/UI.cpp \
     main.cpp
 

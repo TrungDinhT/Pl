@@ -2,17 +2,16 @@
 #define ARTICLEINTERFACE_H
 
 #include <QtWidgets>
-#include "NoteManager/notes.h"
+//#include "NoteManager/notes.h"
 
-class articleInterface: public Article, public QDialog{
+class articleInterface: public QDialog{
 
     Q_OBJECT
 
 public:
-   articleInterface(const QString ti = "Title by default", const QString te = "Text by default");
+   articleInterface();
 
 public slots:
-   void changerTitre();
    void saveArticle();
    void activerSave(QString str);
    void activerSave1();
