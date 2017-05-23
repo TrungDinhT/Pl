@@ -2,24 +2,28 @@
 #define ARTICLEINTERFACE_H
 
 #include <QtWidgets>
-//#include "NoteManager/notes.h"
+#include "NoteManager/NoteManager.h"
+#include "NoteManager/notes.h"
 
 class articleInterface: public QDialog{
 
     Q_OBJECT
 
 public:
-   articleInterface();
+   articleInterface(Article* a);
 
 public slots:
    void saveArticle();
    void activerSave(QString str);
    void activerSave1();
+   void autoSave();
 
 private:
    QLineEdit* titre;
    QTextEdit* text;
    QPushButton* save;
+
+   Article* article;
 
    /*
    QLabel* idl;

@@ -1,4 +1,19 @@
 /* Different types of note (tache, image, article,...) defined here
+
+  classe Note abstrait grace au methode createID() = 0;
+  ID inmodifiable et creee automatiquement par combiner le type de note ("A"=article,"I"=image,"T"=tache)
+
+  tableau de version de note n'est pas encore traite!!!
+  -- Suggestion: utiliser vector pour ne pas devoir implementer 2 classes de Iterator
+  -- Peut-etre il faut casting les pointeurs dans version pour des traitement ulterieur
+
+  Gestion des versions ne sont pas encore traitee non plus!!!
+  -- Different versions de note ont les meme ID, dateCreation mais different dateModif
+  -- Je choisis a sauvegarder tous les versions dans un seul fichier xml (sauf les images mais on les traitera apres)
+       => il faut avoir le methode autoLoad() qui serve a charger, creer tous les versions d'une note (au lancement de notre app)
+
+  Il y a surement des problemes auxquelles j'avais pas encore pense
+
 */
 
 #ifndef NOTES_H
@@ -8,9 +23,6 @@
 #include <QDateTime>
 using namespace std;
 
-
-//class Article;
-//class NotesManager;
 
 
 class articleInterface;
@@ -26,14 +38,14 @@ private:
     //Note** version;
 
 protected:
-    void autoSave();
-    void setId(const QString i){ id =i; }
+    void autoLoad();
+    void setId(const QString& i){ id =i; }
     virtual const QString createID() = 0; //different par rapport aux differents types de note
 
 public:
-    Note(const QString ti): title(ti), dateCreation(QDateTime::currentDateTime()),
+    Note(const QString& ti): title(ti), dateCreation(QDateTime::currentDateTime()),
         dateModif(QDateTime::currentDateTime()), etat(true){}
-
+    virtual ~Note(){}
     //lectures
     const QString& getId() const { return id; }
     const QString& getTitle() const { return title; }
@@ -52,11 +64,12 @@ class Article : public Note{
 private:
     QString text;
     const QString createID(){
-        return QString("A" + getDateCreation().toString("dd.MM.yyyy") + getDateCreation().toString("hh:mm:ss")); }
+        return QString("A" + getDateCreation().toString("dd.MM.yyyy-hh:mm:ss")); }
     friend class articleInterface;
 
 public:
-    Article(const QString ti, const QString te): Note(ti), text(te){ setId(createID()); }
+    Article(const QString& ti="", const QString& te="");
+    Article(const QString& i, const QString& ti="", const QString& te="");
 
     //accesseurs
     const QString& getText() const { return text; }

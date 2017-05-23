@@ -1,16 +1,82 @@
 #include "Interface/UI.h"
 
 
+//creer les managers
+static NotesManager& NM = NotesManager::getManager();
+
+/*------------------------Article Interface--------------------------*/
+
+articleInterface::articleInterface(Article* a): QDialog(),article(a){
+
+    //texte et titre layout
+    QFormLayout *layoutT = new QFormLayout;
+    titre = new QLineEdit;
+    text = new QTextEdit;
+    layoutT->addRow("T&itre",titre);
+    layoutT->addRow("T&exte",text);
+
+    //bouton layout
+    QHBoxLayout *layoutB = new QHBoxLayout;
+    save = new QPushButton("Sauvegarder");
+    layoutB->setAlignment(Qt::AlignRight);
+    layoutB->addWidget(save);
+
+    //layout commun
+    QVBoxLayout *layout = new QVBoxLayout;
+    layout->addLayout(layoutT);
+    layout->addLayout(layoutB);
+
+    //decorer la fenetre
+    setLayout(layout);
+    setWindowTitle(titre->text());
+    setMinimumSize(200,200);
+
+    //connecter
+        //connect bouton
+    connect(save,SIGNAL(clicked()),this,SLOT(saveArticle()));
+        //connecter champ titre
+    connect(titre,SIGNAL(textEdited(QString)),this,SLOT(activerSave(QString)));
+        //connecter champ text
+    connect(text,SIGNAL(textChanged()),this,SLOT(activerSave1()));
+
+    connect(this,SIGNAL(finished(int)),this,SLOT(close()));
+
+}
+
+
+void articleInterface::saveArticle(){
+
+    article->setTitle(titre->text());
+    article->setText(text->toPlainText());
+
+    QString location = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+
+    NM.setFilename(QFileDialog::getSaveFileName(this, "Save File",location,"Xml(*.xml)"));
+    NM.save(article);
+    QMessageBox::information(this, "Sauvegarde", "Votre article a bien ete sauvegarde...");
+    save->setEnabled(false); // le bouton est de nouveau desactive
+}
+
+void articleInterface::activerSave(QString){ save->setEnabled(true); }
+
+void articleInterface::activerSave1(){ save->setEnabled(true); }
+
+void articleInterface::autoSave(){}
+
+
+/*--------------------------------fenetre principale------------------------*/
+
 fenetre::fenetre(){
     //creer
     creerAction();
     creerMenu();
 
-    zoneCentrale = new QMdiArea;
-    setCentralWidget(zoneCentrale);
+
 
 
     //decorer la fenetre
+    zoneCentrale = new QMdiArea;
+    setCentralWidget(zoneCentrale);
     setWindowTitle("PluriNotes");
     setMinimumSize(600,600);
 
@@ -49,6 +115,7 @@ void fenetre::creerAction(){
     retablir->setEnabled(false);
 }
 
+
 void fenetre::creerMenu(){
 
     //tag Fichier
@@ -74,12 +141,20 @@ void fenetre::creerMenu(){
     edit->addAction(retablir);
 }
 
+
 void fenetre::creerBarreOutils(){}
+
 
 void fenetre::creerBarreEtat(){}
 
+
+
 void fenetre::creerArticle(){
-    articleInterface* aI = new articleInterface;
+    articleInterface* aI = new articleInterface(NM.getNewArticle());
     zoneCentrale->addSubWindow(aI);
     aI->exec();
 }
+
+
+
+

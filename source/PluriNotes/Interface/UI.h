@@ -6,6 +6,7 @@
 #include "ImageInterface.h"
 */
 
+#include "NoteManager/NoteManager.h"
 
 class fenetre: public QMainWindow{
    Q_OBJECT
