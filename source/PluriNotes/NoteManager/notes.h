@@ -64,7 +64,7 @@ class Article : public Note{
 private:
     QString text;
     const QString createID(){
-        return QString("A" + getDateCreation().toString("dd.MM.yyyy-hh:mm:ss")); }
+        return QString("A-" + getDateCreation().toString("dd.MM.yyyy-hh:mm:ss")); }
     friend class articleInterface;
 
 public:

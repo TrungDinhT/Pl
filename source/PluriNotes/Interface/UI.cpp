@@ -6,7 +6,7 @@ static NotesManager& NM = NotesManager::getManager();
 
 /*------------------------Article Interface--------------------------*/
 
-articleInterface::articleInterface(Article* a): QDialog(),article(a){
+articleInterface::articleInterface(Article *a): QDialog(),article(a),savedName(""){
 
     //texte et titre layout
     QFormLayout *layoutT = new QFormLayout;
@@ -39,20 +39,24 @@ articleInterface::articleInterface(Article* a): QDialog(),article(a){
         //connecter champ text
     connect(text,SIGNAL(textChanged()),this,SLOT(activerSave1()));
 
-    connect(this,SIGNAL(finished(int)),this,SLOT(close()));
-
 }
 
-
 void articleInterface::saveArticle(){
+
+    //path to save
+    if(NM.getFilename().isEmpty()||NM.getFilename()!=savedName)
+    {
+        QString location = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+        QString f = QFileDialog::getSaveFileName(this, "Save File",location,"Xml(*.xml)");
+        NM.setFilename(f);
+        savedName = f;
+    }
 
     article->setTitle(titre->text());
     article->setText(text->toPlainText());
 
-    QString location = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
-
-    NM.setFilename(QFileDialog::getSaveFileName(this, "Save File",location,"Xml(*.xml)"));
     NM.save(article);
+
     QMessageBox::information(this, "Sauvegarde", "Votre article a bien ete sauvegarde...");
     save->setEnabled(false); // le bouton est de nouveau desactive
 }
@@ -61,8 +65,9 @@ void articleInterface::activerSave(QString){ save->setEnabled(true); }
 
 void articleInterface::activerSave1(){ save->setEnabled(true); }
 
-void articleInterface::autoSave(){}
+void articleInterface::loadArticle(){
 
+}
 
 /*--------------------------------fenetre principale------------------------*/
 
@@ -70,8 +75,6 @@ fenetre::fenetre(){
     //creer
     creerAction();
     creerMenu();
-
-
 
 
     //decorer la fenetre
@@ -99,12 +102,17 @@ void fenetre::creerAction(){
     quitter->setShortcut(QKeySequence("Ctrl+Q"));
     connect(quitter,SIGNAL(triggered()),qApp,SLOT(quit()));
 
+
     sauvegarder = new QAction("&Sauvegarder",this);
     sauvegarder->setShortcut(QKeySequence("Ctrl+S"));
-    //sauvegarder = new QAction("Sauvegarder sous",this);
+    connect(sauvegarder,SIGNAL(triggered()),this,SLOT(saveFile()));
+
+    sauvegarderSous = new QAction("Sauvegarder sous",this);
+    connect(sauvegarderSous,SIGNAL(triggered()),this,SLOT(saveFileAs()));
 
     charger = new QAction("&Ouvrir",this);
     charger->setShortcut(QKeySequence("Ctrl+O"));
+    connect(charger,SIGNAL(triggered()),this,SLOT(openFile()));
 
     annuler = new QAction("Annuler",this);
     annuler->setShortcut(QKeySequence("Ctrl+Z"));
@@ -130,6 +138,7 @@ void fenetre::creerMenu(){
     //autres actions
     fichier->addAction(charger);
     fichier->addAction(sauvegarder);
+    fichier->addAction(sauvegarderSous);
     fichier->addSeparator();
     fichier->addAction(quitter);
 
@@ -148,13 +157,41 @@ void fenetre::creerBarreOutils(){}
 void fenetre::creerBarreEtat(){}
 
 
-
 void fenetre::creerArticle(){
-    articleInterface* aI = new articleInterface(NM.getNewArticle());
-    zoneCentrale->addSubWindow(aI);
+    articleInterface* aI = new articleInterface(static_cast<Article*>(NM.getNewNote('A')));
+    QMdiSubWindow* sub = zoneCentrale->addSubWindow(aI);
+    addSubFenetre(sub,'A');
     aI->exec();
 }
 
+void fenetre::openFile(){
+
+}
+
+void fenetre::saveFile(){
+    QMdiSubWindow* cur = zoneCentrale->currentSubWindow();
+    switch(fenetreManager[cur]){
+        case 'A': static_cast<articleInterface*>(cur->widget())->saveArticle(); break;
+        case 'I':
+        case 'T':
+        default: break;
+    }
+}
+
+void fenetre::saveFileAs(){
+    QMdiSubWindow* cur = zoneCentrale->currentSubWindow();
+    switch(fenetreManager[cur]){
+        case 'A':{
+                    articleInterface* a = static_cast<articleInterface*>(cur->widget());
+                    a->resetSavedName();
+                    a->saveArticle();
+                    break;
+                 }
+        case 'I':
+        case 'T':
+        default: break;
+    }
+}
 
 
 

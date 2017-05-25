@@ -7,20 +7,29 @@
 */
 
 #include "NoteManager/NoteManager.h"
+#include <unordered_map>
+//pour manager des sub fenetres
 
 class fenetre: public QMainWindow{
    Q_OBJECT
 
 public:
     fenetre();
+    void addSubFenetre(QMdiSubWindow* s, char t){
+        fenetreManager.insert({s,t});
+    }
 
 public slots:
     void creerArticle();
     //void creerTache();
     //void creerImage();
 
+    void openFile();
+    void saveFile();
+    void saveFileAs();
 private:
     QMdiArea *zoneCentrale;
+    std::unordered_map<QMdiSubWindow*, char> fenetreManager;
 
     //modulariser les creation des widgets
     void creerAction();
@@ -35,7 +44,7 @@ private:
     QAction *nouvTache;
     QAction *quitter;
     QAction *sauvegarder;
-    //QAction *sauvergarderSous;
+    QAction *sauvegarderSous;
     QAction *charger;
     //QAction *supprimerNotes;
     QAction *annuler;

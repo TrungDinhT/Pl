@@ -10,13 +10,14 @@ class articleInterface: public QDialog{
     Q_OBJECT
 
 public:
-   articleInterface(Article* a);
+   articleInterface(Article *a);
+   void resetSavedName() { savedName = ""; }
 
 public slots:
    void saveArticle();
    void activerSave(QString str);
    void activerSave1();
-   void autoSave();
+   void loadArticle();
 
 private:
    QLineEdit* titre;
@@ -24,6 +25,8 @@ private:
    QPushButton* save;
 
    Article* article;
+   QString savedName;
+
 
    /*
    QLabel* idl;
