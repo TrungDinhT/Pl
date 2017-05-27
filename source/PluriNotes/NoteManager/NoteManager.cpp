@@ -13,8 +13,6 @@
 
 static NotesManager* NotesManager::instance = nullptr;
 
-NotesManager::NotesManager():notes(nullptr),nbNotes(0),nbMaxNotes(0),filename(""){}
-
 NotesManager& NotesManager::getManager(){
     if (!instance) instance=new NotesManager;
     return *instance;
@@ -33,7 +31,7 @@ NotesManager::~NotesManager(){
 
 void NotesManager::addNotes(Note* n){
     for(unsigned int i=0; i<nbNotes; i++){
-        if (notes[i]->getId()==n->getId()) throw NotesException("Error: note already existed");
+        if (notes[i]->getId()==n->getId()) throw exception("Error: note already existed");
     }
     if (nbNotes==nbMaxNotes){
         Note** newNotes= new Note*[nbMaxNotes+5];
@@ -52,7 +50,7 @@ Note* NotesManager::getNote(const QString& id){
         if (notes[i]->getId()==id) return notes[i];
     }
     // sinon il envoie erreur
-    throw NotesException("Error: article not found");
+    throw exception("Error: article not found");
 }
 
 
@@ -74,7 +72,7 @@ Note* NotesManager::getNewNote(char type){
 void NotesManager::save(Note *n) const{
     QFile newfile(filename);
     if (!newfile.open(QIODevice::WriteOnly | QIODevice::Text))
-        throw NotesException(QString("Error open file xml : cannot save file"));
+        throw exception(QString("Error open file xml : cannot save file"));
     QXmlStreamWriter stream(&newfile);
     stream.setAutoFormatting(true);
     stream.writeStartDocument();
@@ -111,7 +109,7 @@ void NotesManager::load() {
     QFile fin(filename);
     // If we can't open it, show an error message.
     if (!fin.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        throw NotesException("Error : cannot open file");
+        throw exception("Error : cannot open file");
     }
     // QXmlStreamReader takes any QIODevice.
     QXmlStreamReader xml(&fin);
@@ -165,7 +163,7 @@ void NotesManager::load() {
     }
     // Error handling.
     if(xml.hasError()) {
-        throw NotesException("Error parsing xml : cannot read file");
+        throw exception("Error parsing xml : cannot read file");
     }
     // Removes any device() or data from the reader * and resets its internal state to the initial state.
     xml.clear();
@@ -177,7 +175,7 @@ void NotesManager::load() {
 
 void NotesManager::addArticle(Article* a){
     for(unsigned int i=0; i<nbArticles; i++){
-        if (articles[i]->getId()==a->getId()) throw NotesException("Error: note already existed");
+        if (articles[i]->getId()==a->getId()) throw exception("Error: note already existed");
     }
     if (nbArticles==nbMaxArticles){
         Article** newArticles= new Article*[nbMaxArticles+5];
@@ -192,7 +190,7 @@ void NotesManager::addArticle(Article* a){
 
 void NotesManager::addArticle(const QString& id, const QString& ti, const QString& te){
     for(unsigned int i=0; i<nbArticles; i++){
-        if (articles[i]->getId()==id) throw NotesException("Error : id already existed");
+        if (articles[i]->getId()==id) throw exception("Error : id already existed");
     }
     Article* a=new Article(id,ti,te);
     addArticle(a);
@@ -204,7 +202,7 @@ Article* NotesManager::getArticle(const QString& id){
         if (articles[i]->getId()==id) return articles[i];
     }
     // sinon il envoie erreur
-    throw NotesException("Error: article not found");
+    throw exception("Error: article not found");
 }
 
 Article* NotesManager::getNewArticle(){
@@ -225,7 +223,7 @@ NotesManager::~NotesManager(){
 void NotesManager::save() const {
     QFile newfile(filename);
     if (!newfile.open(QIODevice::WriteOnly | QIODevice::Text))
-        throw NotesException(QString("Error open file xml : cannot save file"));
+        throw exception(QString("Error open file xml : cannot save file"));
     QXmlStreamWriter stream(&newfile);
     stream.setAutoFormatting(true);
     stream.writeStartDocument();
@@ -246,7 +244,7 @@ void NotesManager::save() const {
 void NotesManager::save(Article *a) const{
     QFile newfile(filename);
     if (!newfile.open(QIODevice::ReadWrite | QIODevice::Text))
-        throw NotesException(QString("Error open file xml : cannot save file"));
+        throw exception(QString("Error open file xml : cannot save file"));
     QXmlStreamWriter stream(&newfile);
     stream.setAutoFormatting(true);
     stream.writeStartDocument();
@@ -268,7 +266,7 @@ void NotesManager::load() {
     QFile fin(filename);
     // If we can't open it, show an error message.
     if (!fin.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        throw NotesException("Error : cannot open file");
+        throw exception("Error : cannot open file");
     }
     // QXmlStreamReader takes any QIODevice.
     QXmlStreamReader xml(&fin);
@@ -323,7 +321,7 @@ void NotesManager::load() {
     }
     // Error handling.
     if(xml.hasError()) {
-        throw NotesException("Error parsing xml : cannot read file");
+        throw exception("Error parsing xml : cannot read file");
     }
     // Removes any device() or data from the reader * and resets its internal state to the initial state.
     xml.clear();
