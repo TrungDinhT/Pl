@@ -7,15 +7,8 @@
 #define NOTEMANAGER_H
 
 #include "notes.h"
-
-class NotesException{
-public:
-    NotesException(const QString& message):info(message){}
-    QString getInfo() const { return info; }
-private:
-    QString info;
-};
-
+#include "iterator.h"
+#include "exception.h"
 
 class NotesManager {
 
@@ -36,14 +29,8 @@ private:
     //filename a manager
     mutable QString filename;
 
-
-    struct Handler {
-        NotesManager* instance; // pointeur sur l'unique instance
-        Handler():instance(nullptr){}
-        ~Handler() { delete instance; }
-    };
-    static Handler handler;
-    NotesManager();
+    static NotesManager* instance; // pointeur sur l'unique instance
+    NotesManager():notes(nullptr),nbNotes(0),nbMaxNotes(0),filename(""){}
     ~NotesManager();
     NotesManager(const NotesManager& m);
     NotesManager& operator=(const NotesManager& m);
@@ -57,6 +44,8 @@ public:
     Note* getNote(const QString& id);
     Note* getNewNote(char type);
 
+    void deleteNote(const QString& id);
+
     QString getFilename() const { return filename; }
     void setFilename(const QString& f) { filename=f; }
     void load(); // load notes from file filename
@@ -64,7 +53,14 @@ public:
     static NotesManager& getManager();
     static void freeManager(); // free the memory used by the NotesManager; it can be rebuild later
 
+    class iterator<Note, NotesManager>;
+    iterator<Note, NotesManager> beginIt(){ return iterator<Note, NotesManager>(notes); }
+    iterator<Note, NotesManager> endIt(){ return iterator<Note, NotesManager>(notes + nbNotes); }
 
+    class const_iterator<Note, NotesManager>;
+    const_iterator<Note, NotesManager> beginIt(){ return const_iterator<Note, NotesManager>(notes); }
+    const_iterator<Note, NotesManager> endIt(){ return const_iterator<Note, NotesManager>(notes + nbNotes); }
+/*
     class Iterator {
             friend class NotesManager;
             Note** cur;
@@ -106,6 +102,7 @@ public:
                 return **cur;
             }
     };
+*/
 
 
 };

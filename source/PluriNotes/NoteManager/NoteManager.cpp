@@ -11,19 +11,19 @@
 #include <QFileDialog>
 
 
-NotesManager::Handler NotesManager::handler=Handler();
+static NotesManager* NotesManager::instance = nullptr;
+
+NotesManager::NotesManager():notes(nullptr),nbNotes(0),nbMaxNotes(0),filename(""){}
 
 NotesManager& NotesManager::getManager(){
-    if (!handler.instance) handler.instance=new NotesManager;
-    return *handler.instance;
+    if (!instance) instance=new NotesManager;
+    return *instance;
 }
 
 void NotesManager::freeManager(){
-    delete handler.instance;
-    handler.instance=nullptr;
+    delete instance;
+    instance=nullptr;
 }
-
-NotesManager::NotesManager():notes(nullptr),nbNotes(0),nbMaxNotes(0),filename(""){}
 
 NotesManager::~NotesManager(){
     //if (filename!="") save(); save all file when exiting the program
