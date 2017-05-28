@@ -77,14 +77,47 @@ public:
 };
 
 
-class Tache: public Note{
+class Image: public Note{
+  private:
+    QString description;
+    QString nomFichier;
+    const QString createID(){
+        return QString("A-" + getDateCreation().toString("dd.MM.yyyy-hh:mm:ss")); }
+    //friend class imageInterface;
 
+public:
+    Image(const QString& f, const QString& ti="", const QString& d="");
+    Image(const QString& i, const QString& f, const QString& ti="", const QString& d="");
+
+    //accesseurs
+    const QString& getDesc() const { return description; }
+    void setDesc(const QString& d) { description = d; }
 };
 
 
-class Image: public Note{
+class Tache: public Note{
+  private:
+    QString action;
+    int priorite;
+    etat statut;
+    QDateTime dateEcheance;
+    const QString createID(){
+        return QString("A-" + getDateCreation().toString("dd.MM.yyyy-hh:mm:ss")); }
+    //friend class tacheInterface;
 
+public:
+    Tache(const QString& action ="", const QString& ti="", const int p= 0, const QDateTime& d = QDateTime::currentDateTime(), );  //Une priorité faible=0
+    Tache(const QString& i, const QString& action ="", const QString& ti="", const int& p= 0, const QDateTime& d = QDateTime::currentDateTime(), );  //Une priorité faible=0
 
+    //accesseurs
+    const QString& getAction() const { return action; }
+    const int getPriorite() const { return priorite; }
+    const QDateTime& getDateEcheance() const { return dateEcheance; }
+    const etat getStatut() const { return statut; }
+    void setAction(const QString& a) { action = a; }  
+    void setPriorite(const int p) { priorite = p; }
+    void setDateEcheance(const QDateTime& d) { dateEcheance = d; }
+    void setStatut(const etat s) {statut = s; }
 };
 
 
