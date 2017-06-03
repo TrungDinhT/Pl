@@ -10,8 +10,8 @@ class couple{
 
 public:
     couple(Note* fn, Note* tn): fromNote(fn), toNote(tn){}
-    Note* getFromNote() const { return fromNote; }
-    Note* getToNote() const { return toNote; }
+    const Note& getFromNote() const { return *fromNote; }
+    const Note& getToNote() const { return *toNote; }
 };
 
 class relationException{
