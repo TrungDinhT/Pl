@@ -14,7 +14,7 @@ private:
     void addRelations(relation* r);
 
     static RelationsManager* instance; // pointeur sur l'unique instance
-    RelationsManager(): relations(new relation*),nbRelations(1),nbMaxRelations(1){
+    RelationsManager(): relations(new relation*[1]),nbRelations(1),nbMaxRelations(1){
         relations[0]= relationPreexistance::getInstance();
     }
     ~RelationsManager(){
@@ -28,12 +28,15 @@ private:
 public:
 
     relation& getRelation(const QString& titre);
-    relation& getNewRelation(const QString& titre);
+    relation& getNewRelation(const QString& titre, const QString& desc, bool ori=true);
 
-    //void deleteRelation(const QString& id);
+    void deleteRelation(const QString& titre);
 
     static RelationsManager& getInstance();
-    static void freeInstace(); // free the memory used by the RelationsManager; it can be rebuild later
+    static void freeInstace(); // free the memory used by the RelationsManager; it can be rebuilt later
+
+    void load(const QString& filename);
+    void save(const QString &filename); //filename = name + path to save
 
     class iterator<relation, RelationsManager>;
     iterator<relation, RelationsManager> beginIt(){ return iterator<relation, RelationsManager>(relations); }

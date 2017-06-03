@@ -2,20 +2,17 @@
 #define RELATION_H
 
 #include "NoteManager/notes.h"
+#include "iterator.h"
 #include <QString>
 
 class couple{
     Note* fromNote;
     Note* toNote;
-
 public:
-    couple(Note* fn, Note* tn): fromNote(fn), toNote(tn){}
-    const Note& getFromNote() const { return *fromNote; }
-    const Note& getToNote() const { return *toNote; }
-};
-
-class relationException{
-
+    QString label;//public car on peut le modifier
+    couple(Note* fn, Note* tn, const QString& lab): fromNote(fn), toNote(tn), label(lab){}
+    Note* getFromNote() const { return fromNote; }
+    Note* getToNote() const { return toNote; }
 };
 
 class relation{
@@ -26,16 +23,12 @@ protected:
     couple** couples;
     unsigned int nbCouples;
     unsigned int nbMaxCouples;
-    void addCouple(couple*c);
-    void deleteCouple(couple* c);
+    void deleteCouple(const QString& idNote);
 
 public:
-    relation(const QString& ti, const QString& desc, Note* fn, Note* tn, bool ori=true):
-        titre(ti), description(desc), nbCouples(1), nbMaxCouples(10), oriente(ori)
-    {
-        couples = new couple*[nbMaxCouples];
-        addCouple(new couple(fn,tn));
-    }
+    void addCouple(Note *fn, Note *tn, const QString& lab); //public pour pouvoir enrichir une relation
+    relation(QString ti, QString desc="", bool ori=true):
+        titre(ti), description(desc), nbCouples(0), nbMaxCouples(0), oriente(ori),couples(nullptr) {}
     virtual ~relation(){
         for (unsigned int i=0;i<nbCouples;i++)
              delete couples[i];
@@ -50,28 +43,34 @@ public:
     bool getOriente() const { return oriente; }
     virtual void setOriente(bool ori) =0;
 
+    //iterator + methodes servent a parcourir
     class iterator<couple,relation>;
+    iterator<couple,relation> beginIt() const { return iterator<couple,relation>(couples,nbCouples); }
+    iterator<couple,relation> endIt() const { return iterator<couple,relation>(couples + nbCouples,nbCouples); }
+    class const_iterator<couple,relation>;
+    const_iterator<couple,relation> beginIt() const { return const_iterator<couple,relation>(couples,nbCouples); }
+    const_iterator<couple,relation> endIt() const { return const_iterator<couple,relation>(couples + nbCouples,nbCouples); }
 
 };
 
 class relationNonPreexistance: public relation{
 public:
-    void setTitre(const QString& ti) { return ti;}
-    void setDescription(const QString& d) { return description; }
+    void setTitre(const QString& ti) { titre = ti;}
+    void setDescription(const QString& d) { description = d; }
     void setOriente(bool ori) { oriente = ori; }
-    relationNonPreexistance(const QString& ti, const QString& desc, Note* fn, Note* tn, bool ori=true):
-        relation(ti,desc,fn,tn,ori){}
+    relationNonPreexistance(const QString& ti, const QString& desc, bool ori=true):
+        relation(ti,desc,ori){}
 };
 
 
 class relationPreexistance: public relation{
 private:
-    void setTitre(const QString& ti) { return ti;}
-    void setDescription(const QString& d) { return description; }
-    void setOriente(bool ori) { oriente = ori; }
+    void setTitre(const QString& ti) final {}
+    void setDescription(const QString& d) final {}
+    void setOriente(bool ori) final {}
 
     static relationPreexistance* instance;
-    relationPreexistance(): relation("reference","reference vers une note",nullptr,nullptr){}
+    relationPreexistance(): relation("\ref","reference vers une note",true){}
     relationPreexistance(const relationPreexistance& re){}
     relationPreexistance& operator=(const relationPreexistance& re){}
     ~relationPreexistance(){}

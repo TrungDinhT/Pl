@@ -13,7 +13,8 @@ void relationPreexistance::freeInstance(){
     instance=nullptr;
 }
 
-void relation::addCouple(couple* c){
+void relation::addCouple(Note* fn, Note* tn, const QString& lab){
+    couple* c = new couple(fn,tn,lab);
     if(nbCouples==nbMaxCouples){
         couple** newCouples = new couples*[nbMaxCouples+5];
         for(unsigned int i=0;i<nbCouples;i++)
@@ -26,14 +27,15 @@ void relation::addCouple(couple* c){
     couples[nb++] = c;
 }
 
-void relation::deleteCouple(couple *c){
+void relation::deleteCouple(const QString &idNote){
     unsigned int i;
 
     //trouver la position de couple c dans le tableau de couple
-    for(i=0;i<nbCouples&&couples[i]!=c;i++)
+    for(i=0;i<nbCouples && couples[i]->getFromNote()->getId()!=idNote && couples[i]->getToNote()->getId()!=idNote;i++)
     if(i==nbCouples) throw exception("Error: couple not found");
-    //deplacer tous les couples apres cet couple a gauche
-    else for(;i<nbCouples-1;i++) couples[i]=couples[i+1];
-
+    else{
+        delete couples[i];
+        for(;i<nbCouples-1;i++) couples[i]=couples[i+1]; //deplacer tous les couples apres cette couple a gauche
+    }
     nbCouples--;
 }
