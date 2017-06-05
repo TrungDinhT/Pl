@@ -14,7 +14,7 @@ public:
 
     
 public slots:
-   void saveArticle();
+   void modifArticle();
    //void activerSave(QString str);
    //void activerSave1();
    //void loadArticle();
