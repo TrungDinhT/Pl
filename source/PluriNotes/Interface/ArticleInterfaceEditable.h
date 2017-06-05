@@ -5,26 +5,26 @@
 #include "NoteManager/NoteManager.h"
 #include "NoteManager/notes.h"
 
-class articleInterface: public QDialog{
+class articleInterfaceEditable: public QDialog{
 
     Q_OBJECT
 
 public:
-   articleInterface(Article *a);
-   void resetSavedName() { savedName = ""; }
-
+   articleInterfaceEditable(Article& a);
+   //void resetSavedName() { savedName = ""; }
+    
 public slots:
    void saveArticle();
-   void activerSave(QString str);
-   void activerSave1();
-   void loadArticle();
+   //void activerSave(QString str);
+   //void activerSave1();
+   //void loadArticle();
 
 private:
    QLineEdit* titre;
    QTextEdit* text;
    QPushButton* save;
 
-   Article* article;
+   Article& article;//Article* article;
    QString savedName;
 
 
