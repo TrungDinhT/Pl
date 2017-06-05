@@ -1,5 +1,5 @@
-#ifndef ARTICLEINTERFACE_H
-#define ARTICLEINTERFACE_H
+#ifndef ARTICLEINTERFACEEDITABLE_H
+#define ARTICLEINTERFACEEDITABLE_H
 
 #include <QtWidgets>
 #include "NoteManager/NoteManager.h"
