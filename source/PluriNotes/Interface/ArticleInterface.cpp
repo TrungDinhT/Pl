@@ -7,9 +7,16 @@ void articleInterface::modifArticle(){
 
 articleInterface::articleInterface(article& a){
   article = a;
-  titre = new QLineEdit(article.titre,this);
-  texte = new QLineEdit(article.texte,this);
-  modifier = new QPushButton(/*objet QIcon,*/"modifier",this);
+  titre = new QLineEdit(article.titre);
+  texte = new QLineEdit(article.texte);
+  modifier = new QPushButton(/*objet QIcon,*/"modifier");
   connect(modifier,SIGNAL(clicked()),this,SLOT(modifArticle()));
   //disposition à revoir
+
+  principale = new QVBoxLayout(this);
+  principale->addWidget(titre);
+  principale->addWidget(texte);
+  principale->addWidget(modifier);
+  this->setLayout(principale);
+  aaa = &a;
 }
