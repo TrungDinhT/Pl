@@ -3,13 +3,15 @@
 
 #include "exception.h"
 
-template <class T, class F>
+template <class T>
 class iterator{
     T** cur;
     unsigned nb;
     unsigned nbItems;
-    iterator(T** c, unsigned int nbItems): cur(c),nb(0),nbMax(nbItems){}
-    friend class F;
+
+protected:
+    iterator(T** c, unsigned int nbItems): cur(c),nb(0),nbItems(nbItems){}
+
 public:
     iterator(): cur(0), nb(0),nbItems(0){}
     bool operator!=(const iterator& it) const { return cur!=it.cur; }
@@ -43,42 +45,14 @@ public:
 };
 
 
-template <class T, class F>
-class const_iterator{
-    T** cur;
-    unsigned nb;
-    unsigned nbItems;
-    const_iterator(T** c, unsigned int nbItems): cur(c),nb(0),nbMax(nbItems){}
-    friend class F;
+template <class T>
+class const_iterator: public iterator<T>{
+
+protected:
+    const_iterator(T** c, unsigned int nbItems): iterator(c,nbItems){}
+
 public:
-    const_iterator(): cur(0), nb(0),nbItems(0){}
-    bool operator!=(const const_iterator& it) const { return cur!=it.cur; }
-    const_iterator& operator++() {
-        if(nb<nbItems) nb++;
-        else throw exception("Error: overflow");
-        cur++;
-        return *this;
-    }
-    const_iterator& operator++(int) {
-        const_iterator* old = this;
-        if(nb<nbItems) nb++;
-        else throw exception("Error: overflow");
-        cur++;
-        return *old;
-    }
-    const_iterator& operator--() {
-        if(nb>0) nb--;
-        else throw exception("Error: reach head of array");
-        cur--;
-        return *this;
-    }
-    const_iterator& operator--(int) {
-        iterator* old = this;
-        if(nb>0) nb--;
-        else throw exception("Error: reach head of array");
-        cur--;
-        return *old;
-    }
+    const_iterator(): iterator(){}
     const T& operator*() const { return **cur; }
 };
 

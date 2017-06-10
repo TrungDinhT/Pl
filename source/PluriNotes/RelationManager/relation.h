@@ -44,12 +44,21 @@ public:
     virtual void setOriente(bool ori) =0;
 
     //iterator + methodes servent a parcourir
-    class iterator<couple,relation>;
-    iterator<couple,relation> beginIt() const { return iterator<couple,relation>(couples,nbCouples); }
-    iterator<couple,relation> endIt() const { return iterator<couple,relation>(couples + nbCouples,nbCouples); }
-    class const_iterator<couple,relation>;
-    const_iterator<couple,relation> beginIt() const { return const_iterator<couple,relation>(couples,nbCouples); }
-    const_iterator<couple,relation> endIt() const { return const_iterator<couple,relation>(couples + nbCouples,nbCouples); }
+    class Iterator: public iterator<couple>{
+        friend class relation;
+        Iterator(couple** c, unsigned int n): iterator(c,n){}
+    };
+    Iterator begin() const { return Iterator(couples,nbCouples); }
+    Iterator end() const { return Iterator(couples + nbCouples,nbCouples); }
+
+    class Const_Iterator: public const_iterator<couple>{
+        friend class relation;
+        Const_Iterator(couple** c, unsigned int n): const_iterator(c,n){}
+    };
+    Const_Iterator begin() const { return Const_Iterator(couples,nbCouples); }
+    Const_Iterator end() const { return Const_Iterator(couples + nbCouples,nbCouples); }
+    Const_Iterator cbegin() const { return Const_Iterator(couples,nbCouples); }
+    Const_Iterator cend() const { return Const_Iterator(couples + nbCouples,nbCouples); }
 
 };
 

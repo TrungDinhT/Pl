@@ -26,7 +26,7 @@ private:
     unsigned int nbMaxNotes;
     void addNotes(Note* n);
 
-    //filename a manager
+    //filename à manager
     mutable QString filename;
 
     static NotesManager* instance; // pointeur sur l'unique instance
@@ -40,6 +40,8 @@ public:
     Article* getArticle(const QString& id); // return the article with identificator id
     Article* getNewArticle();  //create a new article
     */
+    static NotesManager& getManager();
+    static void freeManager(); // free the memory used by the NotesManager; it can be rebuild later
 
     Note* getNote(const QString& id);
     Note* getNewNote(char type);
@@ -50,16 +52,22 @@ public:
     void setFilename(const QString& f) { filename=f; }
     void load(); // load notes from file filename
     void save(Note *a) const; // save a specific note in a specific file filename
-    static NotesManager& getManager();
-    static void freeManager(); // free the memory used by the NotesManager; it can be rebuild later
 
-    class iterator<Note, NotesManager>;
-    iterator<Note, NotesManager> beginIt(){ return iterator<Note, NotesManager>(notes); }
-    iterator<Note, NotesManager> endIt(){ return iterator<Note, NotesManager>(notes + nbNotes); }
+    class Iterator: public iterator<Note>{
+        friend class NotesManager;
+        Iterator(Note** notes, unsigned int n): iterator(notes,n){}
+    };
+    Iterator begin() const { return Iterator(notes,nbNotes); }
+    Iterator end() const { return Iterator(notes + nbNotes,nbNotes); }
 
-    class const_iterator<Note, NotesManager>;
-    const_iterator<Note, NotesManager> beginIt(){ return const_iterator<Note, NotesManager>(notes); }
-    const_iterator<Note, NotesManager> endIt(){ return const_iterator<Note, NotesManager>(notes + nbNotes); }
+    class Const_Iterator: public const_iterator<couple>{
+        friend class relation;
+        Const_Iterator(couple** c, unsigned int n): const_iterator(c,n){}
+    };
+    Const_Iterator begin() const { return Const_Iterator(notes,nbNotes); }
+    Const_Iterator end() const { return Const_Iterator(notes,nbNotes); }
+    Const_Iterator cbegin() const { return Const_Iterator(notes,nbNotes); }
+    Const_Iterator cend() const { return Const_Iterator(notes + nbNotes,nbNotes); }
 /*
     class Iterator {
             friend class NotesManager;

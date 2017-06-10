@@ -23,48 +23,80 @@
 #include <QDateTime>
 using namespace std;
 
-
+enum EtatTache {EN_ATTENTE, EN_COURS, TERMINE};
+enum EtatNote {ARCHIVE, ACTIVE, RIP};
 
 class articleInterface;
+
+
 
 class Note {
 
 private:
     QString id;
-    QString title;
     QDateTime dateCreation;
+    //QDateTime dateModif;
+    EtatNote etat;
+    Version** versions;
+    unsigned int nbVer;
+    unsigned int nbMaxVer;
+
+public:
+    Note(const QString& ti): id(QString("Note" + getDateCreation().toString("dd.MM.yyyy-hh:mm:ss"))), title(ti),
+                             dateCreation(QDateTime::currentDateTime()), etat(ACTIVE),
+                             nbVer(1), nbMaxVer(1), versions(new Version*){
+        versions = new Version(ti);
+    }
+    ~Note(){
+        for(unsigned int i=0;i<nbVer;i++) delete versions[i];
+        delete[] versions;
+    }
+    //lectures
+    const QString& getId() const { return id; }
+    const QDateTime& getDateCreation() const { return dateCreation; }
+    EtatNote getEtat() const { return etat; }
+
+    //iterator + methodes servent a parcourir
+    class Iterator: public iterator<Version>{
+        friend class Note;
+        Iterator(Version** v, unsigned int n): iterator(v,n){}
+    };
+    Iterator begin() const { return Iterator(versions,nbVer); }
+    Iterator end() const { return Iterator(versions + nbVer,nbVer); }
+
+    class Const_Iterator: public const_iterator<Version>{
+        friend class Note;
+        Const_Iterator(Version** v, unsigned int n): const_iterator(v,n){}
+    };
+    Const_Iterator begin() const { return Const_Iterator(versions,nbVer); }
+    Const_Iterator end() const { return Const_Iterator(versions + nbVer,nbVer); }
+    Const_Iterator cbegin() const { return Const_Iterator(versions,nbVer); }
+    Const_Iterator cend() const { return Const_Iterator(versions + nbVer,nbVer); }
+
+};
+
+class Version {
+
+private:
+    QString titre;
     QDateTime dateModif;
-    bool etat; //true = active, false = archive
-    //Note** version;
 
 protected:
     void autoLoad();
-    void setId(const QString& i){ id =i; }
-    virtual const QString createID() = 0; //different par rapport aux differents types de note
 
 public:
-    Note(const QString& ti): title(ti), dateCreation(QDateTime::currentDateTime()),
-        dateModif(QDateTime::currentDateTime()), etat(true){}
-    virtual ~Note(){}
-    //lectures
-    const QString& getId() const { return id; }
-    const QString& getTitle() const { return title; }
-    const QDateTime& getDateCreation() const { return dateCreation; }
+    Version(const string& titre): titre(titre),dateModif(QDateTime::currentDateTime()){}
     const QDateTime& getDateModif() const { return dateModif; }
-    bool getEtat() const { return etat; }
-
-    //ecritures
-    void setDateModif(const QDateTime dt){ dateModif = dt; }
-    void setTitle(const QString& t) { title = t; }
+    QString getTitre() const {return titre;}
+    void setTitre(const QString& t){titre=t;}
 };
 
 
-class Article : public Note{
+
+class Article : public Version{
 
 private:
     QString text;
-    const QString createID(){
-        return QString("A-" + getDateCreation().toString("dd.MM.yyyy-hh:mm:ss")); }
     friend class articleInterface;
 
 public:
@@ -76,7 +108,7 @@ public:
     void setText(const QString& t) { text = t; }
 };
 
-
+/*
 class Image: public Note{
   private:
     QString description;
@@ -122,6 +154,6 @@ public:
 
 
 Note** loadOldVersions();
-
+*/
 
 #endif
