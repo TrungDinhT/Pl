@@ -18,5 +18,4 @@ articleInterface::articleInterface(article& a){
   principale->addWidget(texte);
   principale->addWidget(modifier);
   this->setLayout(principale);
-  aaa = &a;
 }
