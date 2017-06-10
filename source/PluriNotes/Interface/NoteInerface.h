@@ -8,6 +8,7 @@
 
 class NoteInterface : public QWidget {
   Q_OBJECT
+  Note& note;
   QLabel* titre;
   QPushbutton* modifier;
   QPushbutton* supprimer;
@@ -15,7 +16,7 @@ class NoteInterface : public QWidget {
   
   
 public :
-  MyQToolbar();
+  NoteInterface(note* n);
   
 public slots : 
   //void modification();
@@ -24,12 +25,6 @@ public slots :
 
 
 }
-
-
-
-
-
-
 
 
 #endif // NOTEINERFACE_H
