@@ -10,7 +10,7 @@ class NoteInterface : public QWidget {
   Q_OBJECT
   Note* note;
   QLineEdit* titre;
-  QPushbutton* sauver;
+  QPushbutton* save;
   
   
 public :
