@@ -5,7 +5,7 @@
 #include "NoteManager/NoteManager.h"
 #include "NoteManager/notes.h"
 
-class articleInterfaceEditable: public QDialog{
+class articleInterfaceEditable: public NoteInterfaceEditable{
 
     Q_OBJECT
 
@@ -13,16 +13,16 @@ public:
    articleInterfaceEditable(Article* a);
     
 public slots:
-   void saveArticle();
+   //void saveArticle();
 
 private:
-   QLineEdit* titre;
+   //QLineEdit* titre;
    QTextEdit* text;
-   QPushButton* save;
+   //QPushButton* save;
 
    Article* article;//Article* article;
-   QString savedName;
+   //QString savedName;
 
 };
 
-#endif // ARTICLEINTERFACE_H
+#endif // ARTICLEINTERFACEEDITABLE_H
