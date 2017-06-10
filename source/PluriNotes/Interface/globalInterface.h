@@ -17,6 +17,8 @@ public :
   GlobalIterface();
   
 public slots : 
+  void modifierNote();
+  void sauverNote();
   }
 
 
