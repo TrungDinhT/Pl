@@ -9,19 +9,14 @@
 class NoteInterface : public QWidget {
   Q_OBJECT
   Note* note;
-  QLabel* titre;
-  QPushbutton* modifier;
-  QPushbutton* supprimer;
-  QPushbutton* relier;
+  QLineEdit* titre;
+  QPushbutton* sauver;
   
   
 public :
   NoteInterface(note* n);
   
 public slots : 
-  //void modification();
-  //void suppression();
-  //void relation();
 
 
 }
