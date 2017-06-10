@@ -10,6 +10,7 @@ class GlobalInterface : public QWidget {
   Q_OBJECT
   QHBoxLayout* principale;
   NoteInterface* NI;
+  NoteInterfaceEditable* NIE;
   RelationInterface* RI;
   ManagerInterface* MI;
   MyQToolbar* TB;
