@@ -22,9 +22,9 @@ public slots:
    //void loadArticle();
 
 private:
-   QLabel* titre;
+   //QLabel* titre;
    QLabel* text;
-   QPushButton* modifier;
+   //QPushButton* modifier;
 
    Article* article;//Article* article;
    //QString savedName;
