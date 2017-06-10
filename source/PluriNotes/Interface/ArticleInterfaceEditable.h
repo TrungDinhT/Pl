@@ -10,7 +10,7 @@ class articleInterfaceEditable: public QDialog{
     Q_OBJECT
 
 public:
-   articleInterfaceEditable(Article& a);
+   articleInterfaceEditable(Article* a);
     
 public slots:
    void saveArticle();
@@ -20,7 +20,7 @@ private:
    QTextEdit* text;
    QPushButton* save;
 
-   Article& article;//Article* article;
+   Article* article;//Article* article;
    QString savedName;
 
 };
