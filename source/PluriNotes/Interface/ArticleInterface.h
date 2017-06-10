@@ -5,12 +5,12 @@
 #include "NoteManager/NoteManager.h"
 #include "NoteManager/notes.h"
 
-class articleInterfaceEditable: public QDialog{
+class articleInterface: public QDialog{
 
     Q_OBJECT
 
 public:
-   articleInterfaceEditable(Article& a);
+   articleInterface(Article& a);
 
     
 public slots:
