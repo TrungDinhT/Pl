@@ -11,7 +11,7 @@
 articleInterface::articleInterface(article* a){
   article = a;
   //titre = new QLineEdit(article.titre);
-  texte = new QLineEdit(article.texte);
+  texte = new QLineEdit(article->texte);
   modifier = new QPushButton(/*objet QIcon,*/"modifier");
   //connect(modifier,SIGNAL(clicked()),this,SLOT(modifArticle()));
   //disposition à revoir
