@@ -6,6 +6,7 @@ GlobalInterface::GlobalIterface(){
   //RI = new RelationInterface() ;
   //MI = ManagerInterface();
   //TB  =MyQToolbar();
+  connect(NI->modifier,SIGNAL(clicked()),this,SLOT(modifierNote()));
 
 }
 
