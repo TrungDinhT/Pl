@@ -8,7 +8,7 @@
 //articleInterface::articleInterface(){
 //  delete this;
 //}
-articleInterface::articleInterface(article* a){
+articleInterface::articleInterface(article* a):noteInterface(a){
   article = a;
   //titre = new QLineEdit(article.titre);
   texte = new QLineEdit(article->texte);
