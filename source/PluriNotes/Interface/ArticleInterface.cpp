@@ -8,9 +8,9 @@
 //articleInterface::articleInterface(){
 //  delete this;
 //}
-articleInterface::articleInterface(article& a){
+articleInterface::articleInterface(article* a){
   article = a;
-  titre = new QLineEdit(article.titre);
+  //titre = new QLineEdit(article.titre);
   texte = new QLineEdit(article.texte);
   modifier = new QPushButton(/*objet QIcon,*/"modifier");
   //connect(modifier,SIGNAL(clicked()),this,SLOT(modifArticle()));
