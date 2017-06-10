@@ -18,9 +18,9 @@ public :
   MyQToolbar();
   
 public slots : 
-  void modification();
-  void suppression();
-  void relation();
+  //void modification();
+  //void suppression();
+  //void relation();
 
 
 }
