@@ -14,12 +14,12 @@ GlobalInterface::GlobalIterface(){
 GlobalInterface::modifierNote(Note n){
   delete NI;
   NIE = new NoteInterfaceEditable(n);
-  principale.addWidget(NIE);
+  principale.addWidget(NIE,0,1);
 }
 GlobalInterface::sauverNote(Note n){
   delete NIE;
   NI = new NoteInterface(n);
-  principale.addWidget(NI);
+  principale.addWidget(NI,0,1);
 }
 GlobalInterface::supprimerNote(){
 //à completer
