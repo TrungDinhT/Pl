@@ -11,7 +11,7 @@ class articleInterface: public QDialog{
 
 public:
    articleInterface(Article& a);
-   ~articleInterface();
+   ~articleInterface(){}
 
     
 public slots:
