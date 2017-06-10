@@ -13,6 +13,7 @@ class GlobalInterface : public QWidget {
   RelationInterface* RI;
   ManagerInterface* MI;
   MyQToolbar* TB;
+  NoteManager& NM;
   
 public :
   GlobalIterface();
