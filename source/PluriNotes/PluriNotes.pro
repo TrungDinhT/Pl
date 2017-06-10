@@ -22,7 +22,6 @@ SOURCES += \
     NoteManager/NoteManager.cpp \
     Interface/UI.cpp \
     main.cpp \
-    iterator.cpp \
     RelationManager/relation.cpp \
     RelationManager/RelationManager.cpp
 
