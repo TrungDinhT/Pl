@@ -7,11 +7,11 @@
 
 
 class GlobalInterface : public QWidget {
-  QHBoxLayout principale;
-  NoteInterface NI;
-  RelationInterface RI;
-  ManagerInterface MI;
-  MyQToolbar TB;
+  QHBoxLayout* principale;
+  NoteInterface* NI;
+  RelationInterface* RI;
+  ManagerInterface* MI;
+  MyQToolbar* TB;
   
 public :
   GlobalIterface();
