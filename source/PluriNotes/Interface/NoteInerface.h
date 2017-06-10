@@ -8,7 +8,7 @@
 
 class NoteInterface : public QWidget {
   Q_OBJECT
-  QLabel* texte;
+  QLabel* titre;
   QPushbutton* modifier;
   QPushbutton* supprimer;
   QPushbutton* relier;
