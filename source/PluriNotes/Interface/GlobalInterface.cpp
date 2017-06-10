@@ -1,8 +1,9 @@
 GlobalInterface::GlobalIterface(){
   NM = getManager();
   iterator<Note, NotesManager> it = NM.beginIt();
-  principale = new QHBoxLayout(this);
+  principale = new QGridLayout(this);
   NI = new NoteInterface(it.current());
+  principale.addWidget(NI,0,1);
   //RI = new RelationInterface() ;
   //MI = ManagerInterface();
   //TB  =MyQToolbar();
@@ -10,11 +11,15 @@ GlobalInterface::GlobalIterface(){
 
 }
 
-GlobalInterface::modifierNote(){
-//à completer
+GlobalInterface::modifierNote(Note n){
+  delete NI;
+  NIE = new NoteInterfaceEditable(n);
+  principale.addWidget(NIE);
 }
-GlobalInterface::sauverNote(){
-//à completer
+GlobalInterface::sauverNote(Note n){
+  delete NIE;
+  NI = new NoteInterface(n);
+  principale.addWidget(NI);
 }
 GlobalInterface::supprimerNote(){
 //à completer
