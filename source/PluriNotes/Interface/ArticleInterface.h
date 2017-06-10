@@ -5,12 +5,12 @@
 #include "NoteManager/NoteManager.h"
 #include "NoteManager/notes.h"
 
-class articleInterface: public QDialog{
+class articleInterface: public NoteInterface{
 
     Q_OBJECT
 
 public:
-   articleInterface(Article& a);
+   articleInterface(Article* a);
    ~articleInterface(){}
 
     
@@ -26,7 +26,7 @@ private:
    QLabel* text;
    QPushButton* modifier;
 
-   Article& article;//Article* article;
+   Article* article;//Article* article;
    //QString savedName;
 
 };
