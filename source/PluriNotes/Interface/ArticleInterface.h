@@ -11,11 +11,13 @@ class articleInterface: public QDialog{
 
 public:
    articleInterface(Article& a);
+   ~articleInterface();
 
     
 public slots:
-   void modifArticle();
-   //void activerSave(QString str);
+   //void modifArticle();
+   
+    //void activerSave(QString str);
    //void activerSave1();
    //void loadArticle();
 
