@@ -11,7 +11,8 @@ GlobalInterface::GlobalIterface(){
   connect(NI->modifier,SIGNAL(clicked()),this,SLOT(modifierNote()));
   connect(NI->relier,SIGNAL(clicked()),this,SLOT(miseEnRelationNote()));
   connect(NI->supprimer,SIGNAL(clicked()),this,SLOT(supprimerNote()));
-  connect(NI->changerversion,SIGNAL(clicked()),this,SLOT(changerNersionNote()));
+  connect(NI->changerversion,SIGNAL(clicked()),this,SLOT(changerVersionNote()));
+  connect(NI->rendreversionactive,SIGNAL(clicked()),this,SLOT(versionActiveNote()));
 
 
 }
@@ -33,6 +34,8 @@ void GlobalInterface::sauverNote(Note n){
   connect(NI->modifier,SIGNAL(clicked()),this,SLOT(modifierNote()));
   connect(NI->relier,SIGNAL(clicked()),this,SLOT(miseEnRelationNote()));
   connect(NI->supprimer,SIGNAL(clicked()),this,SLOT(supprimerNote()));
+  connect(NI->changerversion,SIGNAL(clicked()),this,SLOT(changerVersionNote()));
+  connect(NI->rendreversionactive,SIGNAL(clicked()),this,SLOT(versionActiveNote()));
 }
 void GlobalInterface::supprimerNote(){
 //à completer
@@ -42,5 +45,9 @@ void GlobalInterface::miseEnRelationNote(){
 }
 
 void GlobalInterface::changerVersionNote(){
-//à completer
+//liste deroulante des version existante
+}
+
+void GlobalInterface::versionActiveNote(){
+//changement de place le la version dans la liste? booleen?
 }
