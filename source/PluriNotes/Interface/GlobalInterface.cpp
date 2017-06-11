@@ -2,10 +2,13 @@
 GlobalInterface::GlobalInterface(){
   NM = getManager();
   iterator<Note, NotesManager> itn = NM.beginIt();
-  Version::iterator itv = itn.getIterator();
+  NoteCurrent = &(itn.current());
+  Version::iterator itv = current.getIterator();
   principale = new QGridLayout(this);
-  NI = new NoteInterface(&(itv.current()));
+  VersionCurrent = &(itv.current());
+  NI = new NoteInterface(VersionCurrent);
   principale.addWidget(NI,0,1);
+
   //RI = new RelationInterface() ;
   //MI = ManagerInterface();
   //TB  =MyQToolbar();
