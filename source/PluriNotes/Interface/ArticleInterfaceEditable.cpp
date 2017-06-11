@@ -8,7 +8,7 @@
 //  delete this;
 //}
 
-articleInterfaceEditable::articleInterfaceEditable(Article* a){
+articleInterfaceEditable::articleInterfaceEditable(Article* a):NoteInterfaceEditable(a){
   article = a;
   //titre = new QLineEdit(article.titre,this);
   if (a == 0){texte = new QLineEdit("");}
