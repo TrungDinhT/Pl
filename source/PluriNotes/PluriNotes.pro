@@ -13,7 +13,7 @@ HEADERS += \
 #    Interface/ImageInterface.h \
 #    Interface/UI.h \
     Interface/NoteInterfaceEditable.h \
-    Interface/NoteInerface.h \
+    Interface/NoteInterface.h \
     Interface/MyQToolbar.h \
     Interface/globalInterface.h \
     Interface/ArticleInterfaceEditable.h \

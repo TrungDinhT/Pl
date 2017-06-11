@@ -28,7 +28,7 @@ protected:
 public:
     void addCouple(Note *fn, Note *tn, const QString& lab); //public pour pouvoir enrichir une relation
     relation(QString ti, QString desc="", bool ori=true):
-        titre(ti), description(desc), nbCouples(0), nbMaxCouples(0), oriente(ori),couples(nullptr) {}
+        titre(ti), description(desc),oriente(ori),couples(nullptr), nbCouples(0), nbMaxCouples(0) {}
     virtual ~relation(){
         for (unsigned int i=0;i<nbCouples;i++)
              delete couples[i];

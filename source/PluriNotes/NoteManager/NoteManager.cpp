@@ -66,44 +66,8 @@ void NotesManager::save() const{
     stream.setAutoFormatting(true);
     stream.writeStartDocument();
     stream.writeStartElement("Notes");
-    for(unsigned int i=0;i<nbNotes;i++){
-        char type = notes[i]->getId()[0].toLatin1();
-        switch(type){
-            case 'A': { stream.writeStartElement("article");
-                        break;}
-            case 'I': { stream.writeStartElement("image");
-                        break;}
-            case 'T': { stream.writeStartElement("tache");
-                        break;}
-        }
-        stream.writeTextElement("dateCreation",notes[i]->getDateCreation().toString("dd.MM.yyyy-hh:mm:ss"));
-        stream.writeTextElement("id",notes[i]->getId());
-        switch(notes[i]->getEtat()){
-            case ARCHIVE: { stream.writeTextElement("Etat","archive");
-                            break;}
-            case ACTIVE: { stream.writeTextElement("Etat","active");
-                           break;}
-            case RIP: { stream.writeTextElement("Etat","rip");
-                        break;}
-        }
-        stream.writeStartElement("Versions");
-        for(Note::Iterator it = notes[i]->begin(); it!= notes[i]->end();it++)
-        {
-            stream.writeTextElement("titre",(*it)->getTitre());
-            stream.writeTextElement("dateModification",(*it)->getDateModif().toString("dd.MM.yyyy-hh:mm:ss"));
-            switch(type){
-                case 'A':{ Article* a = static_cast<Article*>(*it);
-                          stream.writeTextElement("text",a->getText());
-                          break;
-                        }
-                /*case 'I':{ Image* a = static_cast<Article*>(*it);
-                        }
-                case 'T':*/
-                default:  break;
-            }
-        }
-        stream.writeEndElement();
-    }
+    for(unsigned int i=0;i<nbNotes;i++)
+        notes[i]->save(stream);
     stream.writeEndElement();
     stream.writeEndDocument();
     newfile.close();
