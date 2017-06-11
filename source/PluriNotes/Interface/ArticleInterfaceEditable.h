@@ -10,7 +10,7 @@ class articleInterfaceEditable: public NoteInterfaceEditable{
     Q_OBJECT
 
 public:
-   articleInterfaceEditable(Article* a);
+   articleInterfaceEditable(Article* a = 0);
     
 public slots:
    //void saveArticle();
