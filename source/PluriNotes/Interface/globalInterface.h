@@ -17,12 +17,12 @@ class GlobalInterface : public QWidget {
   //RelationInterface* RI;
   //ManagerInterface* MI;
   //MyQToolbar* TB;
-  NoteManager& NM;
+  NotesManager& NM;
   Note* NoteCurrent;
   Version* VersionCurrent;
   
 public :
-  GlobalIterface();
+  GlobalInterface();
   
 public slots : 
   void modifierNote();
