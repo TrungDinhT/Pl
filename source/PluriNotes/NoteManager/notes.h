@@ -26,21 +26,7 @@ enum EtatNote {ARCHIVE, ACTIVE, RIP};
 
 class articleInterface;
 
-class Version {
-
-private:
-    QString titre;
-    QDateTime dateModif;
-
-protected:
-    void autoLoad();
-
-public:
-    Version(const QString& titre=""): titre(titre),dateModif(QDateTime::currentDateTime()){}
-    const QDateTime& getDateModif() const { return dateModif; }
-    QString getTitre() const {return titre;}
-    void setTitre(const QString& t){titre=t;}
-};
+class Version;
 
 class Note {
 private:
@@ -50,10 +36,11 @@ private:
     Version** versions;
     unsigned int nbVer;
     unsigned int nbMaxVer;
-    void addVersion(Version* v);
 public:
     Note(const QString& id): dateCreation(QDateTime::currentDateTime()), id(id),
         etat(ACTIVE), versions(nullptr), nbVer(0), nbMaxVer(0){}
+    Note(const QDateTime dC, const QString id, EtatNote etat):
+        dateCreation(dC),id(id),etat(etat),versions(nullptr),nbVer(0),nbMaxVer(0){}
     //lectures
     const QString& getId() const { return id; }
     const QDateTime& getDateCreation() const { return dateCreation; }
@@ -62,7 +49,7 @@ public:
         for(unsigned int i=0;i<nbVer;i++) delete versions[i];
         delete[] versions;
     }
-
+    void addVersion(Version* v);
     Note* getNewNote(const QString& id, Version *v);
     Version* getVer(const QString& titre);
 
@@ -82,14 +69,31 @@ public:
 
 };
 
+class Version {
+
+private:
+    QString titre;
+    QDateTime dateModif;
+
+protected:
+    void autoLoad();
+
+public:
+    Version(const QString& titre=""): titre(titre),dateModif(QDateTime::currentDateTime()){}
+    Version(const QString titre, QDateTime dM): titre(titre),dateModif(dM){}
+    const QDateTime& getDateModif() const { return dateModif; }
+    QString getTitre() const {return titre;}
+    void setTitre(const QString& t){titre=t;}
+};
+
 class Article : public Version{
 
 private:
     QString text;
     friend class articleInterface;
 public:
-    Article(const QString& ti="", const QString& te="");
-    //Article(const QString& i, const QString& ti="", const QString& te="");
+    Article(const QString ti, QDateTime d, const QString te): Version(ti,d), text(te) {}
+    Article(const QString te=""): Version(),text(te){}
 
     //accesseurs
     const QString& getText() const { return text; }

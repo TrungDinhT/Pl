@@ -82,7 +82,7 @@ private:
     relationPreexistance& operator=(const relationPreexistance& re);
     ~relationPreexistance(){}
 public:
-    static relationPreexistance* getInstance();
+    static relationPreexistance& getInstance();
     static void freeInstance();
 
 };

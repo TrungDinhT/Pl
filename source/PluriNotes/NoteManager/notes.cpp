@@ -1,7 +1,5 @@
 #include "notes.h"
 
-Article::Article(const QString& ti, const QString& te): Version(ti), text(te) {}
-//Article::Article(const QString& i, const QString& ti, const QString& te): Note(ti), text(te){ specifyID(); }
 
 void Note::addVersion(Version *v){
     for(unsigned int i=0; i<nbVer; i++){

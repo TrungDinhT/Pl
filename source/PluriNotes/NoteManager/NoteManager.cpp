@@ -9,7 +9,7 @@
 #include <QtXml>
 #include <QMessageBox>
 #include <QFileDialog>
-
+#include "exception.h"
 
 NotesManager* NotesManager::instance = nullptr;
 
@@ -43,6 +43,21 @@ void NotesManager::save(const QString& id) {
     addNotes(n);
 }
 
+NotesManager::~NotesManager(){
+    save(); //save all file when exiting the program
+    for(unsigned int i=0; i<nbNotes; i++) delete notes[i];
+    delete[] notes;
+}
+
+Note* NotesManager::getNote(const QString& id){
+    // si l'article existe deja, on en renvoie une reference
+    for(unsigned int i=0; i<nbNotes; i++){
+        if (notes[i]->getId()==id) return notes[i];
+    }
+    // sinon il envoie erreur
+    throw _Exception("Error: article not found");
+}
+
 void NotesManager::save() const{
     QFile newfile(filename);
     if (!newfile.open(QIODevice::WriteOnly | QIODevice::Text))
@@ -54,15 +69,23 @@ void NotesManager::save() const{
     for(unsigned int i=0;i<nbNotes;i++){
         char type = notes[i]->getId()[0].toLatin1();
         switch(type){
-            case 'A': stream.writeStartElement("article");
-                             break;
-            case 'I': stream.writeStartElement("image");
-                             break;
-            case 'T': stream.writeStartElement("tache");
-                             break;
+            case 'A': { stream.writeStartElement("article");
+                        break;}
+            case 'I': { stream.writeStartElement("image");
+                        break;}
+            case 'T': { stream.writeStartElement("tache");
+                        break;}
         }
         stream.writeTextElement("dateCreation",notes[i]->getDateCreation().toString("dd.MM.yyyy-hh:mm:ss"));
         stream.writeTextElement("id",notes[i]->getId());
+        switch(notes[i]->getEtat()){
+            case ARCHIVE: { stream.writeTextElement("Etat","archive");
+                            break;}
+            case ACTIVE: { stream.writeTextElement("Etat","active");
+                           break;}
+            case RIP: { stream.writeTextElement("Etat","rip");
+                        break;}
+        }
         stream.writeStartElement("Versions");
         for(Note::Iterator it = notes[i]->begin(); it!= notes[i]->end();it++)
         {
@@ -86,138 +109,87 @@ void NotesManager::save() const{
     newfile.close();
 }
 
-NotesManager::~NotesManager(){
-    save(); //save all file when exiting the program
-    for(unsigned int i=0; i<nbNotes; i++) delete notes[i];
-    delete[] notes;
-}
-
-
-Note* NotesManager::getNote(const QString& id){
-    // si l'article existe deja, on en renvoie une reference
-    for(unsigned int i=0; i<nbNotes; i++){
-        if (notes[i]->getId()==id) return notes[i];
-    }
-    // sinon il envoie erreur
-    throw _Exception("Error: article not found");
-}
-
 void NotesManager::load(){
-        QFile fichier(filename);
-        if (!fichier.open(QIODevice::ReadOnly | QIODevice::Text)) {
-                throw NoteException("Erreur ouverture fichier notes");
-        }
-        QXmlStreamReader stream(&fichier);
-        int i = -1;
-        while(!stream.atEnd() && !stream.hasError()) {
-            qDebug()<<"Debut\n";
-            QXmlStreamReader::TokenType token = stream.readNext();
-            if(token == QXmlStreamReader::StartDocument) continue;
-            if(token == QXmlStreamReader::StartElement) {
-                if(stream.name() == "PluriNotes") continue;
-                if(stream.name() == "Notes") continue;
-                if(stream.name() == "Relations") continue;
-                if(stream.name() == "article") {
-                    qDebug()<<"new article\n";
-                    QString id;
-                    QString titre;
-                    QString texte;
-                    QDate dateCrea;
-                    QDate dateModif;
-                    condition co;
-                    stream.readNext();
-
-                    while(!(stream.tokenType() == QXmlStreamReader::EndElement && (stream.name() == "article" || stream.name() == "tache" || stream.name() == "multimedia" || stream.name() == "Notes"))){
-                        //qDebug()<<stream.name();
-                        if(stream.tokenType() == QXmlStreamReader::StartElement) {
-                            if(stream.name() == "Current")
-                            {
-                                while((stream.name() != "Memento" && stream.name() != "article" && stream.name() != "tache" && stream.name() != "multimedia"))
-                                {
-                                    qDebug()<< "boucle current";
-                                    qDebug() <<stream.name();
-                                    if(stream.tokenType() == QXmlStreamReader::StartElement) {
-                                        if(stream.name() == "id") {
-                                            stream.readNext();
-                                            id=stream.text().toString();
-                                            qDebug()<<"id="<<id<<"\n";
-                                        }
-                                        if(stream.name() == "titre") {
-                                            stream.readNext();
-                                            titre=stream.text().toString();
-                                            qDebug()<<"titre="<<titre<<"\n";
-                                        }
-                                        if(stream.name() == "texte") {
-                                            stream.readNext();
-                                            texte=stream.text().toString();
-                                            qDebug()<<"text="<<texte<<"\n";
-                                        }
-                                        if(stream.name() == "dateCrea")
-                                        {
-                                            stream.readNext();
-                                            dateCrea = QDate::fromString(stream.text().toString(),"dd-MM-yyyy ");
-                                            qDebug()<<"dateCrea="<<dateCrea<<"\n";
-                                        }
-                                        if(stream.name() == "dateModif")
-                                        {
-                                            stream.readNext();
-                                            dateModif = QDate::fromString(stream.text().toString(),"dd-MM-yyyy");
-                                            qDebug()<<"dateModif="<<dateModif<<"\n";
-                                        }
-                                        if(stream.name() == "etat") {
-                                            stream.readNext();
-                                            QString tempType =stream.text().toString();
-                                            if(tempType == "archive")
-                                                co = archive;
-                                            else
-                                                co = active;
-                                        }
-
-
-                                    }
-                                    stream.readNext();
-                                }
-                                Article* article = new Article(id,titre,texte, dateCrea, dateModif,co);
-                                addNote(article);
-                                i++;
-                            }
-                            if(stream.name() == "Memento")
-                            {
-                                while(stream.tokenType() != QXmlStreamReader::EndElement || (stream.name() != "Memento" && stream.name() != "article" && stream.name() != "tache" && stream.name() != "multimedia")){
-                                    qDebug()<<"elem memento";
-                                    qDebug() << stream.name();
-                                    if(stream.tokenType() == QXmlStreamReader::StartElement) {
-                                        if(stream.name() == "titre") {
-                                            stream.readNext();
-                                            titre=stream.text().toString();
-                                            qDebug()<<"titre="<<titre<<"\n";
-                                        }
-                                        if(stream.name() == "texte") {
-                                            stream.readNext();
-                                            texte=stream.text().toString();
-                                            qDebug()<<"text="<<texte<<"\n";
-                                        }
-                                        if(stream.name() == "dateModif")
-                                        {
-                                            stream.readNext();
-                                            dateModif = QDate::fromString(stream.text().toString(),"dd-MM-yyyy ");
-                                            qDebug()<<"dateModif="<<dateModif<<"\n";
-                                        }
-
-
-                                    }
-                                    stream.readNext();
-                                }
-                                Gardien* mementos = this->ListNotes[i]->getGardien();
-                                Memento* memento = new MementoArticle(titre,texte,dateModif);
-                                mementos->addMemento(memento);
-                            }
-                        }
+    QFile fichier(filename);
+    if (!fichier.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            throw _Exception("Erreur ouverture fichier notes");
+    }
+    QXmlStreamReader stream(&fichier);
+    int i = -1;
+    while(!stream.atEnd() && !stream.hasError()) {
+        qDebug()<<"Debut\n";
+        QXmlStreamReader::TokenType token = stream.readNext();
+        if(token == QXmlStreamReader::StartDocument) continue;
+        if(token == QXmlStreamReader::StartElement) {
+            if(stream.name() == "Notes") continue;
+            if(stream.name() == "article") {
+                qDebug()<<"new article\n";
+                QString id;
+                QDateTime dateCrea;
+                EtatNote etat;
+                stream.readNext();
+                if(stream.tokenType() == QXmlStreamReader::StartElement) {
+                    if(stream.name() == "dateCreation")
+                    {
                         stream.readNext();
+                        dateCrea = QDateTime::fromString(stream.text().toString(),"dd.MM.yyyy-hh:mm:ss");
+                        qDebug()<<"dateCrea="<<dateCrea<<"\n";
                     }
-                    qDebug()<<"ajout article "<<id<<"\n";
+                    if(stream.name() == "id") {
+                        stream.readNext();
+                        id=stream.text().toString();
+                        qDebug()<<"id="<<id<<"\n";
+                    }
+                    if(stream.name() == "etat") {
+                        stream.readNext();
+                        QString tempType =stream.text().toString();
+                        if(tempType == "archive")
+                            etat = ARCHIVE;
+                        else if(tempType == "active")
+                            etat = ACTIVE;
+                        else
+                            etat = RIP;
+                    }
+                    Note* n = new Note(dateCrea,id,etat);
+                    if(stream.name() == "Versions"){
+                        stream.readNext();
+                        QString titre;
+                        QDateTime dateModif;
+                        QString texte;
+                        while(!(stream.tokenType() == QXmlStreamReader::EndElement && (stream.name() == "article" || stream.name() == "tache" || stream.name() == "multimedia" || stream.name() == "Notes" || stream.name()=="Versions"))){
+                        //qDebug()<<stream.name();
+                            qDebug()<< "boucle version";
+                            if(stream.tokenType() == QXmlStreamReader::StartElement) {
+                                if(stream.name() == "titre") {
+                                    stream.readNext();
+                                    titre=stream.text().toString();
+                                    qDebug()<<"titre="<<titre<<"\n";
+                                }
+                                if(stream.name() == "texte") {
+                                    stream.readNext();
+                                    texte=stream.text().toString();
+                                    qDebug()<<"text="<<texte<<"\n";
+                                }
+                                if(stream.name() == "dateModification") {
+                                    stream.readNext();
+                                    dateModif = QDateTime::fromString(stream.text().toString(),"dd.MM.yyyy-hh:mm:ss");
+                                    qDebug()<<"dateModif="<<dateModif<<"\n";
+                                }
+
+                            }
+                            stream.readNext();
+                            Article* a = new Article(titre,dateModif,texte);
+                            n->addVersion(a);
+                            i++;
+                            qDebug()<<"ajout article "<<titre<<"\n";
+                        }
+                    }
+                    addNotes(n);
+                    qDebug()<<"ajout note"<<id<<"\n";
                 }
-                if(stream.name() == "tache") {
+                stream.readNext();
+            }
+            /*    if(stream.name() == "tache") {
                     qDebug()<<"new tache\n";
                     QString id;
                     QString titre;
@@ -492,44 +464,19 @@ void NotesManager::load(){
                     }
                     qDebug()<<"ajout multimedia "<<id<<"\n";
                 }
-               /* if(stream.name() == "relation"){
-                    RelationManager& Rels = RelationManager::donneInstance();
-                    Rels.LoadRelationXML(&stream);
-                 } */
-            }
-        }
-        // Error handling.
-        if(stream.hasError()) {
-            throw NoteException("Erreur lecteur fichier notes");
-        }
+*/
 
-        stream.clear();
-        qDebug()<<"fin load\n";
+
+        }
+    }
+    // Error handling.
+    if(stream.hasError()) {
+        throw _Exception("Erreur lecteur fichier notes");
+    }
+    stream.clear();
+    qDebug()<<"fin load\n";
 }
 
-void NoteManager::SaveEverythingXML(){
-
-    QFile fichier(filename);
-    if (!fichier.open(QIODevice::WriteOnly | QIODevice::Text))
-        throw NoteException(QString("erreur sauvegarde articles : ouverture fichier xml"));
-    QXmlStreamWriter stream(&fichier);
-       stream.setAutoFormatting(true);
-       stream.writeStartDocument();
-       stream.writeStartElement("PluriNotes");
-       stream.writeStartElement("Notes");
-       for(unsigned int i=0; i<nbNotes; i++){
-           if(ListNotes[i]->cond != deleted)
-           {
-                this->ListNotes[i]->saveXML(&stream);
-           }
-       }
-       stream.writeEndElement();
-       /*RelationManager& Rels = RelationManager::donneInstance();
-       Rels.saveEveryRelationsXML(&stream); */
-       stream.writeEndElement();
-       stream.writeEndDocument();
-       fichier.close();
-}
 /*
 Note* NotesManager::getNewNote(char type){
     Note* n;
