@@ -4,6 +4,9 @@
 #include <QtWidgets>
 #include "NoteManager/NoteManager.h"
 #include "NoteManager/notes.h"
+#include "Interface/NoteInterface.h"
+#include "Interface/NoteInterfaceEditable.h"
+
 
 
 class GlobalInterface : public QWidget {
@@ -11,9 +14,9 @@ class GlobalInterface : public QWidget {
   QGridLayout* principale;
   NoteInterface* NI;
   NoteInterfaceEditable* NIE;
-  RelationInterface* RI;
-  ManagerInterface* MI;
-  MyQToolbar* TB;
+  //RelationInterface* RI;
+  //ManagerInterface* MI;
+  //MyQToolbar* TB;
   NoteManager& NM;
   
 public :
