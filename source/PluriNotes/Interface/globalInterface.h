@@ -18,6 +18,8 @@ class GlobalInterface : public QWidget {
   //ManagerInterface* MI;
   //MyQToolbar* TB;
   NoteManager& NM;
+  Note* NoteCurrent;
+  Version* VersionCurrent;
   
 public :
   GlobalIterface();
@@ -30,11 +32,6 @@ public slots :
   void changerVersionNote();
   void versionActiveNote();
   }
-
-
-
-
-
 
 
 #endif // GLOBALINTERFACE_H
