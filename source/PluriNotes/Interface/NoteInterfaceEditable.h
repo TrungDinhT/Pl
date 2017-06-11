@@ -6,7 +6,7 @@
 #include "NoteManager/notes.h"
 
 
-class NoteInterface : public QWidget {
+class NoteInterfaceEditable : public QWidget {
   Q_OBJECT
   Version* version;
   QLineEdit* titre;
@@ -14,7 +14,7 @@ class NoteInterface : public QWidget {
 
   
 public :
-  NoteInterface(Version* v);
+  NoteInterfaceEditable(Version* v);
   
 public slots : 
 
