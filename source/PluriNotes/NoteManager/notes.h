@@ -100,21 +100,20 @@ public:
     void setText(const QString& t) { text = t; }
 
 };
-/*
-class Image: public Note{
+
+class Image: public Version{
   private:
     QString description;
     QString nomFichier;
-    const QString createID(){
-        return QString("A-" + getDateCreation().toString("dd.MM.yyyy-hh:mm:ss")); }
     //friend class imageInterface;
 
 public:
-    Image(const QString& f, const QString& ti="", const QString& d="");
-    Image(const QString& i, const QString& f, const QString& ti="", const QString& d="");
+    Image(const QString ti, QDateTime d, const QString& f, const QString desc=""): Version(ti,d), description(desc), nomFichier(f){}
+    Image(const QString& f, const QString desc=""): description(desc), nomFichier(f){}
 
     //accesseurs
     const QString& getDesc() const { return description; }
+    const QString& getNomFichier() const { return nomFichier; }
     void setDesc(const QString& d) { description = d; }
 };
 
@@ -144,8 +143,5 @@ public:
     void setStatut(const etat s) {statut = s; }
 };
 
-
-Note** loadOldVersions();
-*/
 
 #endif
