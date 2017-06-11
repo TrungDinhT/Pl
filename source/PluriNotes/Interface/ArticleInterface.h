@@ -10,7 +10,7 @@ class articleInterface: public NoteInterface{
     Q_OBJECT
 
 public:
-   articleInterface(Article* a);
+   articleInterface(Article* a = 0);
    ~articleInterface(){}
 
     
