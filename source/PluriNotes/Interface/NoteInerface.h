@@ -8,7 +8,7 @@
 
 class NoteInterface : public QWidget {
   Q_OBJECT
-  Note* note;
+  Version* version;
   QLabel* titre;
   QPushbutton* modifier;
   QPushbutton* supprimer;
@@ -16,7 +16,7 @@ class NoteInterface : public QWidget {
   
   
 public :
-  NoteInterface(note* n);
+  NoteInterface(Version* n);
   
 public slots : 
   //void modification();
