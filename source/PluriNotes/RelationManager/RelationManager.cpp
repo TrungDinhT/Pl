@@ -9,7 +9,7 @@
 
 static NotesManager& NM = NotesManager::getManager();
 
-static RelationsManager* RelationsManager::instance = nullptr;
+RelationsManager* RelationsManager::instance = nullptr;
 
 RelationsManager& RelationsManager::getInstance(){
     if (!instance) instance=new RelationsManager;
@@ -23,7 +23,7 @@ void RelationsManager::freeInstance(){
 
 void RelationsManager::addRelations(relation *r){
     if(nbRelations==nbMaxRelations){
-        relation** newRelations = new relations*[nbMaxRelations+5];
+        relation** newRelations = new relation*[nbMaxRelations+5];
         for(unsigned int i=0;i<nbRelations;i++)
             newRelations[i] = relations[i];
         relation** oldRelations = relations;
@@ -31,27 +31,28 @@ void RelationsManager::addRelations(relation *r){
         if(oldRelations) delete[] oldRelations;
         nbMaxRelations +=5;
     }
-    relations[nb++] = r;
+    relations[nbRelations++] = r;
 }
 
 relation* RelationsManager::getNewRelation(const QString& titre, const QString& desc, bool ori){
     for(unsigned int i=0;i<nbRelations;i++){
-        if(relations[i]->getTitre()==titre) throw exception("Error: relation already existed");
+        if(relations[i]->getTitre()==titre) throw _Exception("Error: relation already existed");
     }
     addRelations(new relationNonPreexistance(titre,desc,ori));
 }
 
 relation* RelationsManager::getRelation(const QString &titre){
-    for(unsigned int i=0;i<nbRelations && relations[i]->getTitre()!=titre;i++);
-    if(i==nbRelations) throw exception("Error: relation not found");
+    unsigned int i;
+    for(i=0;i<nbRelations && relations[i]->getTitre()!=titre;i++);
+    if(i==nbRelations) throw _Exception("Error: relation not found");
     return relations[i];
 }
 
 void RelationsManager::deleteRelation(const QString &titre){
-    if(titre=="\ref") throw exception("Error: cannot delete relation reference");
-    for(unsigned int i=0;i<nbRelations && relations[i]->getTitre()!=titre;i++);
-    if(i==nbRelations) throw exception("Error: relation not found");
-    delete relations[i];
+    if(titre=="\ref") throw _Exception("Error: cannot delete relation reference");
+    unsigned int i;
+    for(i=0;i<nbRelations && relations[i]->getTitre()!=titre;i++);
+    if(i==nbRelations) throw _Exception("Error: relation not found");
     else{
         delete relations[i];
         for(;i<nbRelations-1;i++) relations[i]=relations[i+1]; //deplacer tous les relations apres cette relation a gauche
@@ -62,7 +63,7 @@ void RelationsManager::deleteRelation(const QString &titre){
 void RelationsManager::save(const QString& filename){
     QFile newfile(filename);
     if (!newfile.open(QIODevice::WriteOnly | QIODevice::Text))
-        throw exception(QString("Error open file xml : cannot save file"));
+        throw _Exception(QString("Error open file xml : cannot save file"));
     QXmlStreamWriter stream(&newfile);
     stream.setAutoFormatting(true);
     stream.writeStartDocument();
@@ -73,11 +74,11 @@ void RelationsManager::save(const QString& filename){
         stream.writeTextElement("description",relations[i]->getDescription());
         if(relations[i]->getOriente()) stream.writeTextElement("orientation","true");
         else stream.writeTextElement("orientation","false");
-        for(relation::iterator<couple,relation> c = relations[i]->beginIt(); c!=relations[i]->endIt(); c++){
+        for(relation::Iterator c = relations[i]->begin(); c!=relations[i]->end(); c++){
             stream.writeStartElement("couple");
-            stream.writeTextElement("Label",(*c).label);
-            stream.writeTextElement("fromNote ID",(*c).getFromNote()->getId());
-            stream.writeTextElement("toNote ID",(*c).getToNote()->getId());
+            stream.writeTextElement("Label",(*c)->label);
+            stream.writeTextElement("fromNote ID",(*c)->getFromNote()->getId());
+            stream.writeTextElement("toNote ID",(*c)->getToNote()->getId());
             stream.writeEndElement();
         }
         stream.writeEndElement();
@@ -89,8 +90,8 @@ void RelationsManager::save(const QString& filename){
 void RelationsManager::load(const QString &filename){
     QFile file(filename);
     // If we can't open it, show an error message.
-    if (!fin.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        throw exception("Error : cannot open file");
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        throw _Exception("Error : cannot open file");
     }
     // QXmlStreamReader takes any QIODevice.
     QXmlStreamReader xml(&file);
@@ -158,7 +159,7 @@ void RelationsManager::load(const QString &filename){
                     // ...and next...
                     xml.readNext();
                     qDebug()<<"ajout couple "<<label<<"\n";
-                    r->addCouple(NM->getNote(fromNoteID),NM->getNote(toNoteID),label);
+                    r->addCouple(NM.getNote(fromNoteID),NM.getNote(toNoteID),label);
                 }
             qDebug()<<"ajout relation "<<titre<<"\n";
             if(titre!="\ref") addRelations(r);
@@ -167,7 +168,7 @@ void RelationsManager::load(const QString &filename){
     }
     // Error handling.
     if(xml.hasError()) {
-        throw exception("Error parsing xml : cannot read file");
+        throw _Exception("Error parsing xml : cannot read file");
     }
     // Removes any device() or data from the reader * and resets its internal state to the initial state.
     xml.clear();

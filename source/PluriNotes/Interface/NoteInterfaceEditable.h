@@ -10,8 +10,8 @@ class NoteInterface : public QWidget {
   Q_OBJECT
   Version* version;
   QLineEdit* titre;
-  QPushbutton* save;
-  
+  QPushButton* save;
+
   
 public :
   NoteInterface(Version* v);

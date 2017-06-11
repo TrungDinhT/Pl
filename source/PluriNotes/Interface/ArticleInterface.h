@@ -5,7 +5,7 @@
 #include "NoteManager/NoteManager.h"
 #include "NoteManager/notes.h"
 #include "RelationManager/relation.h"
-
+#include "NoteInerface.h"
 class articleInterface: public NoteInterface{
 
     Q_OBJECT

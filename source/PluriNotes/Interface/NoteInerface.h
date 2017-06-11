@@ -10,9 +10,9 @@ class NoteInterface : public QWidget {
   Q_OBJECT
   Version* version;
   QLabel* titre;
-  QPushbutton* modifier;
-  QPushbutton* supprimer;
-  QPushbutton* relier;
+  QPushButton* modifier;
+  QPushButton* supprimer;
+  QPushButton* relier;
   
   
 public :
@@ -24,7 +24,7 @@ public slots :
   //void relation();
 
 
-}
+};
 
 
 #endif // NOTEINERFACE_H
