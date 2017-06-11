@@ -10,8 +10,9 @@
 //}
 articleInterface::articleInterface(article* a):noteInterface(a){
   article = a;
-  //titre = new QLineEdit(article.titre);
-  text = new QLineEdit(article->texte);
+  //titre = new QLineEdit(article->titre);
+  if (a==0){text = new QLabel("");}
+  else{text = new QLineEdit(article->texte);}
   modifier = new QPushButton(/*objet QIcon,*/"modifier");
   //connect(modifier,SIGNAL(clicked()),this,SLOT(modifArticle()));
   //disposition à revoir
