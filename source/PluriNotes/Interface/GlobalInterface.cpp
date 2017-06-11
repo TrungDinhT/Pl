@@ -1,3 +1,4 @@
+#include "GlobalInterface.h"
 GlobalInterface::GlobalIterface(){
   NM = getManager();
   iterator<Note, NotesManager> itn = NM.beginIt();
