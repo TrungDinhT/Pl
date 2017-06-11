@@ -1,4 +1,4 @@
-#include "Interface.ArticleInterface.h"
+#include "Interface/ArticleInterface.h"
 
 //void articleInterface::modifArticle(){
 //  articleInterfaceEditable a = new articleInterfaceEditable(article);
