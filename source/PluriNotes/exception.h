@@ -1,9 +1,11 @@
 #ifndef EXCEPTION_H
 #define EXCEPTION_H
 
-class exception{
+#include <QString>
+
+class _Exception{
 public:
-    exception(const QString& message):info(message){}
+    _Exception(const QString& message):info(message){}
     QString getInfo() const { return info; }
 private:
     QString info;

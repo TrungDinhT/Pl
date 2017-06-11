@@ -38,13 +38,19 @@ public:
     void load(const QString& filename);
     void save(const QString &filename); //filename = name + path to save
 
-    class iterator<relation, RelationsManager>;
-    iterator<relation, RelationsManager> beginIt(){ return iterator<relation, RelationsManager>(relations); }
-    iterator<relation, RelationsManager> endIt(){ return iterator<relation, RelationsManager>(relations + nbRelations); }
+    class Iterator: public iterator<relation>{
+        friend class RelationsManager;
+        Iterator(relation** r, unsigned int n): iterator(r,n){}
+    };
+    Iterator begin(){ return Iterator(relations,nbRelations); }
+    Iterator end(){ return Iterator(relations + nbRelations, nbRelations); }
 
-    class const_iterator<relation, RelationsManager>;
-    const_iterator<relation, RelationsManager> beginIt(){ return const_iterator<relation, RelationsManager>(relations); }
-    const_iterator<relation, RelationsManager> endIt(){ return const_iterator<relation, RelationsManager>(relations + nbRelations); }
+    class Const_Iterator: public const_iterator<relation>{
+        friend class RelationsManager;
+        Const_Iterator(relation** r, unsigned int n): const_iterator(r,n){}
+    };
+    Const_Iterator cbegin(){ return Const_Iterator(relations,nbRelations); }
+    Const_Iterator cend(){ return Const_Iterator(relations + nbRelations,nbRelations); }
 };
 
 #endif //RELATIONMANAGER_H

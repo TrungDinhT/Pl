@@ -4,6 +4,7 @@
 #include <QtWidgets>
 #include "NoteManager/NoteManager.h"
 #include "NoteManager/notes.h"
+#include "RelationManager/relation.h"
 
 class articleInterface: public QDialog{
 

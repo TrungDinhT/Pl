@@ -44,28 +44,27 @@ public:
     static void freeManager(); // free the memory used by the NotesManager; it can be rebuild later
 
     Note* getNote(const QString& id);
-    Note* getNewNote(char type);
+    //Note* getNewNote(char type);
 
     void deleteNote(const QString& id);
 
     QString getFilename() const { return filename; }
     void setFilename(const QString& f) { filename=f; }
-    void load(); // load notes from file filename
-    void save(Note *a) const; // save a specific note in a specific file filename
-
-    class Iterator: public iterator<Note>{
+    void load(); // load all notes
+    void load(const QString& id);
+    void save() const; //save all notes (at the beginning)
+    void save(const QString& id); // create a note in array notes
+    class Iterator: public _Iterator<Note>{
         friend class NotesManager;
-        Iterator(Note** notes, unsigned int n): iterator(notes,n){}
+        Iterator(Note** notes, unsigned int n): _Iterator(notes,n){}
     };
     Iterator begin() const { return Iterator(notes,nbNotes); }
     Iterator end() const { return Iterator(notes + nbNotes,nbNotes); }
 
-    class Const_Iterator: public const_iterator<couple>{
-        friend class relation;
-        Const_Iterator(couple** c, unsigned int n): const_iterator(c,n){}
+    class Const_Iterator: public _const_iterator<Note>{
+        friend class NotesManager;
+        Const_Iterator(Note** notes, unsigned int n): _const_iterator(notes,n){}
     };
-    Const_Iterator begin() const { return Const_Iterator(notes,nbNotes); }
-    Const_Iterator end() const { return Const_Iterator(notes,nbNotes); }
     Const_Iterator cbegin() const { return Const_Iterator(notes,nbNotes); }
     Const_Iterator cend() const { return Const_Iterator(notes + nbNotes,nbNotes); }
 /*

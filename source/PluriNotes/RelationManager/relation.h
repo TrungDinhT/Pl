@@ -44,19 +44,17 @@ public:
     virtual void setOriente(bool ori) =0;
 
     //iterator + methodes servent a parcourir
-    class Iterator: public iterator<couple>{
+    class Iterator: public _Iterator<couple>{
         friend class relation;
-        Iterator(couple** c, unsigned int n): iterator(c,n){}
+        Iterator(couple** c, unsigned int n): _Iterator(c,n){}
     };
     Iterator begin() const { return Iterator(couples,nbCouples); }
     Iterator end() const { return Iterator(couples + nbCouples,nbCouples); }
 
-    class Const_Iterator: public const_iterator<couple>{
+    class Const_Iterator: public _const_iterator<couple>{
         friend class relation;
-        Const_Iterator(couple** c, unsigned int n): const_iterator(c,n){}
+        Const_Iterator(couple** c, unsigned int n): _const_iterator(c,n){}
     };
-    Const_Iterator begin() const { return Const_Iterator(couples,nbCouples); }
-    Const_Iterator end() const { return Const_Iterator(couples + nbCouples,nbCouples); }
     Const_Iterator cbegin() const { return Const_Iterator(couples,nbCouples); }
     Const_Iterator cend() const { return Const_Iterator(couples + nbCouples,nbCouples); }
 
@@ -80,8 +78,8 @@ private:
 
     static relationPreexistance* instance;
     relationPreexistance(): relation("\ref","reference vers une note",true){}
-    relationPreexistance(const relationPreexistance& re){}
-    relationPreexistance& operator=(const relationPreexistance& re){}
+    relationPreexistance(const relationPreexistance& re);
+    relationPreexistance& operator=(const relationPreexistance& re);
     ~relationPreexistance(){}
 public:
     static relationPreexistance* getInstance();

@@ -5,7 +5,8 @@
 #include "Interface/UI.h"
 #include <QApplication>
 
-
+#include "RelationManager/relation.h"
+#include "RelationManager/RelationManager.h"
 
 int main(int argc, char *argv[])
 
