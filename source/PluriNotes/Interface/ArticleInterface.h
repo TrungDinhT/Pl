@@ -2,7 +2,6 @@
 #define ARTICLEINTERFACE_H
 
 #include <QtWidgets>
-#include <QLabel>
 #include "NoteManager/NoteManager.h"
 #include "NoteManager/notes.h"
 #include "Interface/NoteInterface.h"
