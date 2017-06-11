@@ -8,7 +8,7 @@
 
 class GlobalInterface : public QWidget {
   Q_OBJECT
-  QHBoxLayout* principale;
+  QGridLayout* principale;
   NoteInterface* NI;
   NoteInterfaceEditable* NIE;
   RelationInterface* RI;
