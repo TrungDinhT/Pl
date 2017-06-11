@@ -38,9 +38,16 @@ void NotesManager::addNotes(Note* n){
     notes[nbNotes++]=n;
 }
 
-void NotesManager::save(const QString& id) {
-    Note* n = new Note(id);
-    addNotes(n);
+void NotesManager::save(const QString& id, Version *v) {
+    unsigned int i;
+    for(i=0;i<nbNotes&&notes[i]->getId()!=id;i++);
+    if(i==nbNotes){
+        Note* n = new Note(id);
+        addNotes(n);
+    }
+    else{
+        notes[i]->addVersion(v);
+    }
 }
 
 NotesManager::~NotesManager(){
@@ -49,7 +56,7 @@ NotesManager::~NotesManager(){
     delete[] notes;
 }
 
-Note* NotesManager::getNote(const QString& id){
+Note* NotesManager::load(const QString& id){
     // si l'article existe deja, on en renvoie une reference
     for(unsigned int i=0; i<nbNotes; i++){
         if (notes[i]->getId()==id) return notes[i];

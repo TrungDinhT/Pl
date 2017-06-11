@@ -159,7 +159,7 @@ void RelationsManager::load(const QString &filename){
                     // ...and next...
                     xml.readNext();
                     qDebug()<<"ajout couple "<<label<<"\n";
-                    r->addCouple(NM.getNote(fromNoteID),NM.getNote(toNoteID),label);
+                    r->addCouple(NM.load(fromNoteID),NM.load(toNoteID),label);
                 }
             qDebug()<<"ajout relation "<<titre<<"\n";
             if(titre!="\ref") addRelations(r);

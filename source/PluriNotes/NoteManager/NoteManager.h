@@ -13,14 +13,6 @@
 class NotesManager {
 
 private:
-    /*besoin de generaliser pour Note
-    Article** articles;
-    unsigned int nbArticles;
-    unsigned int nbMaxArticles;
-    void addArticle(Article* a);
-    void addArticle(const QString& i, const QString& ti, const QString& te);
-    */
-
     Note** notes;
     unsigned int nbNotes;
     unsigned int nbMaxNotes;
@@ -43,7 +35,7 @@ public:
     static NotesManager& getManager();
     static void freeManager(); // free the memory used by the NotesManager; it can be rebuild later
 
-    Note* getNote(const QString& id);
+    //Note* getNote(const QString& id);
     //Note* getNewNote(char type);
 
     void deleteNote(const QString& id);
@@ -51,9 +43,9 @@ public:
     QString getFilename() const { return filename; }
     void setFilename(const QString& f) { filename=f; }
     void load(); // load all notes
-    void load(const QString& id);
+    Note* load(const QString& id);
     void save() const; //save all notes (at the beginning)
-    void save(const QString& id); // create a note in array notes
+    void save(const QString& id, Version* v); // create a note in array notes
     class Iterator: public _Iterator<Note>{
         friend class NotesManager;
         Iterator(Note** notes, unsigned int n): _Iterator(notes,n){}
@@ -67,50 +59,6 @@ public:
     };
     Const_Iterator cbegin() const { return Const_Iterator(notes,nbNotes); }
     Const_Iterator cend() const { return Const_Iterator(notes + nbNotes,nbNotes); }
-/*
-    class Iterator {
-            friend class NotesManager;
-            Note** cur;
-            unsigned int nbRemain;
-            Iterator(Note** n, unsigned int nb):cur(n), nbRemain(nb){}
-        public:
-            Iterator():cur(nullptr),nbRemain(0){}
-            bool isDone() const { return nbRemain==0; }
-            void next() {
-                if (isDone())
-                    throw NotesException("error, next on an iterator which is done");
-                nbRemain--;
-                cur++;
-            }
-            Note& current() const {
-                if (isDone())
-                    throw NotesException("error, indirection on an iterator which is done");
-                return **cur;
-            }
-    };
-
-    class ConstIterator {
-        friend class NotesManager;
-        Note** cur;
-        unsigned int nbRemain;
-        ConstIterator(Note** n, unsigned int nb):cur(n),nbRemain(nb){}
-    public:
-        ConstIterator():cur(0),nbRemain(0){}
-        bool isDone() const { return nbRemain==0; }
-        void next() {
-            if (isDone())
-                throw NotesException("error, next on an iterator which is done");
-                nbRemain--;
-                cur++;
-            }
-        const Note& current() const {
-            if (isDone())
-                throw NotesException("error, indirection on an iterator which is done");
-                return **cur;
-            }
-    };
-*/
-
 
 };
 
