@@ -4,8 +4,8 @@
 #include <QtWidgets>
 #include "NoteManager/NoteManager.h"
 #include "NoteManager/notes.h"
-#include "Interface/NoteInterface.h"
-#include "Interface/NoteInterfaceEditable.h"
+#include "NoteInterface.h"
+#include "NoteInterfaceEditable.h"
 
 
 
