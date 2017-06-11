@@ -24,6 +24,8 @@ public slots :
   void sauverNote();
   void supprimerNote();
   void miseEnRelationNote();
+  void changerVersionNote();
+  void versionActiveNote();
   }
 
 
