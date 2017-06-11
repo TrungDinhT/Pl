@@ -11,6 +11,8 @@
 articleInterfaceEditable::articleInterfaceEditable(Article* a){
   article = a;
   //titre = new QLineEdit(article.titre,this);
+  if (a == 0){texte = new QLineEdit("");}
+  else{texte = new QLineEdit(article->texte);}
   texte = new QLineEdit(article->texte);
   save = new QPushButton(/*objet QIcon,*/"sauvegarder");
   //connect(save,SIGNAL(clicked()),this,SLOT(saveArticle()));
