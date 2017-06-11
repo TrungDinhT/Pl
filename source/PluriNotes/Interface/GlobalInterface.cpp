@@ -1,5 +1,5 @@
 #include "Interface/GlobalInterface.h"
-GlobalInterface::GlobalIterface(){
+GlobalInterface::GlobalInterface(){
   NM = getManager();
   iterator<Note, NotesManager> itn = NM.beginIt();
   Version::iterator itv = itn.getIterator();
@@ -18,16 +18,16 @@ GlobalInterface::GlobalIterface(){
 
 }
 
-void GlobalInterface::modifierNote(Note n){
+void GlobalInterface::modifierNote(Note* n){
   delete NI;
   NIE = new NoteInterfaceEditable(n);
   principale.addWidget(NIE,0,1);
   connect(NI->save,SIGNAL(clicked()),this,SLOT(sauverNote()));
 }
-void GlobalInterface::sauverNote(Note n){
-  article->texte = texte.text;
-  article.actualiserDateModif(); //à définir
-  articleInterface a = new articleInterface(article);
+void GlobalInterface::sauverNote(Note* n){
+  //article->getText() = texte.text;
+  //article.actualiserDateModif(); //à définir
+  //articleInterface a = new articleInterface(article);
 
   delete NIE;
   NI = new NoteInterface(n);
