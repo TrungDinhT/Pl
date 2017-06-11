@@ -1,6 +1,6 @@
 #include "Interface/NoteInterfaceEditable.h"
-NoteInterfaceEditable::NoteInterfaceEditable(Note* n){
-  note = n;
-  titre = new QLineEdit(n->titre);
+NoteInterfaceEditable::NoteInterfaceEditable(Version* v){
+  version = v;
+  titre = new QLineEdit(v->titre);
   sauver = new QPushbutton("sauver");
 }
