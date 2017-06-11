@@ -13,11 +13,11 @@ class MyQToolbar : public QToolbar {
   
   
 public :
-  MyQToolbar();
+  MyQToolbar(){}//;
   
 public slots : 
   //void retour();
-  void sauvegarde_physique();
+  void sauvegarde_physique(){}//;
 
 }
 

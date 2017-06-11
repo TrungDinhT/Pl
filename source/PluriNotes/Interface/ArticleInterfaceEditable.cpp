@@ -1,4 +1,4 @@
-#include "ArticleInterfaceEditable.h"
+#include "Interface/ArticleInterfaceEditable.h"
 
 //articleInterfaceEditable::saveArticle(){
 //  article.texte = texte.text;
