@@ -1,6 +1,6 @@
-NoteInterface::NoteInterface(Note n){
-  titre = new QLabel(n->titre);
-//titre = new QLabel(n->titre,this);
+NoteInterface::NoteInterface(Version v){
+  titre = new QLabel(v->titre);
+//titre = new QLabel(v->titre,this);
   modifier = new QPushbutton("modifier");
   supprimer = new QPushbutton("supprimer");
   relier = new QPushbutton("relier");
