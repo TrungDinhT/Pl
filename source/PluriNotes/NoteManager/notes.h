@@ -3,10 +3,6 @@
   classe Note abstrait grace au methode createID() = 0;
   ID inmodifiable et creee automatiquement par combiner le type de note ("A"=article,"I"=image,"T"=tache)
 
-  tableau de version de note n'est pas encore traite!!!
-  -- Suggestion: utiliser vector pour ne pas devoir implementer 2 classes de Iterator
-  -- Peut-etre il faut casting les pointeurs dans version pour des traitement ulterieur
-
   Gestion des versions ne sont pas encore traitee non plus!!!
   -- Different versions de note ont les meme ID, dateCreation mais different dateModif
   -- Je choisis a sauvegarder tous les versions dans un seul fichier xml (sauf les images mais on les traitera apres)
@@ -21,62 +17,90 @@
 
 #include <QString>
 #include <QDateTime>
+#include "iterator.h"
+
 using namespace std;
 
-
+enum EtatTache {EN_ATTENTE, EN_COURS, TERMINE};
+enum EtatNote {ARCHIVE, ACTIVE, RIP};
 
 class articleInterface;
 
+class Version;
+
 class Note {
+private:
+    QDateTime dateCreation;
+    QString id;
+    EtatNote etat;
+    Version** versions;
+    unsigned int nbVer;
+    unsigned int nbMaxVer;
+public:
+    Note(const QString& id): dateCreation(QDateTime::currentDateTime()), id(id),
+        etat(ACTIVE), versions(nullptr), nbVer(0), nbMaxVer(0){}
+    Note(const QDateTime dC, const QString id, EtatNote etat):
+        dateCreation(dC),id(id),etat(etat),versions(nullptr),nbVer(0),nbMaxVer(0){}
+    //lectures
+    const QString& getId() const { return id; }
+    const QDateTime& getDateCreation() const { return dateCreation; }
+    EtatNote getEtat() { return etat; }
+    ~Note(){
+        for(unsigned int i=0;i<nbVer;i++) delete versions[i];
+        delete[] versions;
+    }
+    void addVersion(Version* v);
+    Note* getNewNote(const QString& id, Version *v);
+    Version* getVer(const QString& titre);
+
+    //iterator + methodes servent a parcourir
+    class Iterator: public _Iterator<Version>{
+        friend class Note;
+        Iterator(Version** v, unsigned int n): _Iterator(v,n){}
+    };
+    Iterator begin() const { return Iterator(versions,nbVer); }
+    Iterator end() const { return Iterator(versions + nbVer,nbVer); }
+    class Const_Iterator: public _const_iterator<Version>{
+        friend class Note;
+        Const_Iterator(Version** v, unsigned int n): _const_iterator(v,n){}
+    };
+    Const_Iterator cbegin() const { return Const_Iterator(versions,nbVer); }
+    Const_Iterator cend() const { return Const_Iterator(versions + nbVer,nbVer); }
+
+};
+
+class Version {
 
 private:
-    QString id;
-    QString title;
-    QDateTime dateCreation;
+    QString titre;
     QDateTime dateModif;
-    bool etat; //true = active, false = archive
-    //Note** version;
 
 protected:
     void autoLoad();
-    void setId(const QString& i){ id =i; }
-    virtual const QString createID() = 0; //different par rapport aux differents types de note
 
 public:
-    Note(const QString& ti): title(ti), dateCreation(QDateTime::currentDateTime()),
-        dateModif(QDateTime::currentDateTime()), etat(true){}
-    virtual ~Note(){}
-    //lectures
-    const QString& getId() const { return id; }
-    const QString& getTitle() const { return title; }
-    const QDateTime& getDateCreation() const { return dateCreation; }
+    Version(const QString& titre=""): titre(titre),dateModif(QDateTime::currentDateTime()){}
+    Version(const QString titre, QDateTime dM): titre(titre),dateModif(dM){}
     const QDateTime& getDateModif() const { return dateModif; }
-    bool getEtat() const { return etat; }
-
-    //ecritures
-    void setDateModif(const QDateTime dt){ dateModif = dt; }
-    void setTitle(const QString& t) { title = t; }
+    QString getTitre() const {return titre;}
+    void setTitre(const QString& t){titre=t;}
 };
 
-
-class Article : public Note{
+class Article : public Version{
 
 private:
     QString text;
-    const QString createID(){
-        return QString("A-" + getDateCreation().toString("dd.MM.yyyy-hh:mm:ss")); }
     friend class articleInterface;
-
 public:
-    Article(const QString& ti="", const QString& te="");
-    Article(const QString& i, const QString& ti="", const QString& te="");
+    Article(const QString ti, QDateTime d, const QString te): Version(ti,d), text(te) {}
+    Article(const QString te=""): Version(),text(te){}
 
     //accesseurs
     const QString& getText() const { return text; }
     void setText(const QString& t) { text = t; }
+
 };
-
-
+/*
 class Image: public Note{
   private:
     QString description;
@@ -122,6 +146,6 @@ public:
 
 
 Note** loadOldVersions();
-
+*/
 
 #endif

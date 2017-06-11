@@ -3,83 +3,67 @@
 
 #include "exception.h"
 
-template <class T, class F>
-class iterator{
+template <class T>
+class _Iterator{
     T** cur;
     unsigned nb;
     unsigned nbItems;
-    iterator(T** c, unsigned int nbItems): cur(c),nb(0),nbMax(nbItems){}
-    friend class F;
+protected:
+    _Iterator(T** c, unsigned int nbItems);
 public:
-    iterator(): cur(0), nb(0),nbItems(0){}
-    bool operator!=(const iterator& it) const { return cur!=it.cur; }
-    iterator& operator++() {
+    _Iterator();
+    bool operator!=(const _Iterator& it) const { return cur!=it.cur; }
+    _Iterator& operator++() {
         if(nb<nbItems) nb++;
-        else throw exception("Error: overflow");
+        else throw _Exception("Error: overflow");
         cur++;
         return *this;
     }
-    iterator& operator++(int) {
-        iterator* old = this;
+    _Iterator& operator++(int) {
+        _Iterator* old = this;
         if(nb<nbItems) nb++;
-        else throw exception("Error: overflow");
+        else throw _Exception("Error: overflow");
         cur++;
         return *old;
     }
-    iterator& operator--() {
+    _Iterator& operator--() {
         if(nb>0) nb--;
-        else throw exception("Error: reach head of array");
+        else throw _Exception("Error: reach head of array");
         cur--;
         return *this;
     }
-    iterator& operator--(int) {
-        iterator* old = this;
+    _Iterator& operator--(int) {
+        _Iterator* old = this;
         if(nb>0) nb--;
-        else throw exception("Error: reach head of array");
+        else throw _Exception("Error: reach head of array");
         cur--;
         return *old;
     }
-    T& operator*() const { return **cur; }
+    T* operator*() const { return *cur; }
 };
 
+template <class T>
+_Iterator<T>::_Iterator(T **c, unsigned int nbItems):cur(c),nb(0),nbItems(nbItems){}
 
-template <class T, class F>
-class const_iterator{
-    T** cur;
-    unsigned nb;
-    unsigned nbItems;
-    const_iterator(T** c, unsigned int nbItems): cur(c),nb(0),nbMax(nbItems){}
-    friend class F;
+template <class T>
+_Iterator<T>::_Iterator(): cur(0), nb(0),nbItems(0){}
+
+
+
+
+template <class T>
+class _const_iterator: public _Iterator<T>{
+protected:
+    _const_iterator(T** c, unsigned int nbItems);
 public:
-    const_iterator(): cur(0), nb(0),nbItems(0){}
-    bool operator!=(const const_iterator& it) const { return cur!=it.cur; }
-    const_iterator& operator++() {
-        if(nb<nbItems) nb++;
-        else throw exception("Error: overflow");
-        cur++;
-        return *this;
-    }
-    const_iterator& operator++(int) {
-        const_iterator* old = this;
-        if(nb<nbItems) nb++;
-        else throw exception("Error: overflow");
-        cur++;
-        return *old;
-    }
-    const_iterator& operator--() {
-        if(nb>0) nb--;
-        else throw exception("Error: reach head of array");
-        cur--;
-        return *this;
-    }
-    const_iterator& operator--(int) {
-        iterator* old = this;
-        if(nb>0) nb--;
-        else throw exception("Error: reach head of array");
-        cur--;
-        return *old;
-    }
-    const T& operator*() const { return **cur; }
+    _const_iterator();
+    const T* operator*() const { return _Iterator<T>::operator*(); }
 };
+
+template <class T>
+_const_iterator<T>::_const_iterator(T **c, unsigned int nbItems): _Iterator<T>(c,nbItems){}
+
+template <class T>
+_const_iterator<T>::_const_iterator(): _Iterator<T>(){}
 
 #endif // ITERATOR_H
