@@ -5,7 +5,7 @@
 #include "NoteManager/NoteManager.h"
 #include "NoteManager/notes.h"
 
-#include "Interface/NoteInterface.h"
+#include "NoteInterface.h"
 #include "RelationManager/relation.h"
 
 class articleInterface: public NoteInterface{
