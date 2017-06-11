@@ -1,7 +1,7 @@
 #ifndef NOTEINERFACE_H
 #define NOTEINERFACE_H
 
-#include <QtWidgets>
+#include <QtWidgets> //inclu tout les QWidget
 #include "NoteManager/NoteManager.h"
 #include "NoteManager/notes.h"
 
