@@ -16,7 +16,7 @@ class NoteInterface : public QWidget {
   
   
 public :
-  NoteInterface(Version* n);
+  NoteInterface(Version* v);
   
 public slots : 
   //void modification();
