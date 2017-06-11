@@ -1,3 +1,4 @@
+#include "Interface/NoteInterface.h"
 NoteInterface::NoteInterface(Version v){
   titre = new QLabel(v->titre);
 //titre = new QLabel(v->titre,this);
