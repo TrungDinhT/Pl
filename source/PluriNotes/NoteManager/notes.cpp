@@ -2,9 +2,6 @@
 
 
 void Note::addVersion(Version *v){
-    for(unsigned int i=0; i<nbVer; i++){
-        if (versions[i]->getTitre()==v->getTitre()) throw _Exception("Error: version already existed");
-    }
     if (nbVer==nbMaxVer){
         Version** newVer= new Version*[nbMaxVer+5];
         for(unsigned int i=0; i<nbVer; i++) newVer[i]=versions[i];
@@ -26,11 +23,11 @@ void Note::save(QXmlStreamWriter &stream) const{
     stream.writeTextElement("dateCreation",dateCreation.toString("dd.MM.yyyy-hh:mm:ss"));
     stream.writeTextElement("id",id);
     switch(etat){
-        case ARCHIVE: { stream.writeTextElement("Etat","archive");
+        case ARCHIVE: { stream.writeTextElement("etatNote","archive");
                         break;}
-        case ACTIVE: { stream.writeTextElement("Etat","active");
+        case ACTIVE: { stream.writeTextElement("etatNote","active");
                        break;}
-        case RIP: { stream.writeTextElement("Etat","rip");
+        case RIP: { stream.writeTextElement("etatNote","rip");
                     break;}
     }
     stream.writeStartElement("Versions");
@@ -47,12 +44,20 @@ void Article::save(QXmlStreamWriter &stream) const {
     stream.writeEndElement();
 }
 
-void Image::save(QXmlStreamWriter &stream) const {
-    stream.writeStartElement("image");
+void Multimedia::save(QXmlStreamWriter &stream) const {
+    stream.writeStartElement("multimedia");
+    switch(typeEnregistrement){
+        case VIDEO: { stream.writeTextElement("typeEnregistrements","video");
+                      break;}
+        case IMAGE: { stream.writeTextElement("typeEnregistrements","image");
+                      break;}
+        case AUDIO: { stream.writeTextElement("typeEnregistrements","audio");
+                      break;}
+    }
     stream.writeTextElement("titre",titre);
     stream.writeTextElement("dateModification",dateModif.toString("dd.MM.yyyy-hh:mm:ss"));
     stream.writeTextElement("description",description);
-    stream.writeTextElement("path to file",nomFichier);
+    stream.writeTextElement("pathToFile",nomFichier);
     stream.writeEndElement();
 }
 
@@ -63,11 +68,11 @@ void Tache::save(QXmlStreamWriter &stream) const {
     stream.writeTextElement("action",action);
     stream.writeTextElement("priorite",QString::number(priorite));
     switch(statut){
-        case EN_ATTENTE: { stream.writeTextElement("Etat","en attente");
+        case EN_ATTENTE: { stream.writeTextElement("etatTache","enAttente");
                         break;}
-        case EN_COURS: { stream.writeTextElement("Etat","en cours");
+        case EN_COURS: { stream.writeTextElement("etatTache","enCours");
                        break;}
-        case TERMINE: { stream.writeTextElement("Etat","termine");
+        case TERMINE: { stream.writeTextElement("etatTache","termine");
                     break;}
     }
     stream.writeTextElement("dateEcheance",dateEcheance.toString("dd.MM.yyyy-hh:mm:ss"));

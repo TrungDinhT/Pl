@@ -24,7 +24,7 @@ using namespace std;
 
 enum EtatTache {EN_ATTENTE, EN_COURS, TERMINE};
 enum EtatNote {ARCHIVE, ACTIVE, RIP};
-
+enum Media {VIDEO, AUDIO, IMAGE};
 class articleInterface;
 
 class Version;
@@ -45,7 +45,7 @@ public:
     //lectures
     const QString& getId() const { return id; }
     const QDateTime& getDateCreation() const { return dateCreation; }
-    const EtatNote getEtat() const { return etat; }
+    const EtatNote& getEtat() const { return etat; }
     ~Note(){
         for(unsigned int i=0;i<nbVer;i++) delete versions[i];
         delete[] versions;
@@ -87,6 +87,7 @@ public:
     QString getTitre() const {return titre;}
     void setTitre(const QString& t){titre=t;}
     virtual void save(QXmlStreamWriter& stream) const = 0;
+    virtual ~Version(){}
 };
 
 class Article : public Version{
@@ -105,20 +106,24 @@ public:
     void save(QXmlStreamWriter& stream) const;
 };
 
-class Image: public Version{
+class Multimedia: public Version{
   private:
     QString description;
     QString nomFichier;
+    Media typeEnregistrement;
     //friend class imageInterface;
 
 public:
-    Image(const QString ti, const QDateTime d, const QString& f, const QString desc=""): Version(ti,d), description(desc), nomFichier(f){}
-    Image(const QString& f, const QString desc=""): description(desc), nomFichier(f){}
+    Multimedia(const QString ti, const QDateTime d, const QString& f, const QString desc=""): Version(ti,d), description(desc), nomFichier(f){}
+    Multimedia(const QString& f, const QString desc=""): description(desc), nomFichier(f){}
 
     //accesseurs
     const QString& getDesc() const { return description; }
     const QString& getNomFichier() const { return nomFichier; }
+    const Media& getType() const { return typeEnregistrement; }
     void setDesc(const QString& d) { description = d; }
+    void setType(const Media type) { typeEnregistrement = type; }
+    void setPath(const QString& f) { nomFichier = f; }
 
     void save(QXmlStreamWriter& str) const;
 };
@@ -138,11 +143,11 @@ public:
 
     //accesseurs
     const QString& getAction() const { return action; }
-    const int getPriorite() const { return priorite; }
+    const unsigned int getPriorite() const { return priorite; }
     const QDateTime& getDateEcheance() const { return dateEcheance; }
-    const EtatTache getStatut() const { return statut; }
+    const EtatTache& getStatut() const { return statut; }
     void setAction(const QString& a) { action = a; }  
-    void setPriorite(const int p) { priorite = p; }
+    void setPriorite(const unsigned int p) { priorite = p; }
     void setDateEcheance(const QDateTime& d) { dateEcheance = d; }
     void setStatut(const EtatTache s) {statut = s; }
 
