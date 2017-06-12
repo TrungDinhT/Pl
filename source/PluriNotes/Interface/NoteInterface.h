@@ -1,4 +1,4 @@
-#ifndef NOTEINTERFACE_H
+/*#ifndef NOTEINTERFACE_H
 #define NOTEINTERFACE_H
 
 #include <QtWidgets> //inclu tout les QWidget
@@ -28,3 +28,4 @@ public slots :
 
 
 #endif // NOTEINTERFACE_H
+*/
