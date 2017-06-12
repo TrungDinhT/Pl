@@ -14,7 +14,7 @@ HEADERS += \
 #    Interface/UI.h \
     Interface/NoteInterfaceEditable.h \
     Interface/NoteInterface.h \
-    Interface/MyQToolbar.h \
+#    Interface/MyQToolbar.h \
     Interface/globalInterface.h \
     Interface/ArticleInterfaceEditable.h \
     iterator.h \

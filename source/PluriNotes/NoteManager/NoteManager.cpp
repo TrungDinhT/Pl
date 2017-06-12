@@ -10,11 +10,19 @@
 #include <QMessageBox>
 #include <QFileDialog>
 #include "exception.h"
+#include "RelationManager/RelationManager.h"
+#include "RelationManager/relation.h"
 
 NotesManager* NotesManager::instance = nullptr;
 
 NotesManager& NotesManager::getManager(){
-    if (!instance) instance=new NotesManager;
+    if (!instance)
+    {
+        instance=new NotesManager;
+        QString location = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+        instance->setFilename(location+"noteslog.xml");
+        instance->load();
+    }
     return *instance;
 }
 
@@ -45,15 +53,24 @@ void NotesManager::save(const QString& id, Version *v) {
         Note* n = new Note(id);
         addNotes(n);
     }
-    else{
-        notes[i]->addVersion(v);
-    }
+    else notes[i]->addVersion(v);
 }
 
 NotesManager::~NotesManager(){
     save(); //save all file when exiting the program
     for(unsigned int i=0; i<nbNotes; i++) delete notes[i];
     delete[] notes;
+}
+
+void NotesManager::deleteNote(const QString &id){
+    unsigned int i;
+    for(i=0;i<nbNotes && notes[i]->getId()!=id;i++);
+    if(i==nbNotes) throw _Exception("Note not found");
+    relation* ref = RelationsManager::getInstance().getRelation("\ref");
+    relation::Iterator it;
+    for(it=ref->begin();it!=ref->end() && (*it)->getFromNote()->getId()!=id; it++); //search for note referencé
+    if(it!=ref->end()) notes[i]->setEtat(ARCHIVE);
+    else notes[i]->setEtat(RIP);
 }
 
 Note* NotesManager::load(const QString& id){

@@ -12,7 +12,13 @@ static NotesManager& NM = NotesManager::getManager();
 RelationsManager* RelationsManager::instance = nullptr;
 
 RelationsManager& RelationsManager::getInstance(){
-    if (!instance) instance=new RelationsManager;
+    if (!instance)
+    {
+        instance=new RelationsManager;
+        QString location = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+        instance->setFileName(location+"relationslog.xml");
+        instance->load();
+    }
     return *instance;
 }
 
@@ -60,7 +66,7 @@ void RelationsManager::deleteRelation(const QString &titre){
     nbRelations--;
 }
 
-void RelationsManager::save(const QString& filename){
+void RelationsManager::save(){
     QFile newfile(filename);
     if (!newfile.open(QIODevice::WriteOnly | QIODevice::Text))
         throw _Exception(QString("Error open file xml : cannot save file"));
@@ -87,7 +93,7 @@ void RelationsManager::save(const QString& filename){
     newfile.close();
 }
 
-void RelationsManager::load(const QString &filename){
+void RelationsManager::load(){
     QFile file(filename);
     // If we can't open it, show an error message.
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {

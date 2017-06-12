@@ -47,6 +47,8 @@ public:
     class Iterator: public _Iterator<couple>{
         friend class relation;
         Iterator(couple** c, unsigned int n): _Iterator(c,n){}
+    public:
+        Iterator(): _Iterator(){}
     };
     Iterator begin() const { return Iterator(couples,nbCouples); }
     Iterator end() const { return Iterator(couples + nbCouples,nbCouples); }
@@ -54,6 +56,8 @@ public:
     class Const_Iterator: public _const_iterator<couple>{
         friend class relation;
         Const_Iterator(couple** c, unsigned int n): _const_iterator(c,n){}
+    public:
+        Const_Iterator(): _const_iterator(){}
     };
     Const_Iterator cbegin() const { return Const_Iterator(couples,nbCouples); }
     Const_Iterator cend() const { return Const_Iterator(couples + nbCouples,nbCouples); }

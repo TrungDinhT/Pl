@@ -1,4 +1,4 @@
-#include "GlobalInterface.h"
+#include "globalInterface.h"
 #include "ArticleInterfaceEditable.h"
 GlobalInterface::GlobalInterface(){
   NM = &(NotesManager::getManager());
