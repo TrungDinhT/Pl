@@ -97,7 +97,7 @@ private:
     friend class articleInterface;
 public:
     Article(const QString ti, const QDateTime d, const QString te): Version(ti,d), text(te) {}
-    Article(const QString te=""): Version(),text(te){}
+    Article(const QString ti="", const QString te=""): Version(ti),text(te){}
 
     //accesseurs
     const QString& getText() const { return text; }
