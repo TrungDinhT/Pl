@@ -16,6 +16,9 @@ public:
 public slots:
    //void saveArticle();
 
+
+signals:
+    void sauvegarde(Article* a);
 private:
    //QLineEdit* titre;
    QTextEdit* text;
