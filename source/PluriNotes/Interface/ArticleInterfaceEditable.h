@@ -6,15 +6,16 @@
 #include "NoteManager/notes.h"
 #include "NoteInterfaceEditable.h"
 
+class GLobalInterface;
+
 class articleInterfaceEditable: public NoteInterfaceEditable{
-
     Q_OBJECT
-
+    friend class GlobalInterface;
 public:
    articleInterfaceEditable(Article* a = 0);
     
 public slots:
-   //void saveArticle();
+   virtual void saveNote();
 
 
 signals:
@@ -22,6 +23,7 @@ signals:
 private:
    //QLineEdit* titre;
    QTextEdit* text;
+   QVBoxLayout* principale;
    //QPushButton* save;
 
    Article* article;//Article* article;
