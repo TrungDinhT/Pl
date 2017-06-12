@@ -1,7 +1,7 @@
-#include "Interface/ArticleInterfaceEditable.h"
+#include "ArticleInterfaceEditable.h"
 
-articleInterfaceEditable::saveArticle(){
-  Article* a = new Article(titre->text,texte->text);
+void articleInterfaceEditable::saveNote(){
+  Article* a = new Article(titre->text(),text->toPlainText());
   emit sauvegarde(a);
   //article.texte = texte.text;
   //article.titre = titre.text;
@@ -13,16 +13,21 @@ articleInterfaceEditable::saveArticle(){
 articleInterfaceEditable::articleInterfaceEditable(Article* a):NoteInterfaceEditable(a){
   article = a;
   //titre = new QLineEdit(article.titre,this);
-  if (a == 0){texte = new QLineEdit("");}
-  else{texte = new QLineEdit(article->texte);}
-  texte = new QLineEdit(article->texte);
-  save = new QPushButton(/*objet QIcon,*/"sauvegarder");
-  connect(save,SIGNAL(clicked()),this,SLOT(saveArticle()));
+  if (a == 0){text = new QTextEdit("");}
+  else{text = new QTextEdit(article->getText());}
+  //text = new QLineEdit(article->texte);
+  //this->save = new QPushButton(/*objet QIcon,*/"sauvegarder");
+  //connect(save,SIGNAL(clicked()),this,SLOT(saveArticle()));
   //disposition à revoir
   principale = new QVBoxLayout(this);
   principale->addWidget(titre);
-  principale->addWidget(texte);
+  principale->addWidget(text);
   principale->addWidget(save);
+  principale->addWidget(supprimer);
+  principale->addWidget(relier);
+  principale->addWidget(changerversion);
+  principale->addWidget(rendreversionactive);
+
   this->setLayout(principale);
 }
 
