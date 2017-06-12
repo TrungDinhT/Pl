@@ -1,3 +1,4 @@
+/*
 #ifndef ARTICLEINTERFACE_H
 #define ARTICLEINTERFACE_H
 
@@ -35,3 +36,4 @@ private:
 };
 
 #endif // ARTICLEINTERFACE_H
+*/
