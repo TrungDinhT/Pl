@@ -21,19 +21,21 @@ GlobalInterface::GlobalInterface(){
 
 }
 
-void GlobalInterface::modifierNote(Note* n){
+void GlobalInterface::modifierNote(){
   delete NI;
   NIE = new NoteInterfaceEditable(n);
   principale.addWidget(NIE,0,1);
-  connect(NI->save,SIGNAL(clicked()),this,SLOT(sauverNote()));
+  //connect(NIE->save,SIGNAL(clicked()),this,SLOT(sauverNote()));
+  connect(NIE,SIGNAL(sauvegarde(Version*)),this,SLOT(sauverNote(Version*)));
 }
-void GlobalInterface::sauverNote(Note* n){
+void GlobalInterface::sauverNote(Version* v){
   //article->getText() = texte.text;
   //article.actualiserDateModif(); //à définir
   //articleInterface a = new articleInterface(article);
+  NoteCurrent->addVersion(v);
 
   delete NIE;
-  NI = new NoteInterface(n);
+  NI = new NoteInterface(v);
   principale.addWidget(NI,0,1);
   connect(NI->modifier,SIGNAL(clicked()),this,SLOT(modifierNote()));
   connect(NI->relier,SIGNAL(clicked()),this,SLOT(miseEnRelationNote()));
@@ -53,5 +55,6 @@ void GlobalInterface::changerVersionNote(){
 }
 
 void GlobalInterface::versionActiveNote(){
-//changement de place le la version dans la liste? booleen?
+  
+//changement de place le la version dans la liste
 }
