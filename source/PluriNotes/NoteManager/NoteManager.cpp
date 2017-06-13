@@ -112,8 +112,6 @@ void NotesManager::load(){
     while(!stream.atEnd() && !stream.hasError())
     {
         countItems++;
-        qDebug()<<"Debut: "<<countItems<<"\n";
-        qDebug()<<"name: "<<stream.name()<<"\n";
         QXmlStreamReader::TokenType token = stream.readNext();
         if(token == QXmlStreamReader::StartDocument) continue;
         if(token == QXmlStreamReader::StartElement)
@@ -126,12 +124,10 @@ void NotesManager::load(){
                 QDateTime dateCrea;
                 EtatNote etat;
                 stream.readNext();
-                qDebug()<<stream.name()<<"\n";
                 Note* n;
                 while(!(stream.tokenType()==QXmlStreamReader::EndElement && stream.name()=="Note"))
                 {
                     stream.readNext();
-                    qDebug()<<"name stream: "<<stream.name()<<"\n";
                     if(stream.tokenType()==QXmlStreamReader::StartElement)
                     {
                         if(stream.name() == "dateCreation")

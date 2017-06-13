@@ -19,10 +19,10 @@ int main(int argc, char *argv[])
 
     //fen.show();
 
-    NotesManager& nm = NotesManager::getManager();
+    /*NotesManager& nm = NotesManager::getManager();
     qDebug()<<"create NoteManager\n";
 
-    /* test save
+     test save
     Note* n = new Note(QDateTime::currentDateTime(),"test1",ACTIVE);
     qDebug()<<"create Note\n";
     Article* a = new Article("testA1",QDateTime::currentDateTime(),"testestsetsetstest");
@@ -44,11 +44,11 @@ int main(int argc, char *argv[])
     qDebug()<<"add note\n";
     nm.save();
     qDebug()<<"real save\n";
-    */
+
 
     QString location = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
     nm.setFilename(location+"/noteslog_testload.xml");
-    nm.save();
+    nm.save();*/
 
     return app.exec();
 
