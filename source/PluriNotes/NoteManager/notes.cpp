@@ -31,8 +31,12 @@ void Note::save(QXmlStreamWriter &stream) const{
                     break;}
     }
     stream.writeStartElement("Versions");
+    qDebug()<<"nb Ver: "<<nbVer<<"\n";
     for(unsigned int i=0;i<nbVer;i++)
+    {
         versions[i]->save(stream);
+        qDebug()<<"add Ver\n";
+    }
     stream.writeEndElement();
 }
 

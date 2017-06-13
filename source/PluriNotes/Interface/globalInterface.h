@@ -8,7 +8,6 @@
 
 
 
-
 class GlobalInterface : public QWidget {
   Q_OBJECT
   QGridLayout* principale;

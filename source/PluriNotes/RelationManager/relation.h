@@ -37,10 +37,10 @@ public:
 
     //accesseurs
     const QString& getTitre() const { return titre; }
-    virtual void setTitre(const QString& ti) =0;
     const QString& getDescription() const { return description; }
-    virtual void setDescription(const QString& d) =0;
     bool getOriente() const { return oriente; }
+    virtual void setTitre(const QString& ti) =0;
+    virtual void setDescription(const QString& d) =0;
     virtual void setOriente(bool ori) =0;
 
     //iterator + methodes servent a parcourir

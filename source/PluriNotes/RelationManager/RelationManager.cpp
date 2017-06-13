@@ -16,7 +16,7 @@ RelationsManager& RelationsManager::getInstance(){
     {
         instance=new RelationsManager;
         QString location = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
-        instance->setFileName(location+"relationslog.xml");
+        instance->setFileName(location+"/relationslog.xml");
         instance->load();
     }
     return *instance;

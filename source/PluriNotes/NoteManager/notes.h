@@ -38,7 +38,7 @@ public:
     QString getTitre() const {return titre;}
     void setTitre(const QString& t){titre=t;}
     virtual void save(QXmlStreamWriter& stream) const = 0;
-    virtual void creerInterface() const =0;
+    //virtual void creerInterface() const =0;
     virtual ~Version(){}
 };
 
@@ -67,7 +67,7 @@ public:
     Note* getNewNote(const QString& id, Version *v);
     Version* getVer(const QString& titre);
     void save(QXmlStreamWriter& stream) const;
-    void creerInterface() const { versions[nbVer-1]->creerInterface(); }
+    //void creerInterface() const { versions[nbVer-1]->creerInterface(); }
 
     //iterator + methodes servent a parcourir
     class Iterator: public _Iterator<Version>{
@@ -100,7 +100,7 @@ public:
     const QString& getText() const { return text; }
     void setText(const QString& t) { text = t; }
     void save(QXmlStreamWriter& stream) const;
-    void creerInterface() const;
+    //void creerInterface() const;
 };
 
 class Multimedia: public Version{
