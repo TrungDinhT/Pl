@@ -7,7 +7,7 @@
 #include <QFileDialog>
 #include "NoteManager/NoteManager.h"
 
-static NotesManager& NM = NotesManager::getManager();
+NotesManager& NM = NotesManager::getManager();
 
 RelationsManager* RelationsManager::instance = nullptr;
 
@@ -112,7 +112,7 @@ void RelationsManager::load(){
         if(token == QXmlStreamReader::StartDocument) continue;
         if(token == QXmlStreamReader::StartElement)
         {
-            if(stream.name() == "relations")
+            if(stream.name() == "relation")
             {
                 qDebug()<<"new relation \n";
                 QString titre;

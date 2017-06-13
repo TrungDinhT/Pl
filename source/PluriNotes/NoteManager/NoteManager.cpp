@@ -12,6 +12,7 @@
 #include "exception.h"
 #include "RelationManager/RelationManager.h"
 #include "RelationManager/relation.h"
+#include "Corbeille/corbeille.h"
 
 NotesManager* NotesManager::instance = nullptr;
 
@@ -55,12 +56,18 @@ NotesManager::~NotesManager(){
 void NotesManager::deleteNote(const QString &id){
     unsigned int i;
     for(i=0;i<nbNotes && notes[i]->getId()!=id;i++);
-    if(i==nbNotes) throw _Exception("Note not found");
+    if(i==nbNotes)
+        throw _Exception("Note not found");
     relation* ref = RelationsManager::getInstance().getRelation("\ref");
     relation::Iterator it;
     for(it=ref->begin();it!=ref->end() && (*it)->getFromNote()->getId()!=id; it++); //search for note referencé
-    if(it!=ref->end()) notes[i]->setEtat(ARCHIVE);
-    else notes[i]->setEtat(RIP);
+    if(it!=ref->end())
+        notes[i]->setEtat(ARCHIVE);
+    else
+    {
+        notes[i]->setEtat(RIP);
+        corbeille::getCorbeille().addNotes(notes[i]);
+    }
 }
 
 void NotesManager::save(const QString& id, Version *v) {

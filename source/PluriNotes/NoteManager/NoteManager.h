@@ -10,6 +10,8 @@
 #include "iterator.h"
 #include "exception.h"
 
+class corbeille;
+
 class NotesManager {
 
 private:
@@ -26,7 +28,7 @@ private:
     ~NotesManager();
     NotesManager(const NotesManager& m);
     NotesManager& operator=(const NotesManager& m);
-
+    friend class corbeille;
 public:
     static NotesManager& getManager();
     static void freeManager(); // free the memory used by the NotesManager; it can be rebuild later
