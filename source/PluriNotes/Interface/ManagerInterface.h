@@ -6,7 +6,7 @@
 #include "NoteManager/NoteManager.h"
 #include "NoteManager/notes.h"
 class GLobalInterface;
-
+class list_version_item;
 class ManagerInterface : public QWidget {
     Q_OBJECT
     friend class GlobalInterface;
@@ -19,25 +19,30 @@ protected:
   QListWidget* liste_note;
   QPushButton* ajouter;
   QPushButton* sauvegarder;
+  QListWidget* listeVersion;
 public :
   ManagerInterface();
+  virtual void extension_choix_version(){}
 
 public slots :
-  //void ajouterNote();
+  void ajoutNote();
+  //void choixAjoutNote(list_version_item *item);
+  void choixAjoutNote(QListWidgetItem *item);
 
 signals :
-  //void clicNote();
+  void refresh();
 };
 /*
-class list_note_item : public QListWidgetItem {
+class list_version_item : public QListWidgetItem {
     Q_OBJECT
     friend class ManagerInterface;
 protected:
 
-  Note* NoteCurrent;
+  Version* version;
 
 public :
-  list_note_item(Note* n);
+  list_version_item(QString s,Version *v):QListWidgetItem(s,nullptr,1000),version(v){}
+  Version* getVersion(){return version;}
 
 public slots :
   //void clickNote();
@@ -45,7 +50,6 @@ public slots :
 signals :
   //void clicNote();
 };
-
 */
 #endif // MANAGERINTERFACE_H
 
