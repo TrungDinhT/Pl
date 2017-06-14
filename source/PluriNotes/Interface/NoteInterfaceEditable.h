@@ -4,21 +4,33 @@
 #include <QtWidgets>
 #include "NoteManager/NoteManager.h"
 #include "NoteManager/notes.h"
+//#include "globalInterface.h"
+class GLobalInterface;
+
+class NoteInterfaceEditable : public QWidget {
+    Q_OBJECT
+    friend class GlobalInterface;
+protected:
 
 
-class NoteInterface : public QWidget {
-  Q_OBJECT
   Version* version;
   QLineEdit* titre;
   QPushButton* save;
-
+  QPushButton* supprimer;
+  QPushButton* relier;
+  QPushButton* changerversion;
+  QPushButton* rendreversionactive;
   
 public :
-  NoteInterface(Version* v);
+  NoteInterfaceEditable(Version* v);
   
 public slots : 
+    virtual void saveNote() = 0;
+signals :
+    void sauvegarde(Version*);
 
 
-}
+};
+
 
 #endif //NOTEINERFACEEDITABLE_H
