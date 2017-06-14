@@ -17,7 +17,12 @@ RelationsManager& RelationsManager::getInstance(){
         instance=new RelationsManager;
         QString location = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
         instance->setFileName(location+"/relationslog.xml");
-        instance->load();
+        int countRela = instance->load();
+        if(!countRela) //quand fichier relationslog.xml est vide (premier lancement)
+        {
+            relation* ref = &(relationPreexistance::getInstance());
+            instance->addRelations(ref);
+        }
     }
     return *instance;
 }
@@ -41,11 +46,15 @@ void RelationsManager::addRelations(relation *r){
 }
 
 relation* RelationsManager::getNewRelation(const QString& titre, const QString& desc, bool ori){
-    for(unsigned int i=0;i<nbRelations;i++){
+    for(unsigned int i=0;i<nbRelations;i++)
+    {
         if(relations[i]->getTitre()==titre) throw _Exception("Error: relation already existed");
     }
-    addRelations(new relationNonPreexistance(titre,desc,ori));
+    relation* r = new relationNonPreexistance(titre,desc,ori);
+    addRelations(r);
+    return r;
 }
+
 
 relation* RelationsManager::getRelation(const QString &titre){
     unsigned int i;
@@ -96,18 +105,19 @@ void RelationsManager::save(){
     newfile.close();
 }
 
-void RelationsManager::load(){
+int RelationsManager::load(){
     QFile file(filename);
 
     // If we can't open it, show an error message.
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
         throw _Exception("Error : cannot open file");
 
-    int countRela = -1;
+    int count = -1;
+    int countRela = 0;
     QXmlStreamReader stream(&file);
     while(!stream.atEnd() && !stream.hasError())
     {
-        countRela++;
+        count++;
         QXmlStreamReader::TokenType token = stream.readNext();
         if(token == QXmlStreamReader::StartDocument) continue;
         if(token == QXmlStreamReader::StartElement)
@@ -200,14 +210,16 @@ void RelationsManager::load(){
                 }
                 qDebug()<<"ajout relation "<<titre<<"\n";
                 if(titre!="\ref") addRelations(r);
+                countRela++;
             }
         }
     }
 
     // Error handling.
-    if(countRela && stream.hasError()) {
+    if(count && stream.hasError()) {
         throw _Exception("Error parsing xml : cannot read file");
     }
     stream.clear();
     qDebug()<<"fin load\n";
+    return countRela;
 }

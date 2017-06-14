@@ -5,7 +5,7 @@
 #include "NoteManager/NoteManager.h"
 #include "NoteManager/notes.h"
 #include "NoteInterfaceEditable.h"
-#include "managerinterface.h"
+#include "ManagerInterface.h"
 
 
 

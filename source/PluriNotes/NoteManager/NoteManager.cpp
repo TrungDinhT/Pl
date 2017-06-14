@@ -177,7 +177,7 @@ void NotesManager::load(){
                                 {
                                     if(stream.name()=="article")
                                     {
-                                        qDebug()<<"new tache\n";
+                                        qDebug()<<"new article\n";
                                         QString texte;
                                         stream.readNext();
                                         while(!(stream.tokenType()==QXmlStreamReader::EndElement && stream.name()=="article"))

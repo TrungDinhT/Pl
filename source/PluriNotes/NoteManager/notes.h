@@ -132,7 +132,7 @@ public:
 
     //accesseurs
     const QString& getAction() const { return action; }
-    const unsigned int getPriorite() const { return priorite; }
+    const unsigned int& getPriorite() const { return priorite; }
     const QDateTime& getDateEcheance() const { return dateEcheance; }
     const EtatTache& getStatut() const { return statut; }
     void setAction(const QString& a) { action = a; }  

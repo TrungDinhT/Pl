@@ -15,7 +15,7 @@ void Note::addVersion(Version *v){
 
 
 void Note::setVersionActive(Version *v){//çàd la fait passer en dernier
-    for(int k=0; k<nbVer-1; k++){
+    for(unsigned int k=0; k<nbVer-1; k++){
         if(versions[k]==v){
             Version* temp = versions[nbVer-1];
             versions[nbVer-1] = v;

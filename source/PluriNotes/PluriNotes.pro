@@ -9,6 +9,7 @@ HEADERS += \
     NoteManager/NoteManager.h \
     NoteManager/notes.h \
     Interface/ArticleInterface.h \
+    Interface/ManagerInterface.h \
 #    Interface/TacheInterface.h \
 #    Interface/ImageInterface.h \
 #    Interface/UI.h \
@@ -33,7 +34,8 @@ SOURCES += \
     Interface/NoteInterface.cpp \
     Interface/GlobalInterface.cpp \
     Interface/ArticleInterfaceEditable.cpp \
-    Interface/ArticleInterface.cpp
+    Interface/ArticleInterface.cpp \
+    Interface/ManagerInterface.cpp
 
 
 

@@ -1,4 +1,4 @@
-#include "managerinterface.h"
+#include "ManagerInterface.h"
 #include "ArticleInterfaceEditable.h"
 ManagerInterface::ManagerInterface(){
   NM = &(NotesManager::getManager());

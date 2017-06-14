@@ -36,7 +36,7 @@ public:
 
     void setFileName(const QString f) { filename = f; }
     const QString& getFileName () const { return filename; }
-    void load();
+    int load();
     void save(); //filename = name + path to save
 
     //iterator et parcourir

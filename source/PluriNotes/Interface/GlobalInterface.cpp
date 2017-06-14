@@ -1,7 +1,7 @@
 
-#include "GlobalInterface.h"
+#include "globalInterface.h"
 #include "ArticleInterfaceEditable.h"
-#include "managerinterface.h"
+#include "ManagerInterface.h"
 #include <QWidget>
 
 GlobalInterface::GlobalInterface(): QWidget(){
