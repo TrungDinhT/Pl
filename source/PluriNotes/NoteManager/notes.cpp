@@ -28,7 +28,7 @@ Version* Note::VersionActive(){//çàd la fait passer en dernier
 
 Note* Note::getNewNote(const QString &id, Version* v){
     Note* n = new Note(id);
-    addVersion(v);
+    n->addVersion(v);
     return n;
 }
 
