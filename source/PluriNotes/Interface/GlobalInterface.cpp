@@ -1,42 +1,61 @@
-#include "Interface/GlobalInterface.h"
-GlobalInterface::GlobalIterface(){
-  NM = getManager();
-  iterator<Note, NotesManager> itn = NM.beginIt();
-  Version::iterator itv = itn.getIterator();
+#include "GlobalInterface.h"
+#include "ArticleInterfaceEditable.h"
+#include "managerinterface.h"
+GlobalInterface::GlobalInterface(){
   principale = new QGridLayout(this);
-  NI = new NoteInterface(&(itv.current()));
-  principale.addWidget(NI,0,1);
+  MI = new ManagerInterface();
+  connect(MI->liste_note, SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)),this, SLOT(changerNote(QListWidgetItem*)));
+  principale->addWidget(MI,0,0);
+  NM = &(NotesManager::getManager());
+  NotesManager::Iterator itn = NM->begin();
+  NoteCurrent = *itn;
+  /*Note::Iterator itv = NoteCurrent->begin();
+  VersionCurrent = *itv;*/
+  VersionCurrent = NoteCurrent->VersionActive();
+
+  //if(typeid(*VersionCurrent).name()=="Article"){
+  NIE = new articleInterfaceEditable(static_cast <Article*>(VersionCurrent));
+  //}
+
+  principale->addWidget(NIE,0,1);
+  //qDebug()<<"ajout article\n";
   //RI = new RelationInterface() ;
-  //MI = ManagerInterface();
+
   //TB  =MyQToolbar();
-  connect(NI->modifier,SIGNAL(clicked()),this,SLOT(modifierNote()));
-  connect(NI->relier,SIGNAL(clicked()),this,SLOT(miseEnRelationNote()));
-  connect(NI->supprimer,SIGNAL(clicked()),this,SLOT(supprimerNote()));
-  connect(NI->changerversion,SIGNAL(clicked()),this,SLOT(changerVersionNote()));
-  connect(NI->rendreversionactive,SIGNAL(clicked()),this,SLOT(versionActiveNote()));
-
+  connect(NIE,SIGNAL(sauvegarde(Version*)),this,SLOT(sauverNote(Version*)));
+  connect(NIE->relier,SIGNAL(clicked()),this,SLOT(miseEnRelationNote()));
+  connect(NIE->supprimer,SIGNAL(clicked()),this,SLOT(supprimerNote()));
+  connect(NIE->changerversion,SIGNAL(clicked()),this,SLOT(changerVersionNote()));
+  connect(NIE->rendreversionactive,SIGNAL(clicked()),this,SLOT(versionActiveNote()));
 
 }
-
-void GlobalInterface::modifierNote(Note n){
+/*
+void GlobalInterface::modifierNote(){
   delete NI;
-  NIE = new NoteInterfaceEditable(n);
-  principale.addWidget(NIE,0,1);
-  connect(NI->save,SIGNAL(clicked()),this,SLOT(sauverNote()));
-}
-void GlobalInterface::sauverNote(Note n){
-  article->texte = texte.text;
-  article.actualiserDateModif(); //à définir
-  articleInterface a = new articleInterface(article);
+  NIE = new NoteInterfaceEditable(VersionCurrent);
+  principale->addWidget(NIE,0,1);
+  //connect(NIE->save,SIGNAL(clicked()),this,SLOT(sauverNote()));
+  connect(NIE,SIGNAL(sauvegarde(Version*)),this,SLOT(sauverNote(Version*)));
+}*/
+void GlobalInterface::sauverNote(Version* v){
+  //article->getText() = texte.text;
+  //article.actualiserDateModif(); //à définir
+  //articleInterface a = new articleInterface(article);
 
-  delete NIE;
-  NI = new NoteInterface(n);
-  principale.addWidget(NI,0,1);
-  connect(NI->modifier,SIGNAL(clicked()),this,SLOT(modifierNote()));
-  connect(NI->relier,SIGNAL(clicked()),this,SLOT(miseEnRelationNote()));
-  connect(NI->supprimer,SIGNAL(clicked()),this,SLOT(supprimerNote()));
-  connect(NI->changerversion,SIGNAL(clicked()),this,SLOT(changerVersionNote()));
-  connect(NI->rendreversionactive,SIGNAL(clicked()),this,SLOT(versionActiveNote()));
+    VersionCurrent = v;
+    NoteCurrent->addVersion(v);
+    NoteCurrent->setVersionActive(v);
+
+  /*delete NIE;
+  NIE = new articleInterfaceEditable(static_cast <Article*>(VersionCurrent));
+  qDebug()<<"test2";
+  principale->addWidget(NIE,0,2);
+  qDebug()<<"test3";
+  connect(NIE,SIGNAL(sauvegarde(Version*)),this,SLOT(sauverNote(Version*)));
+  connect(NIE->relier,SIGNAL(clicked()),this,SLOT(miseEnRelationNote()));
+  connect(NIE->supprimer,SIGNAL(clicked()),this,SLOT(supprimerNote()));
+  connect(NIE->changerversion,SIGNAL(clicked()),this,SLOT(changerVersionNote()));
+  connect(NIE->rendreversionactive,SIGNAL(clicked()),this,SLOT(versionActiveNote()));*/
 }
 void GlobalInterface::supprimerNote(){
 //à completer
@@ -46,9 +65,48 @@ void GlobalInterface::miseEnRelationNote(){
 }
 
 void GlobalInterface::changerVersionNote(){
-//liste deroulante des version existante
+    qDebug()<<"changement version\n";
+    liste = new QListWidget();
+    //VersionCurrent = *itv;
+    for(Note::Iterator itv = NoteCurrent->begin();itv!= NoteCurrent->end();itv++){
+        liste->addItem((*itv)->getDateModif().toString("dd.MM.yyyy-hh:mm:ss"));
+    }
+    connect(liste, SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)),this, SLOT(choixVersionNote(QListWidgetItem*)));
+    liste->show();
+    qDebug()<<"fin changement version\n";
+}
+void GlobalInterface::choixVersionNote(QListWidgetItem* item){
+    qDebug()<<"choix version\n";
+    VersionCurrent = NoteCurrent->getVerParDate(item->text());
+    //NoteCurrent->setVersionActive(VersionCurrent);
+    delete NIE;
+    NIE = new articleInterfaceEditable(static_cast <Article*>(VersionCurrent));
+    connect(NIE,SIGNAL(sauvegarde(Version*)),this,SLOT(sauverNote(Version*)));
+    connect(NIE->relier,SIGNAL(clicked()),this,SLOT(miseEnRelationNote()));
+    connect(NIE->supprimer,SIGNAL(clicked()),this,SLOT(supprimerNote()));
+    connect(NIE->changerversion,SIGNAL(clicked()),this,SLOT(changerVersionNote()));
+    connect(NIE->rendreversionactive,SIGNAL(clicked()),this,SLOT(versionActiveNote()));
+    principale->addWidget(NIE,0,1);
+    liste->close();
+    //liste->hide();
+    //delete liste;
+    qDebug()<<"fin choix version\n";
 }
 
+void GlobalInterface::changerNote(QListWidgetItem* item){
+ delete NIE;
+ NoteCurrent = NM->load(item->text());//item contient ID
+ /*Note::Iterator itv = NoteCurrent->begin();
+ VersionCurrent = *itv;*/
+ VersionCurrent = NoteCurrent->VersionActive();
+ NIE = new articleInterfaceEditable(static_cast <Article*>(VersionCurrent));
+ connect(NIE,SIGNAL(sauvegarde(Version*)),this,SLOT(sauverNote(Version*)));
+ connect(NIE->relier,SIGNAL(clicked()),this,SLOT(miseEnRelationNote()));
+ connect(NIE->supprimer,SIGNAL(clicked()),this,SLOT(supprimerNote()));
+ connect(NIE->changerversion,SIGNAL(clicked()),this,SLOT(changerVersionNote()));
+ connect(NIE->rendreversionactive,SIGNAL(clicked()),this,SLOT(versionActiveNote()));
+ principale->addWidget(NIE,0,1);
+}
 void GlobalInterface::versionActiveNote(){
-//changement de place le la version dans la liste? booleen?
+    NoteCurrent->setVersionActive(VersionCurrent);
 }
