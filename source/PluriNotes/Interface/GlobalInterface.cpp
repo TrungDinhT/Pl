@@ -3,9 +3,11 @@
 #include "managerinterface.h"
 GlobalInterface::GlobalInterface(){
   principale = new QGridLayout(this);
-  MI = new ManagerInterface();
+  /*MI = new ManagerInterface();
   connect(MI->liste_note, SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)),this, SLOT(changerNote(QListWidgetItem*)));
-  principale->addWidget(MI,0,0);
+  connect(MI, SIGNAL(refresh()),this, SLOT(raffraichissementMI()));
+  principale->addWidget(MI,0,0);*/
+  raffraichissementMI();
   NM = &(NotesManager::getManager());
   NotesManager::Iterator itn = NM->begin();
   NoteCurrent = *itn;
@@ -29,6 +31,15 @@ GlobalInterface::GlobalInterface(){
   connect(NIE->rendreversionactive,SIGNAL(clicked()),this,SLOT(versionActiveNote()));
 
 }
+
+void GlobalInterface::raffraichissementMI(){
+    qDebug()<<"raffraichissement\n";
+    MI = new ManagerInterface();
+    connect(MI->liste_note, SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)),this, SLOT(changerNote(QListWidgetItem*)));
+    connect(MI, SIGNAL(refresh()),this, SLOT(raffraichissementMI()));
+    principale->addWidget(MI,0,0);
+}
+
 /*
 void GlobalInterface::modifierNote(){
   delete NI;
