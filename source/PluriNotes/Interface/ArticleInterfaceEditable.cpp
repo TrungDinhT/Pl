@@ -42,8 +42,8 @@ articleInterfaceEditable::articleInterfaceEditable(const QString id, Article* a)
 void articleInterfaceEditable::ajouteReference() const {
     QSet<QString> listeRef;
     QRegExp regex("\\\\ref[{]([\\w]+)[}]");
-    bool suite = true;
-
+    bool suite = false;
+    qDebug()<<"ajoute ref---\n";
     for(int pos=0; (pos=regex.indexIn(text->toPlainText(), pos)) != -1; pos += regex.matchedLength())
     {
         if(notemanager.load(regex.cap(1)) && regex.cap(1)!=id)
@@ -51,13 +51,9 @@ void articleInterfaceEditable::ajouteReference() const {
             qDebug() << "id ref: ";
             qDebug() << regex.cap(1)<<"\n";
             listeRef.insert(regex.cap(1));
-        }
-        else
-        {
-            suite = false;
+            suite = true;
         }
     }
-    suite = true;
     for(int pos=0; (pos=regex.indexIn(titre->text(), pos)) != -1; pos += regex.matchedLength())
     {
         if(notemanager.load(regex.cap(1)) && regex.cap(1)!=id)
@@ -65,15 +61,12 @@ void articleInterfaceEditable::ajouteReference() const {
             qDebug() << "id ref: ";
             qDebug() << regex.cap(1)<<"\n";
             listeRef.insert(regex.cap(1));
-        }
-        else
-        {
-            suite = false;
+            suite = true;
         }
     }
     if(suite)
     {
-        relation* ref = relaman.getRelation("\ref");
+        relation* ref = relaman.getRelation("reference");
         for(relation::Iterator it = ref->begin();it!=ref->end();it++)
         {
             if((*it)->getFromNote()->getId() == id)
@@ -86,6 +79,5 @@ void articleInterfaceEditable::ajouteReference() const {
             ref->addCouple(notemanager.load(id),notemanager.load(it),id+"->"+it);
         }
     }
-    relaman.save();
 }
 

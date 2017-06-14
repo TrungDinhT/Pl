@@ -32,7 +32,7 @@ public:
     void deleteRelation(const QString& titre);
     void setFileName(const QString f) { filename = f; }
     const QString& getFileName () const { return filename; }
-    int load();
+    void load();
     void save(); //filename = name + path to save
 
     //iterator et parcourir

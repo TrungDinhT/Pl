@@ -6,7 +6,7 @@
 #include "NoteManager/notes.h"
 #include "NoteInterfaceEditable.h"
 #include "ManagerInterface.h"
-
+#include "RelationManager/RelationManager.h"
 
 
 

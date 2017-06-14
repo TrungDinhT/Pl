@@ -59,7 +59,7 @@ void NotesManager::deleteNote(const QString &id){
     for(i=0;i<nbNotes && notes[i]->getId()!=id;i++);
     if(i==nbNotes)
         throw _Exception("Note not found");
-    relation* ref = RelationsManager::getInstance().getRelation("\ref");
+    relation* ref = RelationsManager::getInstance().getRelation("reference");
     relation::Iterator it;
     for(it=ref->begin();it!=ref->end() && (*it)->getFromNote()->getId()!=id; it++); //search for note referencé
     if(it!=ref->end())

@@ -82,6 +82,7 @@ void GlobalInterface::supprimerNote(){
 void GlobalInterface::sauvegardeGeneral(){
     qDebug()<<"save";
     NM->save();
+    RelationsManager::getInstance().save();
 }
 
 void GlobalInterface::miseEnRelationNote(){

@@ -42,8 +42,6 @@ public:
     };
     Const_Iterator cbegin() const { return Const_Iterator(deletedNotes,nbNotes); }
     Const_Iterator cend() const { return Const_Iterator(deletedNotes + nbNotes,nbNotes); }
-
-
 };
 
 #endif // CORBEILLE_H

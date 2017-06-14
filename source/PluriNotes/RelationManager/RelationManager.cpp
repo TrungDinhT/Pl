@@ -17,12 +17,12 @@ RelationsManager& RelationsManager::getInstance(){
         instance=new RelationsManager;
         QString location = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
         instance->setFileName(location+"/relationslog.xml");
-        int countRela = instance->load();
-        if(!countRela) //quand fichier relationslog.xml est vide (premier lancement)
+        if(instance->nbRelations==0) //quand fichier relationslog.xml est vide (premier lancement)
         {
             relation* ref = &(relationPreexistance::getInstance());
             instance->addRelations(ref);
         }
+        instance->load();
     }
     return *instance;
 }
@@ -64,7 +64,7 @@ relation* RelationsManager::getRelation(const QString &titre){
 }
 
 void RelationsManager::deleteRelation(const QString &titre){
-    if(titre=="\ref") throw _Exception("Error: cannot delete relation reference");
+    if(titre=="reference") throw _Exception("Error: cannot delete relation reference");
     unsigned int i;
     for(i=0;i<nbRelations && relations[i]->getTitre()!=titre;i++);
     if(i==nbRelations) throw _Exception("Error: relation not found");
@@ -94,8 +94,10 @@ void RelationsManager::save(){
         {
             stream.writeStartElement("couple");
             stream.writeTextElement("Label",(*c)->label);
-            stream.writeTextElement("fromNote ID",(*c)->getFromNote()->getId());
-            stream.writeTextElement("toNote ID",(*c)->getToNote()->getId());
+            qDebug()<<"label"<<(*c)->label;
+            if((*c)->getFromNote()==nullptr) qDebug()<<"fromNoteID nulll\n";
+            stream.writeTextElement("fromNoteID",(*c)->getFromNote()->getId());
+            stream.writeTextElement("toNoteID",(*c)->getToNote()->getId());
             stream.writeEndElement();
         }
         stream.writeEndElement();
@@ -105,7 +107,7 @@ void RelationsManager::save(){
     newfile.close();
 }
 
-int RelationsManager::load(){
+void RelationsManager::load(){
     QFile file(filename);
 
     // If we can't open it, show an error message.
@@ -113,7 +115,6 @@ int RelationsManager::load(){
         throw _Exception("Error : cannot open file");
 
     int count = -1;
-    int countRela = 0;
     QXmlStreamReader stream(&file);
     while(!stream.atEnd() && !stream.hasError())
     {
@@ -157,10 +158,10 @@ int RelationsManager::load(){
                         if(stream.name()=="couples")
                         {
                             qDebug()<<"boucle couples\n";
-                            if(titre!="\ref")
+                            if(titre!="reference")
                                 r = new relationNonPreexistance(titre,description,oriente);
                             else
-                                r = getRelation("\ref");
+                                r = getRelation("reference");
 
                             stream.readNext();
                             while(!(stream.tokenType() == QXmlStreamReader::EndElement && stream.name() == "couples"))
@@ -186,13 +187,13 @@ int RelationsManager::load(){
                                                     label=stream.text().toString();
                                                     qDebug()<<"label="<<label<<"\n";
                                                 }
-                                                if(stream.name() == "fromNote ID") \
+                                                if(stream.name() == "fromNoteID") \
                                                 {
                                                         stream.readNext();
                                                         fromNoteID=stream.text().toString();
                                                         qDebug()<<"fromNote ID="<<fromNoteID<<"\n";
                                                 }
-                                                if(stream.name() == "toNote ID")
+                                                if(stream.name() == "toNoteID")
                                                 {
                                                     stream.readNext();
                                                     toNoteID=stream.text().toString();
@@ -201,7 +202,7 @@ int RelationsManager::load(){
                                             }
                                         }
                                         r->addCouple(NM.load(fromNoteID),NM.load(toNoteID),label);
-                                        qDebug()<<"ajout couple "<<label<<"\n";
+                                        qDebug()<<"ajout couple "<<NM.load(fromNoteID)->getId()<<"\n";
                                     }
                                 }
                             }
@@ -209,8 +210,7 @@ int RelationsManager::load(){
                     }
                 }
                 qDebug()<<"ajout relation "<<titre<<"\n";
-                if(titre!="\ref") addRelations(r);
-                countRela++;
+                if(titre!="reference") addRelations(r);
             }
         }
     }
@@ -221,5 +221,4 @@ int RelationsManager::load(){
     }
     stream.clear();
     qDebug()<<"fin load\n";
-    return countRela;
 }

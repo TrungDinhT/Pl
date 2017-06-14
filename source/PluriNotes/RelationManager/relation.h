@@ -82,7 +82,7 @@ private:
     void setOriente(bool ori) final {}
 
     static relationPreexistance* instance;
-    relationPreexistance(): relation("\\ref","reference vers une note",true){}
+    relationPreexistance(): relation("reference","reference vers une note",true){}
     relationPreexistance(const relationPreexistance& re);
     relationPreexistance& operator=(const relationPreexistance& re);
     ~relationPreexistance(){}
