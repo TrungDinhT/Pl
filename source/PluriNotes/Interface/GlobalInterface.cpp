@@ -2,7 +2,9 @@
 #include "GlobalInterface.h"
 #include "ArticleInterfaceEditable.h"
 #include "managerinterface.h"
-GlobalInterface::GlobalInterface(){
+#include <QWidget>
+
+GlobalInterface::GlobalInterface(): QWidget(){
   principale = new QGridLayout(this);
   /*MI = new ManagerInterface();
   connect(MI->liste_note, SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)),this, SLOT(changerNote(QListWidgetItem*)));
@@ -39,6 +41,7 @@ void GlobalInterface::raffraichissementMI(){
     MI = new ManagerInterface();
     connect(MI->liste_note, SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)),this, SLOT(changerNote(QListWidgetItem*)));
     connect(MI, SIGNAL(refresh()),this, SLOT(raffraichissementMI()));
+    connect(MI->sauvegarder, SIGNAL(clicked()),this, SLOT(sauvegardeGeneral()));
     principale->addWidget(MI,0,0);
 }
 
@@ -74,6 +77,12 @@ void GlobalInterface::sauverNote(Version* v){
 void GlobalInterface::supprimerNote(){
 //à completer
 }
+
+void GlobalInterface::sauvegardeGeneral(){
+    qDebug()<<"save";
+    NM->save();
+}
+
 void GlobalInterface::miseEnRelationNote(){
 //à completer
 }
