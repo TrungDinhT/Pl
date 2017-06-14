@@ -4,6 +4,7 @@
 #include "ManagerInterface.h"
 #include <QWidget>
 
+
 GlobalInterface::GlobalInterface(): QWidget(){
   principale = new QGridLayout(this);
   /*MI = new ManagerInterface();
@@ -19,7 +20,7 @@ GlobalInterface::GlobalInterface(): QWidget(){
   VersionCurrent = NoteCurrent->VersionActive();
 
   //if(typeid(*VersionCurrent).name()=="Article"){
-  NIE = new articleInterfaceEditable(static_cast <Article*>(VersionCurrent));
+  NIE = new articleInterfaceEditable(NoteCurrent->getId(),static_cast <Article*>(VersionCurrent));
   //}
 
   principale->addWidget(NIE,0,1);
@@ -103,7 +104,7 @@ void GlobalInterface::choixVersionNote(QListWidgetItem* item){
     VersionCurrent = NoteCurrent->getVerParDate(item->text());
     //NoteCurrent->setVersionActive(VersionCurrent);
     delete NIE;
-    NIE = new articleInterfaceEditable(static_cast <Article*>(VersionCurrent));
+    NIE = new articleInterfaceEditable(NoteCurrent->getId(),static_cast <Article*>(VersionCurrent));
     connect(NIE,SIGNAL(sauvegarde(Version*)),this,SLOT(sauverNote(Version*)));
     connect(NIE->relier,SIGNAL(clicked()),this,SLOT(miseEnRelationNote()));
     connect(NIE->supprimer,SIGNAL(clicked()),this,SLOT(supprimerNote()));
@@ -122,7 +123,7 @@ void GlobalInterface::changerNote(QListWidgetItem* item){
  /*Note::Iterator itv = NoteCurrent->begin();
  VersionCurrent = *itv;*/
  VersionCurrent = NoteCurrent->VersionActive();
- NIE = new articleInterfaceEditable(static_cast <Article*>(VersionCurrent));
+ NIE = new articleInterfaceEditable(NoteCurrent->getId(),static_cast <Article*>(VersionCurrent));
  connect(NIE,SIGNAL(sauvegarde(Version*)),this,SLOT(sauverNote(Version*)));
  connect(NIE->relier,SIGNAL(clicked()),this,SLOT(miseEnRelationNote()));
  connect(NIE->supprimer,SIGNAL(clicked()),this,SLOT(supprimerNote()));

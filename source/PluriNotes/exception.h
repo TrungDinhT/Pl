@@ -2,6 +2,7 @@
 #define EXCEPTION_H
 
 #include <QString>
+#include <QMessageBox>
 
 class _Exception{
 public:

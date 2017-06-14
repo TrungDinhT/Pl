@@ -39,3 +39,16 @@ void relation::deleteCouple(const QString &idNote){
     }
     nbCouples--;
 }
+
+void relation::deleteCouple(const QString &idFromNote, const QString &idToNote){
+    unsigned int i;
+
+    //trouver la position de couple c dans le tableau de couple
+    for(i=0;i<nbCouples && couples[i]->getFromNote()->getId()!=idFromNote && couples[i]->getToNote()->getId()!=idToNote;i++)
+    if(i<nbCouples)
+    {
+        delete couples[i];
+        for(;i<nbCouples-1;i++) couples[i]=couples[i+1]; //deplacer tous les couples apres cette couple a gauche
+    }
+    nbCouples--;
+}

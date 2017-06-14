@@ -108,7 +108,7 @@ Note* NotesManager::load(const QString& id){
         if (notes[i]->getId()==id) return notes[i];
     }
     // sinon il envoie erreur
-    throw _Exception("Error: article not found");
+    return nullptr;
 }
 
 void NotesManager::load(){

@@ -26,6 +26,7 @@ protected:
     void deleteCouple(const QString& idNote);
 
 public:
+    void deleteCouple(const QString& idFromNote, const QString& idToNote);
     void addCouple(Note *fn, Note *tn, const QString& lab); //public pour pouvoir enrichir une relation
     relation(QString ti, QString desc="", bool ori=true):
         titre(ti), description(desc),oriente(ori),couples(nullptr), nbCouples(0), nbMaxCouples(0) {}
@@ -81,7 +82,7 @@ private:
     void setOriente(bool ori) final {}
 
     static relationPreexistance* instance;
-    relationPreexistance(): relation("\ref","reference vers une note",true){}
+    relationPreexistance(): relation("\\ref","reference vers une note",true){}
     relationPreexistance(const relationPreexistance& re);
     relationPreexistance& operator=(const relationPreexistance& re);
     ~relationPreexistance(){}

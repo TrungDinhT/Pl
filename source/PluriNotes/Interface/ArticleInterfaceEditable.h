@@ -6,14 +6,19 @@
 #include "NoteManager/notes.h"
 #include "NoteInterfaceEditable.h"
 
-class GLobalInterface;
+class GlobalInterface;
 
 class articleInterfaceEditable: public NoteInterfaceEditable{
     Q_OBJECT
     friend class GlobalInterface;
 public:
-   articleInterfaceEditable(Article* a = 0);
-    
+   articleInterfaceEditable(const QString id, Article* a = nullptr);
+
+   /*fonction pour ajouter reference
+    *quand l'utilisateur entre \ref{id} dans n'importe quel champs de l'note (où on peut avoir texte)
+    */
+   void ajouteReference() const;
+
 public slots:
    virtual void saveNote();
 

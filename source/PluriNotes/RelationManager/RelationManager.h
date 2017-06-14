@@ -25,15 +25,11 @@ private:
     RelationsManager& operator=(const RelationsManager& m);
 
 public:
-
-    relation* getRelation(const QString& titre);
-    relation* getNewRelation(const QString& titre, const QString& desc, bool ori=true);
-
-    void deleteRelation(const QString& titre);
-
     static RelationsManager& getInstance();
     static void freeInstance(); // free the memory used by the RelationsManager; it can be rebuilt later
-
+    relation* getRelation(const QString& titre);
+    relation* getNewRelation(const QString& titre, const QString& desc, bool ori=true);
+    void deleteRelation(const QString& titre);
     void setFileName(const QString f) { filename = f; }
     const QString& getFileName () const { return filename; }
     int load();

@@ -1,11 +1,20 @@
 #include "ArticleInterfaceEditable.h"
+#include "NoteManager/NoteManager.h"
+#include <QRegExp>
+#include <QSet>
+#include "RelationManager/RelationManager.h"
+#include "RelationManager/relation.h"
+
+NotesManager& notemanager = NotesManager::getManager();
+RelationsManager& relaman = RelationsManager::getInstance();
 
 void articleInterfaceEditable::saveNote(){
   Article* a = new Article(titre->text(),text->toPlainText());
+  ajouteReference();
   emit sauvegarde(a);
 }
 
-articleInterfaceEditable::articleInterfaceEditable(Article* a):NoteInterfaceEditable(a){
+articleInterfaceEditable::articleInterfaceEditable(const QString id, Article* a):NoteInterfaceEditable(a,id){
   article = a;
   //titre = new QLineEdit(article.titre,this);
   if (a == 0){text = new QTextEdit("");}
@@ -26,4 +35,57 @@ articleInterfaceEditable::articleInterfaceEditable(Article* a):NoteInterfaceEdit
   this->setLayout(principale);
 }
 
+
+/*fonction pour ajouter reference
+ *quand l'utilisateur entre \ref{id} dans n'importe quel champs de l'note (où on peut avoir texte)
+ */
+void articleInterfaceEditable::ajouteReference() const {
+    QSet<QString> listeRef;
+    QRegExp regex("\\\\ref[{]([\\w]+)[}]");
+    bool suite = true;
+
+    for(int pos=0; (pos=regex.indexIn(text->toPlainText(), pos)) != -1; pos += regex.matchedLength())
+    {
+        if(notemanager.load(regex.cap(1)) && regex.cap(1)!=id)
+        {
+            qDebug() << "id ref: ";
+            qDebug() << regex.cap(1)<<"\n";
+            listeRef.insert(regex.cap(1));
+        }
+        else
+        {
+            suite = false;
+        }
+    }
+    suite = true;
+    for(int pos=0; (pos=regex.indexIn(titre->text(), pos)) != -1; pos += regex.matchedLength())
+    {
+        if(notemanager.load(regex.cap(1)) && regex.cap(1)!=id)
+        {
+            qDebug() << "id ref: ";
+            qDebug() << regex.cap(1)<<"\n";
+            listeRef.insert(regex.cap(1));
+        }
+        else
+        {
+            suite = false;
+        }
+    }
+    if(suite)
+    {
+        relation* ref = relaman.getRelation("\ref");
+        for(relation::Iterator it = ref->begin();it!=ref->end();it++)
+        {
+            if((*it)->getFromNote()->getId() == id)
+            {
+                ref->deleteCouple(id,(*it)->getToNote()->getId());
+            }
+        }
+        for(auto it: listeRef)
+        {
+            ref->addCouple(notemanager.load(id),notemanager.load(it),id+"->"+it);
+        }
+    }
+    relaman.save();
+}
 
