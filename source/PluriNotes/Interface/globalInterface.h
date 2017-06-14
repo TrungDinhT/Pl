@@ -34,7 +34,8 @@ public slots :
   void changerVersionNote();
   void versionActiveNote();
   void choixVersionNote(QListWidgetItem* item);
-  };
+  void raffraichissementMI();
+};
 
 
 #endif // GLOBALINTERFACE_H
