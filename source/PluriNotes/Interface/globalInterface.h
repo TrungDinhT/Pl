@@ -37,6 +37,7 @@ public slots :
   void versionActiveNote();
   void choixVersionNote(QListWidgetItem* item);
   void raffraichissementMI();
+  void sauvegardeGeneral();
 };
 
 
