@@ -1,16 +1,3 @@
-/* Different types of note (tache, image, article,...) defined here
-
-  classe Note abstrait grace au methode createID() = 0;
-  ID inmodifiable et creee automatiquement par combiner le type de note ("A"=article,"I"=image,"T"=tache)
-
-  Gestion des versions ne sont pas encore traitee non plus!!!
-  -- Different versions de note ont les meme ID, dateCreation mais different dateModif
-  -- Je choisis a sauvegarder tous les versions dans un seul fichier xml (sauf les images mais on les traitera apres)
-       => il faut avoir le methode autoLoad() qui serve a charger, creer tous les versions d'une note (au lancement de notre app)
-
-  Il y a surement des problemes auxquelles j'avais pas encore pense
-
-*/
 
 #ifndef NOTES_H
 #define NOTES_H
@@ -26,6 +13,7 @@ enum EtatTache {EN_ATTENTE, EN_COURS, TERMINE};
 enum EtatNote {ARCHIVE, ACTIVE, RIP};
 enum Media {VIDEO, AUDIO, IMAGE};
 
+class articleInterface;
 
 class Version {
 protected:
@@ -64,8 +52,11 @@ public:
     const EtatNote& getEtat() const { return etat; }
     void setEtat(const EtatNote status) { etat = status; }
     void addVersion(Version* v);
-    Note* getNewNote(const QString& id, Version *v);
+    void setVersionActive(Version* v);
+    Version* VersionActive();
+    static Note* getNewNote(const QString& id, Version *v);
     Version* getVer(const QString& titre);
+    Version* getVerParDate(const QString& date);
     void save(QXmlStreamWriter& stream) const;
     //void creerInterface() const { versions[nbVer-1]->creerInterface(); }
 
@@ -97,6 +88,7 @@ private:
 public:
     Article(const QString ti, const QDateTime d, const QString te): Version(ti,d), text(te) {}
     Article(const QString ti="", const QString te=""): Version(ti),text(te){}
+
     const QString& getText() const { return text; }
     void setText(const QString& t) { text = t; }
     void save(QXmlStreamWriter& stream) const;
@@ -111,7 +103,10 @@ private:
     //friend class imageInterface;
 public:
     Multimedia(const QString ti, const QDateTime d, const QString& f, const QString desc=""): Version(ti,d), description(desc), nomFichier(f){}
-    Multimedia(const QString& f, const QString desc=""): description(desc), nomFichier(f){}
+
+    Multimedia(const QString& f = "", const QString desc=""): Version(),description(desc), nomFichier(f){}
+
+    //accesseurs
     const QString& getDesc() const { return description; }
     const QString& getNomFichier() const { return nomFichier; }
     const Media& getType() const { return typeEnregistrement; }
@@ -131,8 +126,11 @@ private:
 public:
     Tache(const QDateTime& dE, const QString& action ="", const int p= 0, const EtatTache e = EN_COURS):
         Version(),action(action),priorite(p),statut(e),dateEcheance(dE){}  //Une priorité faible=0
-    Tache(const QString ti, const QDateTime d, const QDateTime& dE, const QString& action ="", const int p= 0, const EtatTache e = EN_COURS):
+
+    Tache(const QString ti = "", const QDateTime d = QDateTime::currentDateTime(), const QDateTime& dE = QDateTime::currentDateTime().addDays(1), const QString& action ="", const int p= 0, const EtatTache e = EN_COURS):
         Version(ti,d),action(action),priorite(p),statut(e),dateEcheance(dE){}  //Une priorité faible=0
+
+    //accesseurs
     const QString& getAction() const { return action; }
     const unsigned int getPriorite() const { return priorite; }
     const QDateTime& getDateEcheance() const { return dateEcheance; }
@@ -141,8 +139,8 @@ public:
     void setPriorite(const unsigned int p) { priorite = p; }
     void setDateEcheance(const QDateTime& d) { dateEcheance = d; }
     void setStatut(const EtatTache s) {statut = s; }
+
     void save(QXmlStreamWriter& str) const;
 };
-
 
 #endif

@@ -18,7 +18,7 @@ private:
     Note** notes;
     unsigned int nbNotes;
     unsigned int nbMaxNotes;
-    void addNotes(Note* n);
+
 
     //filename à manager
     mutable QString filename;
@@ -30,6 +30,8 @@ private:
     NotesManager& operator=(const NotesManager& m);
     friend class corbeille;
 public:
+
+    void addNotes(Note* n);
     static NotesManager& getManager();
     static void freeManager(); // free the memory used by the NotesManager; it can be rebuild later
 

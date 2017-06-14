@@ -13,9 +13,23 @@ void Note::addVersion(Version *v){
     versions[nbVer++]=v;
 }
 
+
+void Note::setVersionActive(Version *v){//çàd la fait passer en dernier
+    for(int k=0; k<nbVer-1; k++){
+        if(versions[k]==v){
+            Version* temp = versions[nbVer-1];
+            versions[nbVer-1] = v;
+            versions[k] = temp;
+        }
+    }
+}
+Version* Note::VersionActive(){//çàd la fait passer en dernier
+    return versions[nbVer-1];
+}
+
 Note* Note::getNewNote(const QString &id, Version* v){
     Note* n = new Note(id);
-    addVersion(v);
+    n->addVersion(v);
     return n;
 }
 
@@ -31,12 +45,8 @@ void Note::save(QXmlStreamWriter &stream) const{
                     break;}
     }
     stream.writeStartElement("Versions");
-    qDebug()<<"nb Ver: "<<nbVer<<"\n";
     for(unsigned int i=0;i<nbVer;i++)
-    {
         versions[i]->save(stream);
-        qDebug()<<"add Ver\n";
-    }
     stream.writeEndElement();
 }
 
@@ -92,3 +102,10 @@ Version* Note::getVer(const QString& titre){
     throw _Exception("Error: version not found");
 }
 
+
+Version* Note::getVerParDate(const QString& date){
+    for(unsigned int i=0; i<nbVer; i++){
+        if (versions[i]->getDateModif().toString("dd.MM.yyyy-hh:mm:ss")==date) return versions[i];
+    }
+    throw _Exception("Error: version not found");
+}

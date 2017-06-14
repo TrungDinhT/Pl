@@ -3,11 +3,6 @@
 void articleInterfaceEditable::saveNote(){
   Article* a = new Article(titre->text(),text->toPlainText());
   emit sauvegarde(a);
-  //article.texte = texte.text;
-  //article.titre = titre.text;
-  //article.actualiserDateModif(); //à définir
-  //articleInterface a = new articleInterface(article);
-  //delete this;
 }
 
 articleInterfaceEditable::articleInterfaceEditable(Article* a):NoteInterfaceEditable(a){
@@ -30,4 +25,5 @@ articleInterfaceEditable::articleInterfaceEditable(Article* a):NoteInterfaceEdit
 
   this->setLayout(principale);
 }
+
 

@@ -53,6 +53,7 @@ NotesManager::~NotesManager(){
     delete[] notes;
 }
 
+
 void NotesManager::deleteNote(const QString &id){
     unsigned int i;
     for(i=0;i<nbNotes && notes[i]->getId()!=id;i++);
@@ -343,6 +344,4 @@ void NotesManager::load(){
     stream.clear();
     qDebug()<<"fin load\n";
 }
-
-
 
