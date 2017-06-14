@@ -1,3 +1,4 @@
+
 #include "GlobalInterface.h"
 #include "ArticleInterfaceEditable.h"
 #include "managerinterface.h"
@@ -21,6 +22,7 @@ GlobalInterface::GlobalInterface(){
 
   principale->addWidget(NIE,0,1);
   //qDebug()<<"ajout article\n";
+
   //RI = new RelationInterface() ;
 
   //TB  =MyQToolbar();
@@ -67,6 +69,7 @@ void GlobalInterface::sauverNote(Version* v){
   connect(NIE->supprimer,SIGNAL(clicked()),this,SLOT(supprimerNote()));
   connect(NIE->changerversion,SIGNAL(clicked()),this,SLOT(changerVersionNote()));
   connect(NIE->rendreversionactive,SIGNAL(clicked()),this,SLOT(versionActiveNote()));*/
+
 }
 void GlobalInterface::supprimerNote(){
 //à completer

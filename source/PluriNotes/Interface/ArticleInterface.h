@@ -1,3 +1,4 @@
+/*
 #ifndef ARTICLEINTERFACE_H
 #define ARTICLEINTERFACE_H
 
@@ -5,7 +6,7 @@
 #include "NoteManager/NoteManager.h"
 #include "NoteManager/notes.h"
 
-#include "Interface/NoteInterface.h"
+#include "NoteInterface.h"
 #include "RelationManager/relation.h"
 
 class articleInterface: public NoteInterface{
@@ -35,3 +36,4 @@ private:
 };
 
 #endif // ARTICLEINTERFACE_H
+*/

@@ -26,6 +26,7 @@ public :
   
 public slots : 
     virtual void saveNote() = 0;
+
 signals :
     void sauvegarde(Version*);
 

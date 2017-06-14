@@ -28,7 +28,7 @@ protected:
 public:
     void addCouple(Note *fn, Note *tn, const QString& lab); //public pour pouvoir enrichir une relation
     relation(QString ti, QString desc="", bool ori=true):
-        titre(ti), description(desc), nbCouples(0), nbMaxCouples(0), oriente(ori),couples(nullptr) {}
+        titre(ti), description(desc),oriente(ori),couples(nullptr), nbCouples(0), nbMaxCouples(0) {}
     virtual ~relation(){
         for (unsigned int i=0;i<nbCouples;i++)
              delete couples[i];
@@ -37,16 +37,18 @@ public:
 
     //accesseurs
     const QString& getTitre() const { return titre; }
-    virtual void setTitre(const QString& ti) =0;
     const QString& getDescription() const { return description; }
-    virtual void setDescription(const QString& d) =0;
     bool getOriente() const { return oriente; }
+    virtual void setTitre(const QString& ti) =0;
+    virtual void setDescription(const QString& d) =0;
     virtual void setOriente(bool ori) =0;
 
     //iterator + methodes servent a parcourir
     class Iterator: public _Iterator<couple>{
         friend class relation;
         Iterator(couple** c, unsigned int n): _Iterator(c,n){}
+    public:
+        Iterator(): _Iterator(){}
     };
     Iterator begin() const { return Iterator(couples,nbCouples); }
     Iterator end() const { return Iterator(couples + nbCouples,nbCouples); }
@@ -54,6 +56,8 @@ public:
     class Const_Iterator: public _const_iterator<couple>{
         friend class relation;
         Const_Iterator(couple** c, unsigned int n): _const_iterator(c,n){}
+    public:
+        Const_Iterator(): _const_iterator(){}
     };
     Const_Iterator cbegin() const { return Const_Iterator(couples,nbCouples); }
     Const_Iterator cend() const { return Const_Iterator(couples + nbCouples,nbCouples); }

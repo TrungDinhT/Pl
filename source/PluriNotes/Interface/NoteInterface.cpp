@@ -1,4 +1,4 @@
-#include "Interface/NoteInterface.h"
+/*#include "Interface/NoteInterface.h"
 NoteInterface::NoteInterface(Version v){
   titre = new QLabel(v->titre);
 //titre = new QLabel(v->titre,this);
@@ -8,3 +8,4 @@ NoteInterface::NoteInterface(Version v){
 //connect(modifier,SIGNAL(clicked()),this,SLOT(modifArticle()));
 
 }
+*/

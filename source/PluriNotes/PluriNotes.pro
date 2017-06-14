@@ -5,7 +5,7 @@ QMAKE_LFLAGS = -std=c++11
 HEADERS += \
     RelationManager/relation.h \
     RelationManager/RelationManager.h \
-#    Corbeille/corbeille.h \
+    Corbeille/corbeille.h \
     NoteManager/NoteManager.h \
     NoteManager/notes.h \
     Interface/ArticleInterface.h \
@@ -13,8 +13,8 @@ HEADERS += \
 #    Interface/ImageInterface.h \
 #    Interface/UI.h \
     Interface/NoteInterfaceEditable.h \
-    Interface/NoteInerface.h \
-    Interface/MyQToolbar.h \
+    Interface/NoteInterface.h \
+#    Interface/MyQToolbar.h \
     Interface/globalInterface.h \
     Interface/ArticleInterfaceEditable.h \
     iterator.h \
@@ -22,7 +22,7 @@ HEADERS += \
 
 
 SOURCES += \
- #   Corbeille/corbeille.cpp \
+    Corbeille/corbeille.cpp \
     NoteManager/notes.cpp \
     NoteManager/NoteManager.cpp \
  #   Interface/UI.cpp \

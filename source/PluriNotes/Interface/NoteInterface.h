@@ -1,5 +1,5 @@
-#ifndef NOTEINERFACE_H
-#define NOTEINERFACE_H
+/*#ifndef NOTEINTERFACE_H
+#define NOTEINTERFACE_H
 
 #include <QtWidgets> //inclu tout les QWidget
 #include "NoteManager/NoteManager.h"
@@ -27,4 +27,5 @@ public slots :
 };
 
 
-#endif // NOTEINERFACE_H
+#endif // NOTEINTERFACE_H
+*/

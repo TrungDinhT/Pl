@@ -9,6 +9,7 @@
 
 
 
+
 class GlobalInterface : public QWidget {
   Q_OBJECT
   QGridLayout* principale;
@@ -21,6 +22,7 @@ class GlobalInterface : public QWidget {
   Note* NoteCurrent;
   Version* VersionCurrent;
   QListWidget* liste;
+
   
 public :
   GlobalInterface();
@@ -36,6 +38,7 @@ public slots :
   void choixVersionNote(QListWidgetItem* item);
   void raffraichissementMI();
 };
+
 
 
 #endif // GLOBALINTERFACE_H

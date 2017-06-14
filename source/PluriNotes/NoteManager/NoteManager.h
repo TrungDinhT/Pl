@@ -10,6 +10,8 @@
 #include "iterator.h"
 #include "exception.h"
 
+class corbeille;
+
 class NotesManager {
 
 private:
@@ -26,13 +28,10 @@ private:
     ~NotesManager();
     NotesManager(const NotesManager& m);
     NotesManager& operator=(const NotesManager& m);
-
+    friend class corbeille;
 public:
+
     void addNotes(Note* n);
-    /*besoin de generaliser pour Notes
-    Article* getArticle(const QString& id); // return the article with identificator id
-    Article* getNewArticle();  //create a new article
-    */
     static NotesManager& getManager();
     static void freeManager(); // free the memory used by the NotesManager; it can be rebuild later
 
@@ -50,6 +49,8 @@ public:
     class Iterator: public _Iterator<Note>{
         friend class NotesManager;
         Iterator(Note** notes, unsigned int n): _Iterator(notes,n){}
+    public:
+        Iterator(): _Iterator(){}
     };
     Iterator begin() const { return Iterator(notes,nbNotes); }
     Iterator end() const { return Iterator(notes + nbNotes,nbNotes); }
@@ -57,6 +58,8 @@ public:
     class Const_Iterator: public _const_iterator<Note>{
         friend class NotesManager;
         Const_Iterator(Note** notes, unsigned int n): _const_iterator(notes,n){}
+    public:
+        Const_Iterator(): _const_iterator(){}
     };
     Const_Iterator cbegin() const { return Const_Iterator(notes,nbNotes); }
     Const_Iterator cend() const { return Const_Iterator(notes + nbNotes,nbNotes); }

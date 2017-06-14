@@ -19,7 +19,7 @@ public slots :
   //void retour();
   void sauvegarde_physique(){}//;
 
-}
+};
 
 
 

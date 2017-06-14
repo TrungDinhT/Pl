@@ -19,7 +19,7 @@ public slots:
 
 
 signals:
-    //void sauvegarde(Article* a);
+  //void sauvegarde(Article* a);
 private:
    //QLineEdit* titre;
    QTextEdit* text;

@@ -2,9 +2,7 @@
 
 void articleInterfaceEditable::saveNote(){
   Article* a = new Article(titre->text(),text->toPlainText());
-  qDebug()<<"test4";
   emit sauvegarde(a);
-  qDebug()<<"test5";
 }
 
 articleInterfaceEditable::articleInterfaceEditable(Article* a):NoteInterfaceEditable(a){

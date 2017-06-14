@@ -1,16 +1,3 @@
-/* Different types of note (tache, image, article,...) defined here
-
-  classe Note abstrait grace au methode createID() = 0;
-  ID inmodifiable et creee automatiquement par combiner le type de note ("A"=article,"I"=image,"T"=tache)
-
-  Gestion des versions ne sont pas encore traitee non plus!!!
-  -- Different versions de note ont les meme ID, dateCreation mais different dateModif
-  -- Je choisis a sauvegarder tous les versions dans un seul fichier xml (sauf les images mais on les traitera apres)
-       => il faut avoir le methode autoLoad() qui serve a charger, creer tous les versions d'une note (au lancement de notre app)
-
-  Il y a surement des problemes auxquelles j'avais pas encore pense
-
-*/
 
 #ifndef NOTES_H
 #define NOTES_H
@@ -19,15 +6,29 @@
 #include <QDateTime>
 #include <QtWidgets>
 #include "iterator.h"
-
+#include "Interface/ArticleInterface.h"
 using namespace std;
 
 enum EtatTache {EN_ATTENTE, EN_COURS, TERMINE};
 enum EtatNote {ARCHIVE, ACTIVE, RIP};
 enum Media {VIDEO, AUDIO, IMAGE};
+
 class articleInterface;
 
-class Version;
+class Version {
+protected:
+    QString titre;
+    QDateTime dateModif;
+public:
+    Version(const QString& titre=""): titre(titre),dateModif(QDateTime::currentDateTime()){}
+    Version(const QString titre, const QDateTime dM): titre(titre),dateModif(dM){}
+    const QDateTime& getDateModif() const { return dateModif; }
+    QString getTitre() const {return titre;}
+    void setTitre(const QString& t){titre=t;}
+    virtual void save(QXmlStreamWriter& stream) const = 0;
+    //virtual void creerInterface() const =0;
+    virtual ~Version(){}
+};
 
 class Note {
 private:
@@ -42,59 +43,45 @@ public:
         etat(ACTIVE), versions(nullptr), nbVer(0), nbMaxVer(0){}
     Note(const QDateTime dC, const QString id, EtatNote etat):
         dateCreation(dC),id(id),etat(etat),versions(nullptr),nbVer(0),nbMaxVer(0){}
-    //lectures
-    const QString& getId() const { return id; }
-    const QDateTime& getDateCreation() const { return dateCreation; }
-    const EtatNote& getEtat() const { return etat; }
     ~Note(){
         for(unsigned int i=0;i<nbVer;i++) delete versions[i];
         delete[] versions;
     }
+    const QString& getId() const { return id; }
+    const QDateTime& getDateCreation() const { return dateCreation; }
+    const EtatNote& getEtat() const { return etat; }
+    void setEtat(const EtatNote status) { etat = status; }
     void addVersion(Version* v);
     void setVersionActive(Version* v);
     Version* VersionActive();
     static Note* getNewNote(const QString& id, Version *v);
     Version* getVer(const QString& titre);
     Version* getVerParDate(const QString& date);
+    void save(QXmlStreamWriter& stream) const;
+    //void creerInterface() const { versions[nbVer-1]->creerInterface(); }
 
     //iterator + methodes servent a parcourir
     class Iterator: public _Iterator<Version>{
         friend class Note;
         Iterator(Version** v, unsigned int n): _Iterator(v,n){}
+    public:
+        Iterator(): _Iterator(){}
     };
     Iterator begin() const { return Iterator(versions,nbVer); }
     Iterator end() const { return Iterator(versions + nbVer,nbVer); }
+
     class Const_Iterator: public _const_iterator<Version>{
         friend class Note;
         Const_Iterator(Version** v, unsigned int n): _const_iterator(v,n){}
+    public:
+        Const_Iterator(): _const_iterator(){}
     };
     Const_Iterator cbegin() const { return Const_Iterator(versions,nbVer); }
     Const_Iterator cend() const { return Const_Iterator(versions + nbVer,nbVer); }
-
-    void save(QXmlStreamWriter& stream) const;
 };
 
-class Version {
-
-protected:
-    QString titre;
-    QDateTime dateModif;
-
-protected:
-    void autoLoad();
-
-public:
-    Version(const QString& titre=""): titre(titre),dateModif(QDateTime::currentDateTime()){}
-    Version(const QString titre, const QDateTime dM): titre(titre),dateModif(dM){}
-    const QDateTime& getDateModif() const { return dateModif; }
-    QString getTitre() const {return titre;}
-    void setTitre(const QString& t){titre=t;}
-    virtual void save(QXmlStreamWriter& stream) const = 0;
-    virtual ~Version(){}
-};
 
 class Article : public Version{
-
 private:
     QString text;
     friend class articleInterface;
@@ -102,22 +89,21 @@ public:
     Article(const QString ti, const QDateTime d, const QString te): Version(ti,d), text(te) {}
     Article(const QString ti="", const QString te=""): Version(ti),text(te){}
 
-    //accesseurs
     const QString& getText() const { return text; }
     void setText(const QString& t) { text = t; }
-
     void save(QXmlStreamWriter& stream) const;
+    //void creerInterface() const;
 };
 
 class Multimedia: public Version{
-  private:
+private:
     QString description;
     QString nomFichier;
     Media typeEnregistrement;
     //friend class imageInterface;
-
 public:
     Multimedia(const QString ti, const QDateTime d, const QString& f, const QString desc=""): Version(ti,d), description(desc), nomFichier(f){}
+
     Multimedia(const QString& f = "", const QString desc=""): Version(),description(desc), nomFichier(f){}
 
     //accesseurs
@@ -127,7 +113,6 @@ public:
     void setDesc(const QString& d) { description = d; }
     void setType(const Media type) { typeEnregistrement = type; }
     void setPath(const QString& f) { nomFichier = f; }
-
     void save(QXmlStreamWriter& str) const;
 };
 
@@ -141,6 +126,7 @@ private:
 public:
     Tache(const QDateTime& dE, const QString& action ="", const int p= 0, const EtatTache e = EN_COURS):
         Version(),action(action),priorite(p),statut(e),dateEcheance(dE){}  //Une priorité faible=0
+
     Tache(const QString ti = "", const QDateTime d = QDateTime::currentDateTime(), const QDateTime& dE = QDateTime::currentDateTime().addDays(1), const QString& action ="", const int p= 0, const EtatTache e = EN_COURS):
         Version(ti,d),action(action),priorite(p),statut(e),dateEcheance(dE){}  //Une priorité faible=0
 
@@ -156,6 +142,5 @@ public:
 
     void save(QXmlStreamWriter& str) const;
 };
-
 
 #endif
