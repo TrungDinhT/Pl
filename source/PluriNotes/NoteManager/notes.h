@@ -53,7 +53,7 @@ public:
     void addVersion(Version* v);
     void setVersionActive(Version* v);
     Version* VersionActive();
-    Note* getNewNote(const QString& id, Version *v);
+    static Note* getNewNote(const QString& id, Version *v);
     Version* getVer(const QString& titre);
     Version* getVerParDate(const QString& date);
 
@@ -118,7 +118,7 @@ class Multimedia: public Version{
 
 public:
     Multimedia(const QString ti, const QDateTime d, const QString& f, const QString desc=""): Version(ti,d), description(desc), nomFichier(f){}
-    Multimedia(const QString& f, const QString desc=""): description(desc), nomFichier(f){}
+    Multimedia(const QString& f = "", const QString desc=""): Version(),description(desc), nomFichier(f){}
 
     //accesseurs
     const QString& getDesc() const { return description; }
@@ -141,7 +141,7 @@ private:
 public:
     Tache(const QDateTime& dE, const QString& action ="", const int p= 0, const EtatTache e = EN_COURS):
         Version(),action(action),priorite(p),statut(e),dateEcheance(dE){}  //Une priorité faible=0
-    Tache(const QString ti, const QDateTime d, const QDateTime& dE, const QString& action ="", const int p= 0, const EtatTache e = EN_COURS):
+    Tache(const QString ti = "", const QDateTime d = QDateTime::currentDateTime(), const QDateTime& dE = QDateTime::currentDateTime().addDays(1), const QString& action ="", const int p= 0, const EtatTache e = EN_COURS):
         Version(ti,d),action(action),priorite(p),statut(e),dateEcheance(dE){}  //Une priorité faible=0
 
     //accesseurs
