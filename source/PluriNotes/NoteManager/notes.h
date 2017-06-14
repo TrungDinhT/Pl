@@ -17,13 +17,14 @@
 
 #include <QString>
 #include <QDateTime>
+#include <QtWidgets>
 #include "iterator.h"
 
 using namespace std;
 
 enum EtatTache {EN_ATTENTE, EN_COURS, TERMINE};
 enum EtatNote {ARCHIVE, ACTIVE, RIP};
-
+enum Media {VIDEO, AUDIO, IMAGE};
 class articleInterface;
 
 class Version;
@@ -44,14 +45,17 @@ public:
     //lectures
     const QString& getId() const { return id; }
     const QDateTime& getDateCreation() const { return dateCreation; }
-    EtatNote getEtat() { return etat; }
+    const EtatNote& getEtat() const { return etat; }
     ~Note(){
         for(unsigned int i=0;i<nbVer;i++) delete versions[i];
         delete[] versions;
     }
     void addVersion(Version* v);
+    void setVersionActive(Version* v);
+    Version* VersionActive();
     Note* getNewNote(const QString& id, Version *v);
     Version* getVer(const QString& titre);
+    Version* getVerParDate(const QString& date);
 
     //iterator + methodes servent a parcourir
     class Iterator: public _Iterator<Version>{
@@ -67,11 +71,12 @@ public:
     Const_Iterator cbegin() const { return Const_Iterator(versions,nbVer); }
     Const_Iterator cend() const { return Const_Iterator(versions + nbVer,nbVer); }
 
+    void save(QXmlStreamWriter& stream) const;
 };
 
 class Version {
 
-private:
+protected:
     QString titre;
     QDateTime dateModif;
 
@@ -80,10 +85,12 @@ protected:
 
 public:
     Version(const QString& titre=""): titre(titre),dateModif(QDateTime::currentDateTime()){}
-    Version(const QString titre, QDateTime dM): titre(titre),dateModif(dM){}
+    Version(const QString titre, const QDateTime dM): titre(titre),dateModif(dM){}
     const QDateTime& getDateModif() const { return dateModif; }
     QString getTitre() const {return titre;}
     void setTitre(const QString& t){titre=t;}
+    virtual void save(QXmlStreamWriter& stream) const = 0;
+    virtual ~Version(){}
 };
 
 class Article : public Version{
@@ -92,60 +99,63 @@ private:
     QString text;
     friend class articleInterface;
 public:
-    Article(const QString ti, QDateTime d, const QString te): Version(ti,d), text(te) {}
-    Article(const QString te=""): Version(),text(te){}
+    Article(const QString ti, const QDateTime d, const QString te): Version(ti,d), text(te) {}
+    Article(const QString ti="", const QString te=""): Version(ti),text(te){}
 
     //accesseurs
     const QString& getText() const { return text; }
     void setText(const QString& t) { text = t; }
 
+    void save(QXmlStreamWriter& stream) const;
 };
-/*
-class Image: public Note{
+
+class Multimedia: public Version{
   private:
     QString description;
     QString nomFichier;
-    const QString createID(){
-        return QString("A-" + getDateCreation().toString("dd.MM.yyyy-hh:mm:ss")); }
+    Media typeEnregistrement;
     //friend class imageInterface;
 
 public:
-    Image(const QString& f, const QString& ti="", const QString& d="");
-    Image(const QString& i, const QString& f, const QString& ti="", const QString& d="");
+    Multimedia(const QString ti, const QDateTime d, const QString& f, const QString desc=""): Version(ti,d), description(desc), nomFichier(f){}
+    Multimedia(const QString& f, const QString desc=""): description(desc), nomFichier(f){}
 
     //accesseurs
     const QString& getDesc() const { return description; }
+    const QString& getNomFichier() const { return nomFichier; }
+    const Media& getType() const { return typeEnregistrement; }
     void setDesc(const QString& d) { description = d; }
+    void setType(const Media type) { typeEnregistrement = type; }
+    void setPath(const QString& f) { nomFichier = f; }
+
+    void save(QXmlStreamWriter& str) const;
 };
 
 
-class Tache: public Note{
-  private:
+class Tache: public Version{
+private:
     QString action;
-    int priorite;
-    etat statut;
+    unsigned int priorite;
+    EtatTache statut;
     QDateTime dateEcheance;
-    const QString createID(){
-        return QString("A-" + getDateCreation().toString("dd.MM.yyyy-hh:mm:ss")); }
-    //friend class tacheInterface;
-
 public:
-    Tache(const QString& action ="", const QString& ti="", const int p= 0, const QDateTime& d = QDateTime::currentDateTime(), );  //Une priorité faible=0
-    Tache(const QString& i, const QString& action ="", const QString& ti="", const int& p= 0, const QDateTime& d = QDateTime::currentDateTime(), );  //Une priorité faible=0
+    Tache(const QDateTime& dE, const QString& action ="", const int p= 0, const EtatTache e = EN_COURS):
+        Version(),action(action),priorite(p),statut(e),dateEcheance(dE){}  //Une priorité faible=0
+    Tache(const QString ti, const QDateTime d, const QDateTime& dE, const QString& action ="", const int p= 0, const EtatTache e = EN_COURS):
+        Version(ti,d),action(action),priorite(p),statut(e),dateEcheance(dE){}  //Une priorité faible=0
 
     //accesseurs
     const QString& getAction() const { return action; }
-    const int getPriorite() const { return priorite; }
+    const unsigned int getPriorite() const { return priorite; }
     const QDateTime& getDateEcheance() const { return dateEcheance; }
-    const etat getStatut() const { return statut; }
+    const EtatTache& getStatut() const { return statut; }
     void setAction(const QString& a) { action = a; }  
-    void setPriorite(const int p) { priorite = p; }
+    void setPriorite(const unsigned int p) { priorite = p; }
     void setDateEcheance(const QDateTime& d) { dateEcheance = d; }
-    void setStatut(const etat s) {statut = s; }
+    void setStatut(const EtatTache s) {statut = s; }
+
+    void save(QXmlStreamWriter& str) const;
 };
 
-
-Note** loadOldVersions();
-*/
 
 #endif
