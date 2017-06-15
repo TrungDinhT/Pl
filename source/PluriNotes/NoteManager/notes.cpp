@@ -1,5 +1,5 @@
 #include "notes.h"
-
+#include <QString>
 
 void Note::addVersion(Version *v){
     if (nbVer==nbMaxVer){
@@ -15,7 +15,7 @@ void Note::addVersion(Version *v){
 
 
 void Note::setVersionActive(Version *v){//çàd la fait passer en dernier
-    for(int k=0; k<nbVer-1; k++){
+    for(unsigned int k=0; k<nbVer-1; k++){
         if(versions[k]==v){
             Version* temp = versions[nbVer-1];
             versions[nbVer-1] = v;
@@ -27,10 +27,86 @@ Version* Note::VersionActive(){//çàd la fait passer en dernier
     return versions[nbVer-1];
 }
 
+Version* Note::getVer(const QString& titre){
+    // si l'article existe deja, on en renvoie une reference
+    for(unsigned int i=0; i<nbVer; i++){
+        if (versions[i]->getTitre()==titre) return versions[i];
+    }
+    // sinon il envoie erreur
+    throw _Exception("Error: version not found");
+}
+
+
+Version* Note::getVerParDate(const QString& date){
+    for(unsigned int i=0; i<nbVer; i++){
+        if (versions[i]->getDateModif().toString("dd.MM.yyyy-hh:mm:ss")==date) return versions[i];
+    }
+    throw _Exception("Error: version not found");
+}
+
 Note* Note::getNewNote(const QString &id, Version* v){
     Note* n = new Note(id);
     n->addVersion(v);
     return n;
+}
+
+void Note::afficher(QString &contenu) const {
+    contenu += "--------------------------------------------- \nid de note: " + id +" \n" +
+            "date de creation: " + dateCreation.toString("dd.MM.yyyy-hh:mm:ss") + " \n";
+    versions[nbVer-1]->afficher(contenu);
+}
+
+void Article::afficher(QString &contenu) const{
+    contenu += "date de derniere modification: " + dateModif.toString("dd.MM.yyyy-hh:mm:ss") + " \n" +
+            "type de note: Article \n" +
+            "titre: " + titre +  " \n" +
+            "text: " + text + " \n" +
+            "--------------------------------------------- \n";
+}
+
+void Multimedia::afficher(QString &contenu) const{
+    QString typeMedia;
+    switch(typeEnregistrement){
+        case AUDIO: { typeMedia = "AUDIO";
+                      break;
+                    }
+        case IMAGE: { typeMedia = "IMAGE";
+                      break;
+                    }
+        case VIDEO: { typeMedia = "VIDEO";
+                      break;
+                    }
+    }
+    contenu += "date de derniere modification: " + dateModif.toString("dd.MM.yyyy-hh:mm:ss") + " \n" +
+            "type de note: Multimedia \n" +
+            "titre: " + titre +  " \n" +
+            "type multimedia: " + typeMedia + " \n" +
+            "nom de fichier media: " + nomFichier + " \n" +
+            "description: " + description + " \n" +
+            "--------------------------------------------- \n";
+}
+
+void Tache::afficher(QString &contenu) const{
+    QString etat;
+    switch(statut){
+        case EN_ATTENTE: { etat = "EN ATTENTE";
+                           break;
+                         }
+        case EN_COURS: { etat = "EN COURS";
+                         break;
+                       }
+        case TERMINE: { etat = "TERMINE";
+                        break;
+                      }
+    }
+    contenu += "date de derniere modification: " + dateModif.toString("dd.MM.yyyy-hh:mm:ss") + " \n" +
+            "type de note: Tache \n" +
+            "titre: " + titre +  " \n" +
+            "etat de tache: " + etat + " \n" +
+            "action: " + action + " \n" +
+            "priorite: " + QString::number(priorite) + " \n" +
+            "date d'echeance du tache: " + dateEcheance.toString("dd.MM.yyyy") + " \n" +
+            "--------------------------------------------- \n";
 }
 
 void Note::save(QXmlStreamWriter &stream) const{
@@ -89,23 +165,7 @@ void Tache::save(QXmlStreamWriter &stream) const {
         case TERMINE: { stream.writeTextElement("etatTache","termine");
                     break;}
     }
-    stream.writeTextElement("dateEcheance",dateEcheance.toString("dd.MM.yyyy-hh:mm:ss"));
+    stream.writeTextElement("dateEcheance",dateEcheance.toString("dd.MM.yyyy"));
     stream.writeEndElement();
 }
 
-Version* Note::getVer(const QString& titre){
-    // si l'article existe deja, on en renvoie une reference
-    for(unsigned int i=0; i<nbVer; i++){
-        if (versions[i]->getTitre()==titre) return versions[i];
-    }
-    // sinon il envoie erreur
-    throw _Exception("Error: version not found");
-}
-
-
-Version* Note::getVerParDate(const QString& date){
-    for(unsigned int i=0; i<nbVer; i++){
-        if (versions[i]->getDateModif().toString("dd.MM.yyyy-hh:mm:ss")==date) return versions[i];
-    }
-    throw _Exception("Error: version not found");
-}

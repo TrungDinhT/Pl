@@ -6,8 +6,8 @@
 template <class T>
 class _Iterator{
     T** cur;
-    unsigned nb;
-    unsigned nbItems;
+    unsigned int nb;
+    unsigned int nbItems;
 protected:
     _Iterator(T** c, unsigned int nbItems);
 public:

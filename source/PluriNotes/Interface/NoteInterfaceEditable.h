@@ -10,9 +10,9 @@ class GLobalInterface;
 class NoteInterfaceEditable : public QWidget {
     Q_OBJECT
     friend class GlobalInterface;
+
 protected:
-
-
+  QString id; //ca sert a distinguer les notes
   Version* version;
   QLineEdit* titre;
   QPushButton* save;
@@ -22,8 +22,14 @@ protected:
   QPushButton* rendreversionactive;
   
 public :
-  NoteInterfaceEditable(Version* v);
-  
+  NoteInterfaceEditable(Version* v, const QString& id);
+
+  /*fonction pour ajouter reference
+   *quand l'utilisateur entre \ref{id} dans n'importe quel champs de l'note (où on peut avoir texte)
+   */
+  virtual void ajouteReference() const =0;
+
+
 public slots : 
     virtual void saveNote() = 0;
 

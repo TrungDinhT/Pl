@@ -17,6 +17,11 @@ RelationsManager& RelationsManager::getInstance(){
         instance=new RelationsManager;
         QString location = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
         instance->setFileName(location+"/relationslog.xml");
+        if(instance->nbRelations==0) //quand fichier relationslog.xml est vide (premier lancement)
+        {
+            relation* ref = &(relationPreexistance::getInstance());
+            instance->addRelations(ref);
+        }
         instance->load();
     }
     return *instance;
@@ -41,11 +46,15 @@ void RelationsManager::addRelations(relation *r){
 }
 
 relation* RelationsManager::getNewRelation(const QString& titre, const QString& desc, bool ori){
-    for(unsigned int i=0;i<nbRelations;i++){
+    for(unsigned int i=0;i<nbRelations;i++)
+    {
         if(relations[i]->getTitre()==titre) throw _Exception("Error: relation already existed");
     }
-    addRelations(new relationNonPreexistance(titre,desc,ori));
+    relation* r = new relationNonPreexistance(titre,desc,ori);
+    addRelations(r);
+    return r;
 }
+
 
 relation* RelationsManager::getRelation(const QString &titre){
     unsigned int i;
@@ -55,7 +64,7 @@ relation* RelationsManager::getRelation(const QString &titre){
 }
 
 void RelationsManager::deleteRelation(const QString &titre){
-    if(titre=="\ref") throw _Exception("Error: cannot delete relation reference");
+    if(titre=="reference") throw _Exception("Error: cannot delete relation reference");
     unsigned int i;
     for(i=0;i<nbRelations && relations[i]->getTitre()!=titre;i++);
     if(i==nbRelations) throw _Exception("Error: relation not found");
@@ -73,6 +82,7 @@ void RelationsManager::save(){
     QXmlStreamWriter stream(&newfile);
     stream.setAutoFormatting(true);
     stream.writeStartDocument();
+    stream.writeStartElement("relations");
     for(unsigned int i=0;i<nbRelations;i++)
     {
         stream.writeStartElement("relation");
@@ -85,13 +95,16 @@ void RelationsManager::save(){
         {
             stream.writeStartElement("couple");
             stream.writeTextElement("Label",(*c)->label);
-            stream.writeTextElement("fromNote ID",(*c)->getFromNote()->getId());
-            stream.writeTextElement("toNote ID",(*c)->getToNote()->getId());
+            qDebug()<<"label"<<(*c)->label;
+            if((*c)->getFromNote()==nullptr) qDebug()<<"fromNoteID nulll\n";
+            stream.writeTextElement("fromNoteID",(*c)->getFromNote()->getId());
+            stream.writeTextElement("toNoteID",(*c)->getToNote()->getId());
             stream.writeEndElement();
         }
         stream.writeEndElement();
         stream.writeEndElement();
     }
+    stream.writeEndElement();
     stream.writeEndDocument();
     newfile.close();
 }
@@ -103,109 +116,118 @@ void RelationsManager::load(){
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
         throw _Exception("Error : cannot open file");
 
-    int countRela = -1;
+    int count = -1;
     QXmlStreamReader stream(&file);
     while(!stream.atEnd() && !stream.hasError())
     {
-        countRela++;
+        count++;
         QXmlStreamReader::TokenType token = stream.readNext();
         if(token == QXmlStreamReader::StartDocument) continue;
         if(token == QXmlStreamReader::StartElement)
         {
-            if(stream.name() == "relation")
+            if(stream.name()=="relations")
             {
-                qDebug()<<"new relation \n";
-                QString titre;
-                QString description;
-                bool oriente;
-                relation* r;
+                qDebug()<<"relations";
                 stream.readNext();
-                while(!(stream.tokenType() == QXmlStreamReader::EndElement && stream.name() == "relation"))
+                while(!(stream.tokenType() == QXmlStreamReader::EndElement && stream.name() == "relations"))
                 {
                     stream.readNext();
-                    if(stream.tokenType()== QXmlStreamReader::StartElement)
+                    if(stream.name() == "relation")
                     {
-                        if(stream.name() == "titre")
+                        qDebug()<<"new relation \n";
+                        QString titre;
+                        QString description;
+                        bool oriente;
+                        relation* r;
+                        stream.readNext();
+                        while(!(stream.tokenType() == QXmlStreamReader::EndElement && stream.name() == "relation"))
                         {
                             stream.readNext();
-                            titre=stream.text().toString();
-                            qDebug()<<"titre="<<titre<<"\n";
-                        }
-                        if(stream.name() == "description")
-                        {
-                            stream.readNext();
-                            description=stream.text().toString();
-                            qDebug()<<"description="<<description<<"\n";
-                        }
-                        if(stream.name() == "orientation")
-                        {
-                            stream.readNext();
-                            if(stream.text().toString()=="true") oriente=true;
-                            else oriente = false;
-                            qDebug()<<"oriente="<<oriente<<"\n";
-                        }
-                        if(stream.name()=="couples")
-                        {
-                            qDebug()<<"boucle couples\n";
-                            if(titre!="\ref")
-                                r = new relationNonPreexistance(titre,description,oriente);
-                            else
-                                r = getRelation("\ref");
-
-                            stream.readNext();
-                            while(!(stream.tokenType() == QXmlStreamReader::EndElement && stream.name() == "couples"))
+                            if(stream.tokenType()== QXmlStreamReader::StartElement)
                             {
-                                stream.readNext();
-                                if(stream.tokenType()==QXmlStreamReader::StartElement)
+                                if(stream.name() == "titre")
                                 {
-                                    if(stream.name()=="couple")
+                                    stream.readNext();
+                                    titre=stream.text().toString();
+                                    qDebug()<<"titre="<<titre<<"\n";
+                                }
+                                if(stream.name() == "description")
+                                {
+                                    stream.readNext();
+                                    description=stream.text().toString();
+                                    qDebug()<<"description="<<description<<"\n";
+                                }
+                                if(stream.name() == "orientation")
+                                {
+                                    stream.readNext();
+                                    if(stream.text().toString()=="true") oriente=true;
+                                    else oriente = false;
+                                    qDebug()<<"oriente="<<oriente<<"\n";
+                                }
+                                if(stream.name()=="couples")
+                                {
+                                    qDebug()<<"boucle couples\n";
+                                    if(titre!="reference")
+                                        r = new relationNonPreexistance(titre,description,oriente);
+                                    else
+                                        r = getRelation("reference");
+
+                                    stream.readNext();
+                                    while(!(stream.tokenType() == QXmlStreamReader::EndElement && stream.name() == "couples"))
                                     {
-                                        QString label;
-                                        QString fromNoteID;
-                                        QString toNoteID;
-                                        qDebug()<<"couple: \n";
                                         stream.readNext();
-                                        while(!(stream.tokenType() == QXmlStreamReader::EndElement && stream.name() == "couple"))
+                                        if(stream.tokenType()==QXmlStreamReader::StartElement)
                                         {
-                                            stream.readNext();
-                                            if(stream.tokenType() == QXmlStreamReader::StartElement)
+                                            if(stream.name()=="couple")
                                             {
-                                                if(stream.name() == "Label")
+                                                QString label;
+                                                QString fromNoteID;
+                                                QString toNoteID;
+                                                qDebug()<<"couple: \n";
+                                                stream.readNext();
+                                                while(!(stream.tokenType() == QXmlStreamReader::EndElement && stream.name() == "couple"))
                                                 {
                                                     stream.readNext();
-                                                    label=stream.text().toString();
-                                                    qDebug()<<"label="<<label<<"\n";
+                                                    if(stream.tokenType() == QXmlStreamReader::StartElement)
+                                                    {
+                                                        if(stream.name() == "Label")
+                                                        {
+                                                            stream.readNext();
+                                                            label=stream.text().toString();
+                                                            qDebug()<<"label="<<label<<"\n";
+                                                        }
+                                                        if(stream.name() == "fromNoteID") \
+                                                        {
+                                                                stream.readNext();
+                                                                fromNoteID=stream.text().toString();
+                                                                qDebug()<<"fromNote ID="<<fromNoteID<<"\n";
+                                                        }
+                                                        if(stream.name() == "toNoteID")
+                                                        {
+                                                            stream.readNext();
+                                                            toNoteID=stream.text().toString();
+                                                            qDebug()<<"toNote ID="<<toNoteID<<"\n";
+                                                        }
+                                                    }
                                                 }
-                                                if(stream.name() == "fromNote ID") \
-                                                {
-                                                        stream.readNext();
-                                                        fromNoteID=stream.text().toString();
-                                                        qDebug()<<"fromNote ID="<<fromNoteID<<"\n";
-                                                }
-                                                if(stream.name() == "toNote ID")
-                                                {
-                                                    stream.readNext();
-                                                    toNoteID=stream.text().toString();
-                                                    qDebug()<<"toNote ID="<<toNoteID<<"\n";
-                                                }
+                                                r->addCouple(NM.load(fromNoteID),NM.load(toNoteID),label);
+                                                qDebug()<<"ajout couple "<<NM.load(fromNoteID)->getId()<<"\n";
                                             }
                                         }
-                                        r->addCouple(NM.load(fromNoteID),NM.load(toNoteID),label);
-                                        qDebug()<<"ajout couple "<<label<<"\n";
                                     }
                                 }
                             }
                         }
+                        qDebug()<<"ajout relation "<<titre<<"\n";
+                        if(titre!="reference") addRelations(r);
                     }
                 }
-                qDebug()<<"ajout relation "<<titre<<"\n";
-                if(titre!="\ref") addRelations(r);
             }
         }
     }
 
     // Error handling.
-    if(countRela && stream.hasError()) {
+    if(count && stream.hasError()) {
         throw _Exception("Error parsing xml : cannot read file");
     }
     stream.clear();

@@ -1,5 +1,8 @@
-#include "managerinterface.h"
+#include "ManagerInterface.h"
 #include "ArticleInterfaceEditable.h"
+
+
+
 ManagerInterface::ManagerInterface(){
   NM = &(NotesManager::getManager());
   NotesManager::Iterator itn = NM->begin();
@@ -9,15 +12,23 @@ ManagerInterface::ManagerInterface(){
   principale->addLayout(bouttons);
   liste_note = new QListWidget();
 
+  c = new corbeilleInterface;
+
   for(; itn!= NM->end();itn++){
-      liste_note->addItem((*itn)->getId());
+      if((*itn)->getEtat()==ACTIVE)
+          liste_note->addItem((*itn)->getId());
   }
   ajouter = new QPushButton("ajouter");
   sauvegarder = new QPushButton("sauvegarder");
+  corbeille = new QPushButton("corbeille");
+  rafrachir = new QPushButton("raffraichir");
   bouttons->addWidget(ajouter);
   bouttons->addWidget(sauvegarder);
+  bouttons->addWidget(corbeille);
 
   principale->addWidget(liste_note);
+  principale->addWidget(rafrachir);
+  connect(corbeille,SIGNAL(clicked()),this,SLOT(ouvrirCorbeille()));
   connect(ajouter, SIGNAL(clicked()),this, SLOT(ajoutNote()));
   //connect(liste_note, SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)),this, SLOT(changerNote(QListWidgetItem*)));
 
@@ -28,7 +39,9 @@ ManagerInterface::ManagerInterface(){
 
 }
 
-
+void ManagerInterface::ouvrirCorbeille(){
+    c->exec();
+}
 
 
 void ManagerInterface::ajoutNote(){
@@ -59,6 +72,7 @@ void ManagerInterface::ajoutNote(){
     listeVersion->show();
     qDebug()<<"fin ajout Note\n";
 }
+
 void ManagerInterface::choixAjoutNote(QListWidgetItem *item){
     Version* v = (Version *) item->data(Qt::UserRole).value<void *>();
     //Version* v = item->data(Qt::UserRole);//

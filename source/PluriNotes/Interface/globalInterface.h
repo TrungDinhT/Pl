@@ -5,9 +5,9 @@
 #include "NoteManager/NoteManager.h"
 #include "NoteManager/notes.h"
 #include "NoteInterfaceEditable.h"
-#include "managerinterface.h"
-
-
+#include "ManagerInterface.h"
+#include "RelationManager/RelationManager.h"
+#include "corbeilleinterface.h"
 
 
 class GlobalInterface : public QWidget {
@@ -19,9 +19,11 @@ class GlobalInterface : public QWidget {
   ManagerInterface* MI;
   //MyQToolbar* TB;
   NotesManager* NM;
+  RelationsManager *RM;
   Note* NoteCurrent;
   Version* VersionCurrent;
   QListWidget* liste;
+
 
   
 public :
@@ -37,6 +39,7 @@ public slots :
   void versionActiveNote();
   void choixVersionNote(QListWidgetItem* item);
   void raffraichissementMI();
+  void sauvegardeGeneral();
 };
 
 

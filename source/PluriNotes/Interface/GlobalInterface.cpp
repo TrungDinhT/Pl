@@ -4,13 +4,14 @@
 #include "ImageInterface.h"
 #include "ManagerInterface.h"
 #include "TacheInterface.h"
+
 #include <QWidget>
 
 
 GlobalInterface::GlobalInterface(): QWidget(){
   principale = new QGridLayout(this);
-  /*MI = new ManagerInterface();
-  connect(MI->liste_note, SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)),this, SLOT(changerNote(QListWidgetItem*)));
+  MI = new ManagerInterface;
+  /*connect(MI->liste_note, SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)),this, SLOT(changerNote(QListWidgetItem*)));
   connect(MI, SIGNAL(refresh()),this, SLOT(raffraichissementMI()));
   principale->addWidget(MI,0,0);*/
   raffraichissementMI();
@@ -29,7 +30,9 @@ GlobalInterface::GlobalInterface(): QWidget(){
   NIE = new TacheInterfaceEditable(NoteCurrent->getId(),static_cast <Tache*>(VersionCurrent));
   }
 
+
   principale->addWidget(NIE,0,1);
+  this->setMinimumSize(600,600);
   //qDebug()<<"ajout article\n";
 
   //RI = new RelationInterface() ;
@@ -40,14 +43,15 @@ GlobalInterface::GlobalInterface(): QWidget(){
   connect(NIE->supprimer,SIGNAL(clicked()),this,SLOT(supprimerNote()));
   connect(NIE->changerversion,SIGNAL(clicked()),this,SLOT(changerVersionNote()));
   connect(NIE->rendreversionactive,SIGNAL(clicked()),this,SLOT(versionActiveNote()));
-
 }
 
 void GlobalInterface::raffraichissementMI(){
     qDebug()<<"raffraichissement\n";
-    MI = new ManagerInterface();
+    MI = new ManagerInterface;
     connect(MI->liste_note, SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)),this, SLOT(changerNote(QListWidgetItem*)));
     connect(MI, SIGNAL(refresh()),this, SLOT(raffraichissementMI()));
+    connect(MI->rafrachir,SIGNAL(clicked()),this,SLOT(raffraichissementMI()));
+    connect(MI->c,SIGNAL(refreshCor()),this,SLOT(raffraichissementMI()));
     connect(MI->sauvegarder, SIGNAL(clicked()),this, SLOT(sauvegardeGeneral()));
     principale->addWidget(MI,0,0);
 }

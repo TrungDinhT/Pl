@@ -1,8 +1,7 @@
 #include "NoteManager/notes.h"
 #include "RelationManager/relation.h"
-//#include "Corbeille/corbeille.h"*/
 
-//#include "Interface/globalInterface.h"
+#include "Interface/globalInterface.h"
 #include <QApplication>
 #include "NoteManager/NoteManager.h"
 #include "RelationManager/RelationManager.h"
@@ -15,9 +14,23 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
     qDebug()<<"create Note\n";
 
-    //GLobalInterface fen;
 
-    //fen.show();
+    NotesManager& nm = NotesManager::getManager();
+/*
+    Note* n = new Note("coucou");
+    Article* a = new Article("titi","toto");
+    n->addVersion(a);
+
+    Note* n2 = new Note("coucoucou");
+    Article* a2 = new Article("tititi","tototo");
+    n2->addVersion(a2);
+
+
+    nm.addNotes(n);
+    nm.addNotes(n2);
+*/
+GlobalInterface fen;
+    fen.show();
 
     /*NotesManager& nm = NotesManager::getManager();
     qDebug()<<"create NoteManager\n";
@@ -53,3 +66,4 @@ int main(int argc, char *argv[])
     return app.exec();
 
 }
+

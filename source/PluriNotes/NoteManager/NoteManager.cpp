@@ -12,7 +12,7 @@
 #include "exception.h"
 #include "RelationManager/RelationManager.h"
 #include "RelationManager/relation.h"
-#include "Corbeille/corbeille.h"
+//#include "Corbeille/corbeille.h"
 
 NotesManager* NotesManager::instance = nullptr;
 
@@ -59,16 +59,56 @@ void NotesManager::deleteNote(const QString &id){
     for(i=0;i<nbNotes && notes[i]->getId()!=id;i++);
     if(i==nbNotes)
         throw _Exception("Note not found");
-    relation* ref = RelationsManager::getInstance().getRelation("\ref");
+    relation* ref = RelationsManager::getInstance().getRelation("reference");
     relation::Iterator it;
-    for(it=ref->begin();it!=ref->end() && (*it)->getFromNote()->getId()!=id; it++); //search for note referencé
+    for(it=ref->begin();it!=ref->end() && (*it)->getToNote()->getId()!=id; it++); //search for note referencé
     if(it!=ref->end())
+    {
         notes[i]->setEtat(ARCHIVE);
+    }
     else
     {
         notes[i]->setEtat(RIP);
-        corbeille::getCorbeille().addNotes(notes[i]);
     }
+}
+
+void NotesManager::restaurerNote(const QString &id){
+    unsigned int i;
+    for(i=0;i<nbNotes && notes[i]->getId()!=id;i++);
+    qDebug()<<"arg: "<<id<<", id found: "<<notes[i]->getId()<<"\n";
+    notes[i]->setEtat(ACTIVE);
+}
+
+void NotesManager::reallyDeleteNote(const QString &id){
+    unsigned int i;
+    for(i=0;i<nbNotes && notes[i]->getId()!=id;i++);
+    delete notes[i];
+    nbNotes--;
+    if(nbNotes==0)
+    {
+        delete[] notes;
+    }
+    else
+    {
+        for(;i<nbNotes;i++){
+            notes[i]=notes[i+1];
+        }
+    }
+    nbNotes--;
+}
+
+void NotesManager::viderCorbeille(){
+    for(unsigned int i=0;i<nbNotes;i++)
+    {
+        if(notes[i]->getEtat()==RIP) reallyDeleteNote(notes[i]->getId());
+    }
+}
+
+void NotesManager::afficher(const QString &idNoteAfficher, QString &contenu) const{
+    unsigned int i;
+    for(i=0;i<nbNotes && notes[i]->getId()!=idNoteAfficher;i++);
+    if(i==nbNotes) throw _Exception("Note to print not found");
+    notes[i]->afficher(contenu);
 }
 
 void NotesManager::save(const QString& id, Version *v) {
@@ -108,7 +148,7 @@ Note* NotesManager::load(const QString& id){
         if (notes[i]->getId()==id) return notes[i];
     }
     // sinon il envoie erreur
-    throw _Exception("Error: article not found");
+    return nullptr;
 }
 
 void NotesManager::load(){
@@ -177,7 +217,7 @@ void NotesManager::load(){
                                 {
                                     if(stream.name()=="article")
                                     {
-                                        qDebug()<<"new tache\n";
+                                        qDebug()<<"new article\n";
                                         QString texte;
                                         stream.readNext();
                                         while(!(stream.tokenType()==QXmlStreamReader::EndElement && stream.name()=="article"))
@@ -263,7 +303,7 @@ void NotesManager::load(){
                                                 if(stream.name() == "dateEcheance")
                                                 {
                                                     stream.readNext();
-                                                    dateEch = QDateTime::fromString(stream.text().toString(),"dd.MM.yyyy-hh:mm:ss");
+                                                    dateEch = QDateTime::fromString(stream.text().toString(),"dd.MM.yyyy");
                                                     qDebug()<<"dateEcheance="<<dateEch<<"\n";
                                                 }
                                             }
