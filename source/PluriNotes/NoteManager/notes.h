@@ -27,6 +27,7 @@ public:
     void setTitre(const QString& t){titre=t;}
     virtual void save(QXmlStreamWriter& stream) const = 0;
     //virtual void creerInterface() const =0;
+    virtual void afficher(QString& contenu) const = 0;
     virtual ~Version(){}
 };
 
@@ -58,6 +59,7 @@ public:
     Version* getVer(const QString& titre);
     Version* getVerParDate(const QString& date);
     void save(QXmlStreamWriter& stream) const;
+    void afficher(QString& contenu) const ;
     //void creerInterface() const { versions[nbVer-1]->creerInterface(); }
 
     //iterator + methodes servent a parcourir
@@ -93,6 +95,7 @@ public:
     void setText(const QString& t) { text = t; }
     void save(QXmlStreamWriter& stream) const;
     //void creerInterface() const;
+    void afficher(QString &contenu) const;
 };
 
 class Multimedia: public Version{
@@ -103,7 +106,6 @@ private:
     //friend class imageInterface;
 public:
     Multimedia(const QString ti, const QDateTime d, const QString& f, const QString desc=""): Version(ti,d), description(desc), nomFichier(f){}
-
     Multimedia(const QString& f = "", const QString desc=""): Version(),description(desc), nomFichier(f){}
 
     //accesseurs
@@ -114,6 +116,7 @@ public:
     void setType(const Media type) { typeEnregistrement = type; }
     void setPath(const QString& f) { nomFichier = f; }
     void save(QXmlStreamWriter& str) const;
+    void afficher(QString &contenu) const;
 };
 
 
@@ -126,7 +129,6 @@ private:
 public:
     Tache(const QDateTime& dE, const QString& action ="", const int p= 0, const EtatTache e = EN_COURS):
         Version(),action(action),priorite(p),statut(e),dateEcheance(dE){}  //Une priorité faible=0
-
     Tache(const QString ti = "", const QDateTime d = QDateTime::currentDateTime(), const QDateTime& dE = QDateTime::currentDateTime().addDays(1), const QString& action ="", const int p= 0, const EtatTache e = EN_COURS):
         Version(ti,d),action(action),priorite(p),statut(e),dateEcheance(dE){}  //Une priorité faible=0
 
@@ -139,7 +141,7 @@ public:
     void setPriorite(const unsigned int p) { priorite = p; }
     void setDateEcheance(const QDateTime& d) { dateEcheance = d; }
     void setStatut(const EtatTache s) {statut = s; }
-
+    void afficher(QString &contenu) const;
     void save(QXmlStreamWriter& str) const;
 };
 

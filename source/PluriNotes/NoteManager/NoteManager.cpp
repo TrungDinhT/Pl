@@ -104,6 +104,12 @@ void NotesManager::viderCorbeille(){
     }
 }
 
+void NotesManager::afficher(const QString &idNoteAfficher, QString &contenu) const{
+    unsigned int i;
+    for(i=0;i<nbNotes && notes[i]->getId()!=idNoteAfficher;i++);
+    if(i==nbNotes) throw _Exception("Note to print not found");
+    notes[i]->afficher(contenu);
+}
 
 void NotesManager::save(const QString& id, Version *v) {
     unsigned int i;
@@ -297,7 +303,7 @@ void NotesManager::load(){
                                                 if(stream.name() == "dateEcheance")
                                                 {
                                                     stream.readNext();
-                                                    dateEch = QDateTime::fromString(stream.text().toString(),"dd.MM.yyyy-hh:mm:ss");
+                                                    dateEch = QDateTime::fromString(stream.text().toString(),"dd.MM.yyyy");
                                                     qDebug()<<"dateEcheance="<<dateEch<<"\n";
                                                 }
                                             }

@@ -69,6 +69,7 @@ void ManagerInterface::ajoutNote(){
     listeVersion->show();
     qDebug()<<"fin ajout Note\n";
 }
+
 void ManagerInterface::choixAjoutNote(QListWidgetItem *item){
     Version* v = (Version *) item->data(Qt::UserRole).value<void *>();
     //Version* v = item->data(Qt::UserRole);//

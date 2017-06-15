@@ -28,6 +28,7 @@ corbeilleInterface::corbeilleInterface():QDialog(){
     connect(rstore,SIGNAL(clicked()),this,SLOT(restaurer()));
     connect(del,SIGNAL(clicked()),this,SLOT(supprimerNote()));
     connect(vider,SIGNAL(clicked()),this,SLOT(viderCorbeille()));
+    connect(view,SIGNAL(clicked()),this,SLOT(regarderNote()));
 }
 
 void corbeilleInterface::refreshCorbeille() const {
@@ -50,7 +51,19 @@ void corbeilleInterface::supprimerNote(){
 }
 
 void corbeilleInterface::regarderNote(){
-
+    QDialog* infoFen = new QDialog;
+    QString contenu;
+    managerNote.afficher(mainView->currentItem()->text(),contenu);
+    QTextEdit* noteContent = new QTextEdit;
+    noteContent->setReadOnly(true);
+    noteContent->setFont(QFont("Courier"));
+    noteContent->setLineWrapMode(QTextEdit::NoWrap);
+    noteContent->setPlainText(contenu);
+    QHBoxLayout* lay = new QHBoxLayout;
+    lay->addWidget(noteContent);
+    infoFen->setLayout(lay);
+    infoFen->setMinimumSize(500,500);
+    infoFen->exec();
 }
 
 void corbeilleInterface::viderCorbeille(){

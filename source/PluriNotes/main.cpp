@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
 
 
     NotesManager& nm = NotesManager::getManager();
-
+/*
     Note* n = new Note("coucou");
     Article* a = new Article("titi","toto");
     n->addVersion(a);
@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
 
     nm.addNotes(n);
     nm.addNotes(n2);
-
+*/
 GlobalInterface fen;
     fen.show();
 

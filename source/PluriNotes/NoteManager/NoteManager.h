@@ -38,10 +38,13 @@ public:
     //Note* getNote(const QString& id);
     //Note* getNewNote(char type);
 
+    //code pour la corbeille
     void deleteNote(const QString& id);
     void restaurerNote(const QString& id);
     void reallyDeleteNote(const QString& id);
     void viderCorbeille();
+
+    void afficher(const QString& idNoteAfficher, QString& contenu) const;
 
     QString getFilename() const { return filename; }
     void setFilename(const QString& f) { filename=f; }
