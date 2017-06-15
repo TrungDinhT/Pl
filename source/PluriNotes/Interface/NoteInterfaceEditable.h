@@ -2,8 +2,9 @@
 #define NOTEINERFACEEDITABLE_H
 
 #include <QtWidgets>
-#include "NoteManager/NoteManager.h"
+
 #include "NoteManager/notes.h"
+
 //#include "globalInterface.h"
 class GLobalInterface;
 

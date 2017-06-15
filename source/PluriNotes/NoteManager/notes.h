@@ -6,14 +6,18 @@
 #include <QDateTime>
 #include <QtWidgets>
 #include "iterator.h"
-#include "Interface/ArticleInterface.h"
+#include "Interface/ArticleInterfaceEditable.h"
+#include "Interface/TacheInterface.h"
+#include "Interface/ImageInterface.h"
+#include "Interface/NoteInterfaceEditable.h"
+
 using namespace std;
 
 enum EtatTache {EN_ATTENTE, EN_COURS, TERMINE};
 enum EtatNote {ARCHIVE, ACTIVE, RIP};
 enum Media {VIDEO, AUDIO, IMAGE};
 
-class articleInterface;
+//class articleInterface;
 
 class Version {
 protected:
@@ -26,7 +30,7 @@ public:
     QString getTitre() const {return titre;}
     void setTitre(const QString& t){titre=t;}
     virtual void save(QXmlStreamWriter& stream) const = 0;
-    //virtual void creerInterface() const =0;
+    virtual NoteInterfaceEditable* creerInterface(const QString& id) const =0;
     virtual void afficher(QString& contenu) const = 0;
     virtual ~Version(){}
 };
@@ -60,7 +64,7 @@ public:
     Version* getVerParDate(const QString& date);
     void save(QXmlStreamWriter& stream) const;
     void afficher(QString& contenu) const ;
-    //void creerInterface() const { versions[nbVer-1]->creerInterface(); }
+    //creerInterface() const { versions[nbVer-1]->creerInterface(); }
 
     //iterator + methodes servent a parcourir
     class Iterator: public _Iterator<Version>{
@@ -94,7 +98,9 @@ public:
     const QString& getText() const { return text; }
     void setText(const QString& t) { text = t; }
     void save(QXmlStreamWriter& stream) const;
-    //void creerInterface() const;
+    NoteInterfaceEditable* creerInterface(const QString& id) const{
+        return new articleInterfaceEditable(id,this);
+    }
     void afficher(QString &contenu) const;
 };
 
@@ -117,6 +123,9 @@ public:
     void setPath(const QString& f) { nomFichier = f; }
     void save(QXmlStreamWriter& str) const;
     void afficher(QString &contenu) const;
+    NoteInterfaceEditable* creerInterface(const QString& id) const{
+        return new MultimediaInterfaceEditable(id,this);
+    }
 };
 
 
@@ -143,6 +152,9 @@ public:
     void setStatut(const EtatTache s) {statut = s; }
     void afficher(QString &contenu) const;
     void save(QXmlStreamWriter& str) const;
+    NoteInterfaceEditable* creerInterface(const QString& id) const{
+        return TacheInterfaceEditable(id,this);
+    }
 };
 
 #endif

@@ -9,8 +9,8 @@ HEADERS += \
     NoteManager/notes.h \
     Interface/ArticleInterface.h \
     Interface/ManagerInterface.h \
-#    Interface/TacheInterface.h \
-#    Interface/ImageInterface.h \
+    Interface/TacheInterface.h \
+    Interface/ImageInterface.h \
 #    Interface/UI.h \
     Interface/NoteInterfaceEditable.h \
     Interface/NoteInterface.h \
@@ -19,7 +19,7 @@ HEADERS += \
     Interface/ArticleInterfaceEditable.h \
     iterator.h \
     exception.h \
-    Interface/corbeilleinterface.h
+    Interface/corbeilleinterface.h \
 
 
 SOURCES += \
@@ -35,8 +35,9 @@ SOURCES += \
     Interface/ArticleInterfaceEditable.cpp \
     Interface/ArticleInterface.cpp \
     Interface/ManagerInterface.cpp \
-    Interface/corbeilleinterface.cpp
-
+    Interface/corbeilleinterface.cpp \
+    Interface/TacheInterface.cpp \
+    Interface/ImageInterface.cpp
 
 
 QT += widgets xml

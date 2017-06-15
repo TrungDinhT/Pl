@@ -5,7 +5,8 @@
 #include <QRegExp>
 #include <QSet>
 
-
+#include "NoteManager/NoteManager.h"
+#include "NoteManager/notes.h"
 
 MultimediaInterfaceEditable::MultimediaInterfaceEditable(const QString id, Multimedia* m):NoteInterfaceEditable(m,id){
     multimedia = m;
@@ -78,7 +79,7 @@ void MultimediaInterfaceEditable::ajouteReference() const {
 }
 
 void MultimediaInterfaceEditable::saveNote(){
-  Multimedia* m = new Multimedia(titre->text(),chemin,description->toPlainText());
+  Multimedia* m = new Multimedia(titre->text(),QDateTime::currentDateTime(),chemin,description->toPlainText());
   ajouteReference();
   emit sauvegarde(m);
 }

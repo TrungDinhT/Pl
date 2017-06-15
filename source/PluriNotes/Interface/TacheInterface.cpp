@@ -1,11 +1,11 @@
 #include "TacheInterface.h"
 #include "ImageInterface.h"
-#include "NoteManager/NoteManager.h"
 #include "RelationManager/RelationManager.h"
 #include "RelationManager/relation.h"
 #include <QRegExp>
 #include <QSet>
-
+#include "NoteManager/NoteManager.h"
+#include "NoteManager/notes.h"
 
 
 TacheInterfaceEditable::TacheInterfaceEditable(const QString id, Tache* t):NoteInterfaceEditable(t,id){

@@ -2,8 +2,6 @@
 #define IMAGEINTERFACE_H
 
 #include <QtWidgets>
-#include "NoteManager/notes.h"
-#include "NoteManager/NoteManager.h"
 #include "NoteInterfaceEditable.h"
 
 class GlobalInterface;

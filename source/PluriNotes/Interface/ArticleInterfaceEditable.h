@@ -2,8 +2,6 @@
 #define ARTICLEINTERFACEEDITABLE_H
 
 #include <QtWidgets>
-#include "NoteManager/NoteManager.h"
-#include "NoteManager/notes.h"
 #include "NoteInterfaceEditable.h"
 
 class GlobalInterface;

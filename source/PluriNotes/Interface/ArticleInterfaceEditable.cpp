@@ -1,9 +1,11 @@
+
 #include "ArticleInterfaceEditable.h"
-#include "NoteManager/NoteManager.h"
 #include <QRegExp>
 #include <QSet>
 #include "RelationManager/RelationManager.h"
 #include "RelationManager/relation.h"
+#include "NoteManager/NoteManager.h"
+#include "NoteManager/notes.h"
 
 NotesManager& notemanager = NotesManager::getManager();
 RelationsManager& relaman = RelationsManager::getInstance();
