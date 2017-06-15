@@ -1,0 +1,165 @@
+\hypertarget{classManagerInterface}{}\section{Manager\+Interface Class Reference}
+\label{classManagerInterface}\index{Manager\+Interface@{Manager\+Interface}}
+
+
+{\ttfamily \#include $<$Manager\+Interface.\+h$>$}
+
+
+
+Inheritance diagram for Manager\+Interface\+:
+% FIG 0
+
+
+Collaboration diagram for Manager\+Interface\+:
+% FIG 1
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classManagerInterface_a19f588faac5f191e4e02da31e56c944d}{ajout\+Note} ()
+\item 
+void \hyperlink{classManagerInterface_a639a6a8cea7321b53bf763b02b13ebb5}{choix\+Ajout\+Note} (Q\+List\+Widget\+Item $\ast$item)
+\item 
+void \hyperlink{classManagerInterface_a2bfe46c88ac2c8c1a4597f478afe9a9f}{ouvrir\+Corbeille} ()
+\end{DoxyCompactItemize}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classManagerInterface_ab43ba07ee3509089770d4066177bb38a}{refresh} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classManagerInterface_a9c0561998e278c6f55dc9e1501786f73}{Manager\+Interface} ()
+\item 
+virtual void \hyperlink{classManagerInterface_ae4ca071d615d0c85bb462e03284931e6}{extension\+\_\+choix\+\_\+version} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classNotesManager}{Notes\+Manager} $\ast$ \hyperlink{classManagerInterface_ab184783ad4035e925d1dc25c08818f16}{NM}
+\item 
+\hyperlink{classNote}{Note} $\ast$ \hyperlink{classManagerInterface_a1a5b770475dee3de352235687328deb3}{Note\+Current}
+\item 
+Q\+V\+Box\+Layout $\ast$ \hyperlink{classManagerInterface_adba33225f9462c38847dedf81c315809}{principale}
+\item 
+Q\+H\+Box\+Layout $\ast$ \hyperlink{classManagerInterface_a6e71be780b780491e8d1b4c92cc723de}{bouttons}
+\item 
+Q\+List\+Widget $\ast$ \hyperlink{classManagerInterface_a8b004150ab9fddb63a62f83d61049e4f}{liste\+\_\+note}
+\item 
+Q\+Push\+Button $\ast$ \hyperlink{classManagerInterface_acb86b5ac8cc86654f4104ea89cbdc6fe}{ajouter}
+\item 
+Q\+Push\+Button $\ast$ \hyperlink{classManagerInterface_a2eb2db5955adc9f99eaf085d9d69e6b1}{sauvegarder}
+\item 
+Q\+List\+Widget $\ast$ \hyperlink{classManagerInterface_a079b3c462214e3660ccc6e4ae2eae795}{liste\+Version}
+\item 
+Q\+Push\+Button $\ast$ \hyperlink{classManagerInterface_aa8799be823bb80a138b35e81a13d5e5f}{corbeille}
+\item 
+Q\+Push\+Button $\ast$ \hyperlink{classManagerInterface_a491c96cf723b10d066fe6571722cc868}{rafrachir}
+\item 
+\hyperlink{classcorbeilleInterface}{corbeille\+Interface} $\ast$ \hyperlink{classManagerInterface_a64c4498d646d987fa4db08bc7cdf251c}{c}
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classManagerInterface_a2250a78aa5cceb79c3e34da3f1fe0fde}{Global\+Interface}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Manager\+Interface@{Manager\+Interface}!Manager\+Interface@{Manager\+Interface}}
+\index{Manager\+Interface@{Manager\+Interface}!Manager\+Interface@{Manager\+Interface}}
+\subsubsection[{\texorpdfstring{Manager\+Interface()}{ManagerInterface()}}]{\setlength{\rightskip}{0pt plus 5cm}Manager\+Interface\+::\+Manager\+Interface (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classManagerInterface_a9c0561998e278c6f55dc9e1501786f73}{}\label{classManagerInterface_a9c0561998e278c6f55dc9e1501786f73}
+
+
+\subsection{Member Function Documentation}
+\index{Manager\+Interface@{Manager\+Interface}!ajout\+Note@{ajout\+Note}}
+\index{ajout\+Note@{ajout\+Note}!Manager\+Interface@{Manager\+Interface}}
+\subsubsection[{\texorpdfstring{ajout\+Note}{ajoutNote}}]{\setlength{\rightskip}{0pt plus 5cm}void Manager\+Interface\+::ajout\+Note (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\hypertarget{classManagerInterface_a19f588faac5f191e4e02da31e56c944d}{}\label{classManagerInterface_a19f588faac5f191e4e02da31e56c944d}
+$<$ your\+Pointer = (Your\+Class $\ast$) v.\+value$<$void $\ast$$>$();
+
+$<$ your\+Pointer = (Your\+Class $\ast$) v.\+value$<$void $\ast$$>$();
+
+$<$ your\+Pointer = (Your\+Class $\ast$) v.\+value$<$void $\ast$$>$(); \index{Manager\+Interface@{Manager\+Interface}!choix\+Ajout\+Note@{choix\+Ajout\+Note}}
+\index{choix\+Ajout\+Note@{choix\+Ajout\+Note}!Manager\+Interface@{Manager\+Interface}}
+\subsubsection[{\texorpdfstring{choix\+Ajout\+Note}{choixAjoutNote}}]{\setlength{\rightskip}{0pt plus 5cm}void Manager\+Interface\+::choix\+Ajout\+Note (
+\begin{DoxyParamCaption}
+\item[{Q\+List\+Widget\+Item $\ast$}]{item}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\hypertarget{classManagerInterface_a639a6a8cea7321b53bf763b02b13ebb5}{}\label{classManagerInterface_a639a6a8cea7321b53bf763b02b13ebb5}
+\index{Manager\+Interface@{Manager\+Interface}!extension\+\_\+choix\+\_\+version@{extension\+\_\+choix\+\_\+version}}
+\index{extension\+\_\+choix\+\_\+version@{extension\+\_\+choix\+\_\+version}!Manager\+Interface@{Manager\+Interface}}
+\subsubsection[{\texorpdfstring{extension\+\_\+choix\+\_\+version()}{extension_choix_version()}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Manager\+Interface\+::extension\+\_\+choix\+\_\+version (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classManagerInterface_ae4ca071d615d0c85bb462e03284931e6}{}\label{classManagerInterface_ae4ca071d615d0c85bb462e03284931e6}
+\index{Manager\+Interface@{Manager\+Interface}!ouvrir\+Corbeille@{ouvrir\+Corbeille}}
+\index{ouvrir\+Corbeille@{ouvrir\+Corbeille}!Manager\+Interface@{Manager\+Interface}}
+\subsubsection[{\texorpdfstring{ouvrir\+Corbeille}{ouvrirCorbeille}}]{\setlength{\rightskip}{0pt plus 5cm}void Manager\+Interface\+::ouvrir\+Corbeille (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\hypertarget{classManagerInterface_a2bfe46c88ac2c8c1a4597f478afe9a9f}{}\label{classManagerInterface_a2bfe46c88ac2c8c1a4597f478afe9a9f}
+\index{Manager\+Interface@{Manager\+Interface}!refresh@{refresh}}
+\index{refresh@{refresh}!Manager\+Interface@{Manager\+Interface}}
+\subsubsection[{\texorpdfstring{refresh}{refresh}}]{\setlength{\rightskip}{0pt plus 5cm}void Manager\+Interface\+::refresh (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\hypertarget{classManagerInterface_ab43ba07ee3509089770d4066177bb38a}{}\label{classManagerInterface_ab43ba07ee3509089770d4066177bb38a}
+
+
+\subsection{Friends And Related Function Documentation}
+\index{Manager\+Interface@{Manager\+Interface}!Global\+Interface@{Global\+Interface}}
+\index{Global\+Interface@{Global\+Interface}!Manager\+Interface@{Manager\+Interface}}
+\subsubsection[{\texorpdfstring{Global\+Interface}{GlobalInterface}}]{\setlength{\rightskip}{0pt plus 5cm}friend class {\bf Global\+Interface}\hspace{0.3cm}{\ttfamily [friend]}}\hypertarget{classManagerInterface_a2250a78aa5cceb79c3e34da3f1fe0fde}{}\label{classManagerInterface_a2250a78aa5cceb79c3e34da3f1fe0fde}
+
+
+\subsection{Member Data Documentation}
+\index{Manager\+Interface@{Manager\+Interface}!ajouter@{ajouter}}
+\index{ajouter@{ajouter}!Manager\+Interface@{Manager\+Interface}}
+\subsubsection[{\texorpdfstring{ajouter}{ajouter}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Push\+Button$\ast$ Manager\+Interface\+::ajouter\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classManagerInterface_acb86b5ac8cc86654f4104ea89cbdc6fe}{}\label{classManagerInterface_acb86b5ac8cc86654f4104ea89cbdc6fe}
+\index{Manager\+Interface@{Manager\+Interface}!bouttons@{bouttons}}
+\index{bouttons@{bouttons}!Manager\+Interface@{Manager\+Interface}}
+\subsubsection[{\texorpdfstring{bouttons}{bouttons}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+H\+Box\+Layout$\ast$ Manager\+Interface\+::bouttons\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classManagerInterface_a6e71be780b780491e8d1b4c92cc723de}{}\label{classManagerInterface_a6e71be780b780491e8d1b4c92cc723de}
+\index{Manager\+Interface@{Manager\+Interface}!c@{c}}
+\index{c@{c}!Manager\+Interface@{Manager\+Interface}}
+\subsubsection[{\texorpdfstring{c}{c}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf corbeille\+Interface}$\ast$ Manager\+Interface\+::c\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classManagerInterface_a64c4498d646d987fa4db08bc7cdf251c}{}\label{classManagerInterface_a64c4498d646d987fa4db08bc7cdf251c}
+\index{Manager\+Interface@{Manager\+Interface}!corbeille@{corbeille}}
+\index{corbeille@{corbeille}!Manager\+Interface@{Manager\+Interface}}
+\subsubsection[{\texorpdfstring{corbeille}{corbeille}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Push\+Button$\ast$ Manager\+Interface\+::corbeille\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classManagerInterface_aa8799be823bb80a138b35e81a13d5e5f}{}\label{classManagerInterface_aa8799be823bb80a138b35e81a13d5e5f}
+\index{Manager\+Interface@{Manager\+Interface}!liste\+\_\+note@{liste\+\_\+note}}
+\index{liste\+\_\+note@{liste\+\_\+note}!Manager\+Interface@{Manager\+Interface}}
+\subsubsection[{\texorpdfstring{liste\+\_\+note}{liste_note}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+List\+Widget$\ast$ Manager\+Interface\+::liste\+\_\+note\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classManagerInterface_a8b004150ab9fddb63a62f83d61049e4f}{}\label{classManagerInterface_a8b004150ab9fddb63a62f83d61049e4f}
+\index{Manager\+Interface@{Manager\+Interface}!liste\+Version@{liste\+Version}}
+\index{liste\+Version@{liste\+Version}!Manager\+Interface@{Manager\+Interface}}
+\subsubsection[{\texorpdfstring{liste\+Version}{listeVersion}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+List\+Widget$\ast$ Manager\+Interface\+::liste\+Version\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classManagerInterface_a079b3c462214e3660ccc6e4ae2eae795}{}\label{classManagerInterface_a079b3c462214e3660ccc6e4ae2eae795}
+\index{Manager\+Interface@{Manager\+Interface}!NM@{NM}}
+\index{NM@{NM}!Manager\+Interface@{Manager\+Interface}}
+\subsubsection[{\texorpdfstring{NM}{NM}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Notes\+Manager}$\ast$ Manager\+Interface\+::\+NM\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classManagerInterface_ab184783ad4035e925d1dc25c08818f16}{}\label{classManagerInterface_ab184783ad4035e925d1dc25c08818f16}
+\index{Manager\+Interface@{Manager\+Interface}!Note\+Current@{Note\+Current}}
+\index{Note\+Current@{Note\+Current}!Manager\+Interface@{Manager\+Interface}}
+\subsubsection[{\texorpdfstring{Note\+Current}{NoteCurrent}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Note}$\ast$ Manager\+Interface\+::\+Note\+Current\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classManagerInterface_a1a5b770475dee3de352235687328deb3}{}\label{classManagerInterface_a1a5b770475dee3de352235687328deb3}
+\index{Manager\+Interface@{Manager\+Interface}!principale@{principale}}
+\index{principale@{principale}!Manager\+Interface@{Manager\+Interface}}
+\subsubsection[{\texorpdfstring{principale}{principale}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+V\+Box\+Layout$\ast$ Manager\+Interface\+::principale\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classManagerInterface_adba33225f9462c38847dedf81c315809}{}\label{classManagerInterface_adba33225f9462c38847dedf81c315809}
+\index{Manager\+Interface@{Manager\+Interface}!rafrachir@{rafrachir}}
+\index{rafrachir@{rafrachir}!Manager\+Interface@{Manager\+Interface}}
+\subsubsection[{\texorpdfstring{rafrachir}{rafrachir}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Push\+Button$\ast$ Manager\+Interface\+::rafrachir\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classManagerInterface_a491c96cf723b10d066fe6571722cc868}{}\label{classManagerInterface_a491c96cf723b10d066fe6571722cc868}
+\index{Manager\+Interface@{Manager\+Interface}!sauvegarder@{sauvegarder}}
+\index{sauvegarder@{sauvegarder}!Manager\+Interface@{Manager\+Interface}}
+\subsubsection[{\texorpdfstring{sauvegarder}{sauvegarder}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Push\+Button$\ast$ Manager\+Interface\+::sauvegarder\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classManagerInterface_a2eb2db5955adc9f99eaf085d9d69e6b1}{}\label{classManagerInterface_a2eb2db5955adc9f99eaf085d9d69e6b1}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/thanhtrungdinh/\+Desktop/utc/lo21/\+Pluri\+Notes/source/\+Pluri\+Notes/\+Interface/\hyperlink{ManagerInterface_8h}{Manager\+Interface.\+h}\item 
+/home/thanhtrungdinh/\+Desktop/utc/lo21/\+Pluri\+Notes/source/\+Pluri\+Notes/\+Interface/\hyperlink{ManagerInterface_8cpp}{Manager\+Interface.\+cpp}\end{DoxyCompactItemize}

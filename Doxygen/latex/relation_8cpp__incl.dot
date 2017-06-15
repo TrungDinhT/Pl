@@ -1,0 +1,41 @@
+digraph "/home/thanhtrungdinh/Desktop/utc/lo21/PluriNotes/source/PluriNotes/RelationManager/relation.cpp"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="/home/thanhtrungdinh\l/Desktop/utc/lo21/PluriNotes\l/source/PluriNotes/RelationManager\l/relation.cpp",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="relation.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$relation_8h.html"];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="NoteManager/notes.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$notes_8h.html"];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="QString",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node3 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="QDateTime",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node3 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="QtWidgets",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node3 -> Node7 [color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="iterator.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$iterator_8h.html"];
+  Node7 -> Node8 [color="midnightblue",fontsize="10",style="solid"];
+  Node8 [label="exception.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$exception_8h.html"];
+  Node8 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
+  Node8 -> Node9 [color="midnightblue",fontsize="10",style="solid"];
+  Node9 [label="QDebug",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node3 -> Node10 [color="midnightblue",fontsize="10",style="solid"];
+  Node10 [label="Interface/ArticleInterface\lEditable.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ArticleInterfaceEditable_8h.html"];
+  Node10 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
+  Node10 -> Node11 [color="midnightblue",fontsize="10",style="solid"];
+  Node11 [label="NoteInterfaceEditable.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$NoteInterfaceEditable_8h.html"];
+  Node11 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 -> Node12 [color="midnightblue",fontsize="10",style="solid"];
+  Node12 [label="Interface/TacheInterface.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$TacheInterface_8h.html"];
+  Node12 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
+  Node12 -> Node11 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 -> Node13 [color="midnightblue",fontsize="10",style="solid"];
+  Node13 [label="Interface/ImageInterface.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ImageInterface_8h.html"];
+  Node13 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
+  Node13 -> Node11 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 -> Node11 [color="midnightblue",fontsize="10",style="solid"];
+  Node2 -> Node7 [color="midnightblue",fontsize="10",style="solid"];
+  Node2 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
+  Node1 -> Node8 [color="midnightblue",fontsize="10",style="solid"];
+}

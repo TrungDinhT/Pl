@@ -1,0 +1,145 @@
+\hypertarget{classMultimedia}{}\section{Multimedia Class Reference}
+\label{classMultimedia}\index{Multimedia@{Multimedia}}
+
+
+{\ttfamily \#include $<$notes.\+h$>$}
+
+
+
+Inheritance diagram for Multimedia\+:
+% FIG 0
+
+
+Collaboration diagram for Multimedia\+:
+% FIG 1
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMultimedia_aaa8de11ec409b36f4f80322d2a754837}{Multimedia} (const Q\+String ti, const Q\+Date\+Time d, const Q\+String \&f, const Q\+String desc=\char`\"{}\char`\"{})
+\item 
+\hyperlink{classMultimedia_a19457d6f253c5d2dc8cbc02a7cf155f3}{Multimedia} (const Q\+String \&f=\char`\"{}\char`\"{}, const Q\+String desc=\char`\"{}\char`\"{})
+\item 
+const Q\+String \& \hyperlink{classMultimedia_a55b61c0abade3536b67ecbf8e8819a66}{get\+Desc} () const 
+\item 
+const Q\+String \& \hyperlink{classMultimedia_a384dfa906314803b90cb85c61859a9e8}{get\+Nom\+Fichier} () const 
+\item 
+const \hyperlink{notes_8h_a52d0fa657cd782262400cea98b316ffd}{Media} \& \hyperlink{classMultimedia_ae4a9cdad83cb42246ed667c275f2ade5}{get\+Type} () const 
+\item 
+void \hyperlink{classMultimedia_a1732a143db560f538e248808d2ce9d5c}{set\+Desc} (const Q\+String \&d)
+\item 
+void \hyperlink{classMultimedia_af14fa1459dc8586b5cfcf3ada1b190b6}{set\+Type} (const \hyperlink{notes_8h_a52d0fa657cd782262400cea98b316ffd}{Media} type)
+\item 
+void \hyperlink{classMultimedia_a24661820d6e37a766b9192b8d4469264}{set\+Path} (const Q\+String \&f)
+\item 
+void \hyperlink{classMultimedia_ad36608ead685b515470630f7d7b25e9b}{save} (Q\+Xml\+Stream\+Writer \&str) const 
+\item 
+void \hyperlink{classMultimedia_ae85d1c2d18293b3e3924ec45f15ad442}{afficher} (Q\+String \&contenu) const 
+\item 
+\hyperlink{classNoteInterfaceEditable}{Note\+Interface\+Editable} $\ast$ \hyperlink{classMultimedia_aa308d4052a66a7e6732f67e2490d8c1c}{creer\+Interface} (const Q\+String \&id) const 
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Multimedia@{Multimedia}!Multimedia@{Multimedia}}
+\index{Multimedia@{Multimedia}!Multimedia@{Multimedia}}
+\subsubsection[{\texorpdfstring{Multimedia(const Q\+String ti, const Q\+Date\+Time d, const Q\+String \&f, const Q\+String desc="""")}{Multimedia(const QString ti, const QDateTime d, const QString &f, const QString desc="")}}]{\setlength{\rightskip}{0pt plus 5cm}Multimedia\+::\+Multimedia (
+\begin{DoxyParamCaption}
+\item[{const Q\+String}]{ti, }
+\item[{const Q\+Date\+Time}]{d, }
+\item[{const Q\+String \&}]{f, }
+\item[{const Q\+String}]{desc = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classMultimedia_aaa8de11ec409b36f4f80322d2a754837}{}\label{classMultimedia_aaa8de11ec409b36f4f80322d2a754837}
+\index{Multimedia@{Multimedia}!Multimedia@{Multimedia}}
+\index{Multimedia@{Multimedia}!Multimedia@{Multimedia}}
+\subsubsection[{\texorpdfstring{Multimedia(const Q\+String \&f="""", const Q\+String desc="""")}{Multimedia(const QString &f="", const QString desc="")}}]{\setlength{\rightskip}{0pt plus 5cm}Multimedia\+::\+Multimedia (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{f = {\ttfamily \char`\"{}\char`\"{}}, }
+\item[{const Q\+String}]{desc = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classMultimedia_a19457d6f253c5d2dc8cbc02a7cf155f3}{}\label{classMultimedia_a19457d6f253c5d2dc8cbc02a7cf155f3}
+
+
+\subsection{Member Function Documentation}
+\index{Multimedia@{Multimedia}!afficher@{afficher}}
+\index{afficher@{afficher}!Multimedia@{Multimedia}}
+\subsubsection[{\texorpdfstring{afficher(\+Q\+String \&contenu) const }{afficher(QString &contenu) const }}]{\setlength{\rightskip}{0pt plus 5cm}void Multimedia\+::afficher (
+\begin{DoxyParamCaption}
+\item[{Q\+String \&}]{contenu}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classMultimedia_ae85d1c2d18293b3e3924ec45f15ad442}{}\label{classMultimedia_ae85d1c2d18293b3e3924ec45f15ad442}
+
+
+Implements \hyperlink{classVersion_a1974f6753709e04f50a58cbe73c23f31}{Version}.
+
+\index{Multimedia@{Multimedia}!creer\+Interface@{creer\+Interface}}
+\index{creer\+Interface@{creer\+Interface}!Multimedia@{Multimedia}}
+\subsubsection[{\texorpdfstring{creer\+Interface(const Q\+String \&id) const }{creerInterface(const QString &id) const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Note\+Interface\+Editable}$\ast$ Multimedia\+::creer\+Interface (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{id}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classMultimedia_aa308d4052a66a7e6732f67e2490d8c1c}{}\label{classMultimedia_aa308d4052a66a7e6732f67e2490d8c1c}
+
+
+Implements \hyperlink{classVersion_abeb05ad12c9777bbac59bcd9037481b1}{Version}.
+
+\index{Multimedia@{Multimedia}!get\+Desc@{get\+Desc}}
+\index{get\+Desc@{get\+Desc}!Multimedia@{Multimedia}}
+\subsubsection[{\texorpdfstring{get\+Desc() const }{getDesc() const }}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+String\& Multimedia\+::get\+Desc (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classMultimedia_a55b61c0abade3536b67ecbf8e8819a66}{}\label{classMultimedia_a55b61c0abade3536b67ecbf8e8819a66}
+\index{Multimedia@{Multimedia}!get\+Nom\+Fichier@{get\+Nom\+Fichier}}
+\index{get\+Nom\+Fichier@{get\+Nom\+Fichier}!Multimedia@{Multimedia}}
+\subsubsection[{\texorpdfstring{get\+Nom\+Fichier() const }{getNomFichier() const }}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+String\& Multimedia\+::get\+Nom\+Fichier (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classMultimedia_a384dfa906314803b90cb85c61859a9e8}{}\label{classMultimedia_a384dfa906314803b90cb85c61859a9e8}
+\index{Multimedia@{Multimedia}!get\+Type@{get\+Type}}
+\index{get\+Type@{get\+Type}!Multimedia@{Multimedia}}
+\subsubsection[{\texorpdfstring{get\+Type() const }{getType() const }}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Media}\& Multimedia\+::get\+Type (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classMultimedia_ae4a9cdad83cb42246ed667c275f2ade5}{}\label{classMultimedia_ae4a9cdad83cb42246ed667c275f2ade5}
+\index{Multimedia@{Multimedia}!save@{save}}
+\index{save@{save}!Multimedia@{Multimedia}}
+\subsubsection[{\texorpdfstring{save(\+Q\+Xml\+Stream\+Writer \&str) const }{save(QXmlStreamWriter &str) const }}]{\setlength{\rightskip}{0pt plus 5cm}void Multimedia\+::save (
+\begin{DoxyParamCaption}
+\item[{Q\+Xml\+Stream\+Writer \&}]{str}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classMultimedia_ad36608ead685b515470630f7d7b25e9b}{}\label{classMultimedia_ad36608ead685b515470630f7d7b25e9b}
+
+
+Implements \hyperlink{classVersion_a65e19272c47be997deff146ab3ba1590}{Version}.
+
+\index{Multimedia@{Multimedia}!set\+Desc@{set\+Desc}}
+\index{set\+Desc@{set\+Desc}!Multimedia@{Multimedia}}
+\subsubsection[{\texorpdfstring{set\+Desc(const Q\+String \&d)}{setDesc(const QString &d)}}]{\setlength{\rightskip}{0pt plus 5cm}void Multimedia\+::set\+Desc (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{d}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classMultimedia_a1732a143db560f538e248808d2ce9d5c}{}\label{classMultimedia_a1732a143db560f538e248808d2ce9d5c}
+\index{Multimedia@{Multimedia}!set\+Path@{set\+Path}}
+\index{set\+Path@{set\+Path}!Multimedia@{Multimedia}}
+\subsubsection[{\texorpdfstring{set\+Path(const Q\+String \&f)}{setPath(const QString &f)}}]{\setlength{\rightskip}{0pt plus 5cm}void Multimedia\+::set\+Path (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{f}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classMultimedia_a24661820d6e37a766b9192b8d4469264}{}\label{classMultimedia_a24661820d6e37a766b9192b8d4469264}
+\index{Multimedia@{Multimedia}!set\+Type@{set\+Type}}
+\index{set\+Type@{set\+Type}!Multimedia@{Multimedia}}
+\subsubsection[{\texorpdfstring{set\+Type(const Media type)}{setType(const Media type)}}]{\setlength{\rightskip}{0pt plus 5cm}void Multimedia\+::set\+Type (
+\begin{DoxyParamCaption}
+\item[{const {\bf Media}}]{type}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classMultimedia_af14fa1459dc8586b5cfcf3ada1b190b6}{}\label{classMultimedia_af14fa1459dc8586b5cfcf3ada1b190b6}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/thanhtrungdinh/\+Desktop/utc/lo21/\+Pluri\+Notes/source/\+Pluri\+Notes/\+Note\+Manager/\hyperlink{notes_8h}{notes.\+h}\item 
+/home/thanhtrungdinh/\+Desktop/utc/lo21/\+Pluri\+Notes/source/\+Pluri\+Notes/\+Note\+Manager/\hyperlink{notes_8cpp}{notes.\+cpp}\end{DoxyCompactItemize}

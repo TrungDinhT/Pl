@@ -1,0 +1,94 @@
+\hypertarget{notes_8h}{}\section{/home/thanhtrungdinh/\+Desktop/utc/lo21/\+Pluri\+Notes/source/\+Pluri\+Notes/\+Note\+Manager/notes.h File Reference}
+\label{notes_8h}\index{/home/thanhtrungdinh/\+Desktop/utc/lo21/\+Pluri\+Notes/source/\+Pluri\+Notes/\+Note\+Manager/notes.\+h@{/home/thanhtrungdinh/\+Desktop/utc/lo21/\+Pluri\+Notes/source/\+Pluri\+Notes/\+Note\+Manager/notes.\+h}}
+{\ttfamily \#include $<$Q\+String$>$}\\*
+{\ttfamily \#include $<$Q\+Date\+Time$>$}\\*
+{\ttfamily \#include $<$Qt\+Widgets$>$}\\*
+{\ttfamily \#include \char`\"{}iterator.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Interface/\+Article\+Interface\+Editable.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Interface/\+Tache\+Interface.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Interface/\+Image\+Interface.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Interface/\+Note\+Interface\+Editable.\+h\char`\"{}}\\*
+Include dependency graph for notes.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classVersion}{Version}
+\item 
+class \hyperlink{classNote}{Note}
+\item 
+class \hyperlink{classNote_1_1Iterator}{Note\+::\+Iterator}
+\item 
+class \hyperlink{classNote_1_1Const__Iterator}{Note\+::\+Const\+\_\+\+Iterator}
+\item 
+class \hyperlink{classArticle}{Article}
+\item 
+class \hyperlink{classMultimedia}{Multimedia}
+\item 
+class \hyperlink{classTache}{Tache}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{notes_8h_a3134b3f30eabd82d809c2f22704d2408}{Etat\+Tache} \{ \hyperlink{notes_8h_a3134b3f30eabd82d809c2f22704d2408aa970e3ef45749f39921edab409243c41}{E\+N\+\_\+\+A\+T\+T\+E\+N\+TE}, 
+\hyperlink{notes_8h_a3134b3f30eabd82d809c2f22704d2408a82d9921c9b44d1c2c7b5e169f28d309f}{E\+N\+\_\+\+C\+O\+U\+RS}, 
+\hyperlink{notes_8h_a3134b3f30eabd82d809c2f22704d2408a51f9a40816fd0b445fe5e142ae84daa9}{T\+E\+R\+M\+I\+NE}
+ \}
+\item 
+enum \hyperlink{notes_8h_af31cb418aefc865e5631c7f76c4aea9d}{Etat\+Note} \{ \hyperlink{notes_8h_af31cb418aefc865e5631c7f76c4aea9da5ee15079025f38760a677a0295a6f2a1}{A\+R\+C\+H\+I\+VE}, 
+\hyperlink{notes_8h_af31cb418aefc865e5631c7f76c4aea9da33cf1d8ef1d06ee698a7fabf40eb3a7f}{A\+C\+T\+I\+VE}, 
+\hyperlink{notes_8h_af31cb418aefc865e5631c7f76c4aea9da95f547371794b996ebe4b0012438dd99}{R\+IP}
+ \}
+\item 
+enum \hyperlink{notes_8h_a52d0fa657cd782262400cea98b316ffd}{Media} \{ \hyperlink{notes_8h_a52d0fa657cd782262400cea98b316ffda0e1e918a80f84992ae08463f076d5dc8}{V\+I\+D\+EO}, 
+\hyperlink{notes_8h_a52d0fa657cd782262400cea98b316ffdad45d481f1c1a6029ce6a398e52e53bfd}{A\+U\+D\+IO}, 
+\hyperlink{notes_8h_a52d0fa657cd782262400cea98b316ffda3501d25cdde2b141c20edb67965fb692}{I\+M\+A\+GE}
+ \}
+\end{DoxyCompactItemize}
+
+
+\subsection{Enumeration Type Documentation}
+\index{notes.\+h@{notes.\+h}!Etat\+Note@{Etat\+Note}}
+\index{Etat\+Note@{Etat\+Note}!notes.\+h@{notes.\+h}}
+\subsubsection[{\texorpdfstring{Etat\+Note}{EtatNote}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Etat\+Note}}\hypertarget{notes_8h_af31cb418aefc865e5631c7f76c4aea9d}{}\label{notes_8h_af31cb418aefc865e5631c7f76c4aea9d}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{A\+R\+C\+H\+I\+VE@{A\+R\+C\+H\+I\+VE}!notes.\+h@{notes.\+h}}\index{notes.\+h@{notes.\+h}!A\+R\+C\+H\+I\+VE@{A\+R\+C\+H\+I\+VE}}\item[{\em 
+A\+R\+C\+H\+I\+VE\hypertarget{notes_8h_af31cb418aefc865e5631c7f76c4aea9da5ee15079025f38760a677a0295a6f2a1}{}\label{notes_8h_af31cb418aefc865e5631c7f76c4aea9da5ee15079025f38760a677a0295a6f2a1}
+}]\index{A\+C\+T\+I\+VE@{A\+C\+T\+I\+VE}!notes.\+h@{notes.\+h}}\index{notes.\+h@{notes.\+h}!A\+C\+T\+I\+VE@{A\+C\+T\+I\+VE}}\item[{\em 
+A\+C\+T\+I\+VE\hypertarget{notes_8h_af31cb418aefc865e5631c7f76c4aea9da33cf1d8ef1d06ee698a7fabf40eb3a7f}{}\label{notes_8h_af31cb418aefc865e5631c7f76c4aea9da33cf1d8ef1d06ee698a7fabf40eb3a7f}
+}]\index{R\+IP@{R\+IP}!notes.\+h@{notes.\+h}}\index{notes.\+h@{notes.\+h}!R\+IP@{R\+IP}}\item[{\em 
+R\+IP\hypertarget{notes_8h_af31cb418aefc865e5631c7f76c4aea9da95f547371794b996ebe4b0012438dd99}{}\label{notes_8h_af31cb418aefc865e5631c7f76c4aea9da95f547371794b996ebe4b0012438dd99}
+}]\end{description}
+\end{Desc}
+\index{notes.\+h@{notes.\+h}!Etat\+Tache@{Etat\+Tache}}
+\index{Etat\+Tache@{Etat\+Tache}!notes.\+h@{notes.\+h}}
+\subsubsection[{\texorpdfstring{Etat\+Tache}{EtatTache}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Etat\+Tache}}\hypertarget{notes_8h_a3134b3f30eabd82d809c2f22704d2408}{}\label{notes_8h_a3134b3f30eabd82d809c2f22704d2408}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{E\+N\+\_\+\+A\+T\+T\+E\+N\+TE@{E\+N\+\_\+\+A\+T\+T\+E\+N\+TE}!notes.\+h@{notes.\+h}}\index{notes.\+h@{notes.\+h}!E\+N\+\_\+\+A\+T\+T\+E\+N\+TE@{E\+N\+\_\+\+A\+T\+T\+E\+N\+TE}}\item[{\em 
+E\+N\+\_\+\+A\+T\+T\+E\+N\+TE\hypertarget{notes_8h_a3134b3f30eabd82d809c2f22704d2408aa970e3ef45749f39921edab409243c41}{}\label{notes_8h_a3134b3f30eabd82d809c2f22704d2408aa970e3ef45749f39921edab409243c41}
+}]\index{E\+N\+\_\+\+C\+O\+U\+RS@{E\+N\+\_\+\+C\+O\+U\+RS}!notes.\+h@{notes.\+h}}\index{notes.\+h@{notes.\+h}!E\+N\+\_\+\+C\+O\+U\+RS@{E\+N\+\_\+\+C\+O\+U\+RS}}\item[{\em 
+E\+N\+\_\+\+C\+O\+U\+RS\hypertarget{notes_8h_a3134b3f30eabd82d809c2f22704d2408a82d9921c9b44d1c2c7b5e169f28d309f}{}\label{notes_8h_a3134b3f30eabd82d809c2f22704d2408a82d9921c9b44d1c2c7b5e169f28d309f}
+}]\index{T\+E\+R\+M\+I\+NE@{T\+E\+R\+M\+I\+NE}!notes.\+h@{notes.\+h}}\index{notes.\+h@{notes.\+h}!T\+E\+R\+M\+I\+NE@{T\+E\+R\+M\+I\+NE}}\item[{\em 
+T\+E\+R\+M\+I\+NE\hypertarget{notes_8h_a3134b3f30eabd82d809c2f22704d2408a51f9a40816fd0b445fe5e142ae84daa9}{}\label{notes_8h_a3134b3f30eabd82d809c2f22704d2408a51f9a40816fd0b445fe5e142ae84daa9}
+}]\end{description}
+\end{Desc}
+\index{notes.\+h@{notes.\+h}!Media@{Media}}
+\index{Media@{Media}!notes.\+h@{notes.\+h}}
+\subsubsection[{\texorpdfstring{Media}{Media}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Media}}\hypertarget{notes_8h_a52d0fa657cd782262400cea98b316ffd}{}\label{notes_8h_a52d0fa657cd782262400cea98b316ffd}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{V\+I\+D\+EO@{V\+I\+D\+EO}!notes.\+h@{notes.\+h}}\index{notes.\+h@{notes.\+h}!V\+I\+D\+EO@{V\+I\+D\+EO}}\item[{\em 
+V\+I\+D\+EO\hypertarget{notes_8h_a52d0fa657cd782262400cea98b316ffda0e1e918a80f84992ae08463f076d5dc8}{}\label{notes_8h_a52d0fa657cd782262400cea98b316ffda0e1e918a80f84992ae08463f076d5dc8}
+}]\index{A\+U\+D\+IO@{A\+U\+D\+IO}!notes.\+h@{notes.\+h}}\index{notes.\+h@{notes.\+h}!A\+U\+D\+IO@{A\+U\+D\+IO}}\item[{\em 
+A\+U\+D\+IO\hypertarget{notes_8h_a52d0fa657cd782262400cea98b316ffdad45d481f1c1a6029ce6a398e52e53bfd}{}\label{notes_8h_a52d0fa657cd782262400cea98b316ffdad45d481f1c1a6029ce6a398e52e53bfd}
+}]\index{I\+M\+A\+GE@{I\+M\+A\+GE}!notes.\+h@{notes.\+h}}\index{notes.\+h@{notes.\+h}!I\+M\+A\+GE@{I\+M\+A\+GE}}\item[{\em 
+I\+M\+A\+GE\hypertarget{notes_8h_a52d0fa657cd782262400cea98b316ffda3501d25cdde2b141c20edb67965fb692}{}\label{notes_8h_a52d0fa657cd782262400cea98b316ffda3501d25cdde2b141c20edb67965fb692}
+}]\end{description}
+\end{Desc}

@@ -1,0 +1,157 @@
+\hypertarget{classRelationsManager}{}\section{Relations\+Manager Class Reference}
+\label{classRelationsManager}\index{Relations\+Manager@{Relations\+Manager}}
+
+
+{\ttfamily \#include $<$Relation\+Manager.\+h$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classRelationsManager_1_1Const__Iterator}{Const\+\_\+\+Iterator}
+\item 
+class \hyperlink{classRelationsManager_1_1Iterator}{Iterator}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classrelation}{relation} $\ast$ \hyperlink{classRelationsManager_ab684cb7499142d2bb4f5e0cfd272b5c2}{get\+Relation} (const Q\+String \&titre)
+\item 
+\hyperlink{classrelation}{relation} $\ast$ \hyperlink{classRelationsManager_af3e0dc9784b5b5727742a0ae89f5a209}{get\+New\+Relation} (const Q\+String \&titre, const Q\+String \&desc, bool ori=true)
+\item 
+void \hyperlink{classRelationsManager_ad5be054fd05622ef1f34f0d49f75bc3d}{delete\+Relation} (const Q\+String \&titre)
+\item 
+void \hyperlink{classRelationsManager_aba5ffc848cd2fbf1de82bdf1ff62e357}{set\+File\+Name} (const Q\+String f)
+\item 
+const Q\+String \& \hyperlink{classRelationsManager_a10c5fb78fcb9b509ec0a03ee7571096f}{get\+File\+Name} () const 
+\item 
+void \hyperlink{classRelationsManager_a6190c96cadd6b056cf94bfb75b5d56d1}{load} ()
+\item 
+void \hyperlink{classRelationsManager_a843c8c1e022ce80707c7f535f93ded4d}{save} ()
+\begin{DoxyCompactList}\small\item\em filename = name + path to save \end{DoxyCompactList}\item 
+\hyperlink{classRelationsManager_1_1Iterator}{Iterator} \hyperlink{classRelationsManager_ad0f3dc04d7833a7b616641bccb0ac1f7}{begin} ()
+\item 
+\hyperlink{classRelationsManager_1_1Iterator}{Iterator} \hyperlink{classRelationsManager_ab4cb46a1a083852d84617832ebf5327c}{end} ()
+\item 
+\hyperlink{classRelationsManager_1_1Const__Iterator}{Const\+\_\+\+Iterator} \hyperlink{classRelationsManager_ae9c490bf0c9c21f324144638f87e8528}{cbegin} ()
+\item 
+\hyperlink{classRelationsManager_1_1Const__Iterator}{Const\+\_\+\+Iterator} \hyperlink{classRelationsManager_a727a9acd8a3b322fc198a61eac7dce5b}{cend} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classRelationsManager}{Relations\+Manager} \& \hyperlink{classRelationsManager_adde192ed5510fc9c4e79a345c42175bc}{get\+Instance} ()
+\item 
+static void \hyperlink{classRelationsManager_acfa4876481ce7a1266c2abb2075bbb00}{free\+Instance} ()
+\begin{DoxyCompactList}\small\item\em free the memory used by the \hyperlink{classRelationsManager}{Relations\+Manager}; it can be rebuilt later \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\index{Relations\+Manager@{Relations\+Manager}!begin@{begin}}
+\index{begin@{begin}!Relations\+Manager@{Relations\+Manager}}
+\subsubsection[{\texorpdfstring{begin()}{begin()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Iterator} Relations\+Manager\+::begin (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classRelationsManager_ad0f3dc04d7833a7b616641bccb0ac1f7}{}\label{classRelationsManager_ad0f3dc04d7833a7b616641bccb0ac1f7}
+\index{Relations\+Manager@{Relations\+Manager}!cbegin@{cbegin}}
+\index{cbegin@{cbegin}!Relations\+Manager@{Relations\+Manager}}
+\subsubsection[{\texorpdfstring{cbegin()}{cbegin()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Const\+\_\+\+Iterator} Relations\+Manager\+::cbegin (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classRelationsManager_ae9c490bf0c9c21f324144638f87e8528}{}\label{classRelationsManager_ae9c490bf0c9c21f324144638f87e8528}
+\index{Relations\+Manager@{Relations\+Manager}!cend@{cend}}
+\index{cend@{cend}!Relations\+Manager@{Relations\+Manager}}
+\subsubsection[{\texorpdfstring{cend()}{cend()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Const\+\_\+\+Iterator} Relations\+Manager\+::cend (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classRelationsManager_a727a9acd8a3b322fc198a61eac7dce5b}{}\label{classRelationsManager_a727a9acd8a3b322fc198a61eac7dce5b}
+\index{Relations\+Manager@{Relations\+Manager}!delete\+Relation@{delete\+Relation}}
+\index{delete\+Relation@{delete\+Relation}!Relations\+Manager@{Relations\+Manager}}
+\subsubsection[{\texorpdfstring{delete\+Relation(const Q\+String \&titre)}{deleteRelation(const QString &titre)}}]{\setlength{\rightskip}{0pt plus 5cm}void Relations\+Manager\+::delete\+Relation (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{titre}
+\end{DoxyParamCaption}
+)}\hypertarget{classRelationsManager_ad5be054fd05622ef1f34f0d49f75bc3d}{}\label{classRelationsManager_ad5be054fd05622ef1f34f0d49f75bc3d}
+$<$ deplacer tous les relations apres cette relation a gauche \index{Relations\+Manager@{Relations\+Manager}!end@{end}}
+\index{end@{end}!Relations\+Manager@{Relations\+Manager}}
+\subsubsection[{\texorpdfstring{end()}{end()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Iterator} Relations\+Manager\+::end (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classRelationsManager_ab4cb46a1a083852d84617832ebf5327c}{}\label{classRelationsManager_ab4cb46a1a083852d84617832ebf5327c}
+\index{Relations\+Manager@{Relations\+Manager}!free\+Instance@{free\+Instance}}
+\index{free\+Instance@{free\+Instance}!Relations\+Manager@{Relations\+Manager}}
+\subsubsection[{\texorpdfstring{free\+Instance()}{freeInstance()}}]{\setlength{\rightskip}{0pt plus 5cm}void Relations\+Manager\+::free\+Instance (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classRelationsManager_acfa4876481ce7a1266c2abb2075bbb00}{}\label{classRelationsManager_acfa4876481ce7a1266c2abb2075bbb00}
+
+
+free the memory used by the \hyperlink{classRelationsManager}{Relations\+Manager}; it can be rebuilt later 
+
+\index{Relations\+Manager@{Relations\+Manager}!get\+File\+Name@{get\+File\+Name}}
+\index{get\+File\+Name@{get\+File\+Name}!Relations\+Manager@{Relations\+Manager}}
+\subsubsection[{\texorpdfstring{get\+File\+Name() const }{getFileName() const }}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+String\& Relations\+Manager\+::get\+File\+Name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classRelationsManager_a10c5fb78fcb9b509ec0a03ee7571096f}{}\label{classRelationsManager_a10c5fb78fcb9b509ec0a03ee7571096f}
+\index{Relations\+Manager@{Relations\+Manager}!get\+Instance@{get\+Instance}}
+\index{get\+Instance@{get\+Instance}!Relations\+Manager@{Relations\+Manager}}
+\subsubsection[{\texorpdfstring{get\+Instance()}{getInstance()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Relations\+Manager} \& Relations\+Manager\+::get\+Instance (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classRelationsManager_adde192ed5510fc9c4e79a345c42175bc}{}\label{classRelationsManager_adde192ed5510fc9c4e79a345c42175bc}
+$<$ quand fichier relationslog.\+xml est vide (premier lancement) \index{Relations\+Manager@{Relations\+Manager}!get\+New\+Relation@{get\+New\+Relation}}
+\index{get\+New\+Relation@{get\+New\+Relation}!Relations\+Manager@{Relations\+Manager}}
+\subsubsection[{\texorpdfstring{get\+New\+Relation(const Q\+String \&titre, const Q\+String \&desc, bool ori=true)}{getNewRelation(const QString &titre, const QString &desc, bool ori=true)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf relation} $\ast$ Relations\+Manager\+::get\+New\+Relation (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{titre, }
+\item[{const Q\+String \&}]{desc, }
+\item[{bool}]{ori = {\ttfamily true}}
+\end{DoxyParamCaption}
+)}\hypertarget{classRelationsManager_af3e0dc9784b5b5727742a0ae89f5a209}{}\label{classRelationsManager_af3e0dc9784b5b5727742a0ae89f5a209}
+\index{Relations\+Manager@{Relations\+Manager}!get\+Relation@{get\+Relation}}
+\index{get\+Relation@{get\+Relation}!Relations\+Manager@{Relations\+Manager}}
+\subsubsection[{\texorpdfstring{get\+Relation(const Q\+String \&titre)}{getRelation(const QString &titre)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf relation} $\ast$ Relations\+Manager\+::get\+Relation (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{titre}
+\end{DoxyParamCaption}
+)}\hypertarget{classRelationsManager_ab684cb7499142d2bb4f5e0cfd272b5c2}{}\label{classRelationsManager_ab684cb7499142d2bb4f5e0cfd272b5c2}
+\index{Relations\+Manager@{Relations\+Manager}!load@{load}}
+\index{load@{load}!Relations\+Manager@{Relations\+Manager}}
+\subsubsection[{\texorpdfstring{load()}{load()}}]{\setlength{\rightskip}{0pt plus 5cm}void Relations\+Manager\+::load (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classRelationsManager_a6190c96cadd6b056cf94bfb75b5d56d1}{}\label{classRelationsManager_a6190c96cadd6b056cf94bfb75b5d56d1}
+If we can\textquotesingle{}t open it, show an error message.
+
+Error handling.\index{Relations\+Manager@{Relations\+Manager}!save@{save}}
+\index{save@{save}!Relations\+Manager@{Relations\+Manager}}
+\subsubsection[{\texorpdfstring{save()}{save()}}]{\setlength{\rightskip}{0pt plus 5cm}void Relations\+Manager\+::save (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classRelationsManager_a843c8c1e022ce80707c7f535f93ded4d}{}\label{classRelationsManager_a843c8c1e022ce80707c7f535f93ded4d}
+
+
+filename = name + path to save 
+
+\index{Relations\+Manager@{Relations\+Manager}!set\+File\+Name@{set\+File\+Name}}
+\index{set\+File\+Name@{set\+File\+Name}!Relations\+Manager@{Relations\+Manager}}
+\subsubsection[{\texorpdfstring{set\+File\+Name(const Q\+String f)}{setFileName(const QString f)}}]{\setlength{\rightskip}{0pt plus 5cm}void Relations\+Manager\+::set\+File\+Name (
+\begin{DoxyParamCaption}
+\item[{const Q\+String}]{f}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classRelationsManager_aba5ffc848cd2fbf1de82bdf1ff62e357}{}\label{classRelationsManager_aba5ffc848cd2fbf1de82bdf1ff62e357}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/thanhtrungdinh/\+Desktop/utc/lo21/\+Pluri\+Notes/source/\+Pluri\+Notes/\+Relation\+Manager/\hyperlink{RelationManager_8h}{Relation\+Manager.\+h}\item 
+/home/thanhtrungdinh/\+Desktop/utc/lo21/\+Pluri\+Notes/source/\+Pluri\+Notes/\+Relation\+Manager/\hyperlink{RelationManager_8cpp}{Relation\+Manager.\+cpp}\end{DoxyCompactItemize}

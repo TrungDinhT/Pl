@@ -1,0 +1,134 @@
+\hypertarget{classVersion}{}\section{Version Class Reference}
+\label{classVersion}\index{Version@{Version}}
+
+
+{\ttfamily \#include $<$notes.\+h$>$}
+
+
+
+Inheritance diagram for Version\+:
+% FIG 0
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classVersion_ac5b8cbdb89e0ac7ab1d10cad749e2f19}{Version} (const Q\+String \&\hyperlink{classVersion_aca8fa55366506ebef8df8fc91ccf9523}{titre}=\char`\"{}\char`\"{})
+\item 
+\hyperlink{classVersion_a357278f4341b17f2b24cbdaa9227955c}{Version} (const Q\+String \hyperlink{classVersion_aca8fa55366506ebef8df8fc91ccf9523}{titre}, const Q\+Date\+Time dM)
+\item 
+const Q\+Date\+Time \& \hyperlink{classVersion_adf8e8ec1339dfc88261e9692808cf460}{get\+Date\+Modif} () const 
+\item 
+Q\+String \hyperlink{classVersion_a3b597de34a02b2c15c8c42e6abd5a0a5}{get\+Titre} () const 
+\item 
+void \hyperlink{classVersion_a7efdb586e3b9ddac31ee7ac3820ff9e3}{set\+Titre} (const Q\+String \&t)
+\item 
+virtual void \hyperlink{classVersion_a65e19272c47be997deff146ab3ba1590}{save} (Q\+Xml\+Stream\+Writer \&stream) const =0
+\item 
+virtual \hyperlink{classNoteInterfaceEditable}{Note\+Interface\+Editable} $\ast$ \hyperlink{classVersion_abeb05ad12c9777bbac59bcd9037481b1}{creer\+Interface} (const Q\+String \&id) const =0
+\item 
+virtual void \hyperlink{classVersion_a1974f6753709e04f50a58cbe73c23f31}{afficher} (Q\+String \&contenu) const =0
+\item 
+virtual \hyperlink{classVersion_af26bb3890de1707d7c044d12447b687a}{$\sim$\+Version} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Q\+String \hyperlink{classVersion_aca8fa55366506ebef8df8fc91ccf9523}{titre}
+\item 
+Q\+Date\+Time \hyperlink{classVersion_aaa03eab0aacd55d7b7c96f02cb4c8ff0}{date\+Modif}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Version@{Version}!Version@{Version}}
+\index{Version@{Version}!Version@{Version}}
+\subsubsection[{\texorpdfstring{Version(const Q\+String \&titre="""")}{Version(const QString &titre="")}}]{\setlength{\rightskip}{0pt plus 5cm}Version\+::\+Version (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{titre = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classVersion_ac5b8cbdb89e0ac7ab1d10cad749e2f19}{}\label{classVersion_ac5b8cbdb89e0ac7ab1d10cad749e2f19}
+\index{Version@{Version}!Version@{Version}}
+\index{Version@{Version}!Version@{Version}}
+\subsubsection[{\texorpdfstring{Version(const Q\+String titre, const Q\+Date\+Time d\+M)}{Version(const QString titre, const QDateTime dM)}}]{\setlength{\rightskip}{0pt plus 5cm}Version\+::\+Version (
+\begin{DoxyParamCaption}
+\item[{const Q\+String}]{titre, }
+\item[{const Q\+Date\+Time}]{dM}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classVersion_a357278f4341b17f2b24cbdaa9227955c}{}\label{classVersion_a357278f4341b17f2b24cbdaa9227955c}
+\index{Version@{Version}!````~Version@{$\sim$\+Version}}
+\index{````~Version@{$\sim$\+Version}!Version@{Version}}
+\subsubsection[{\texorpdfstring{$\sim$\+Version()}{~Version()}}]{\setlength{\rightskip}{0pt plus 5cm}virtual Version\+::$\sim$\+Version (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classVersion_af26bb3890de1707d7c044d12447b687a}{}\label{classVersion_af26bb3890de1707d7c044d12447b687a}
+
+
+\subsection{Member Function Documentation}
+\index{Version@{Version}!afficher@{afficher}}
+\index{afficher@{afficher}!Version@{Version}}
+\subsubsection[{\texorpdfstring{afficher(\+Q\+String \&contenu) const =0}{afficher(QString &contenu) const =0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Version\+::afficher (
+\begin{DoxyParamCaption}
+\item[{Q\+String \&}]{contenu}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{classVersion_a1974f6753709e04f50a58cbe73c23f31}{}\label{classVersion_a1974f6753709e04f50a58cbe73c23f31}
+
+
+Implemented in \hyperlink{classTache_a6a8f93bb84569afdaf191e83027b63f8}{Tache}, \hyperlink{classMultimedia_ae85d1c2d18293b3e3924ec45f15ad442}{Multimedia}, and \hyperlink{classArticle_a9b70265df89e6b3d0de0f3af9d8bc229}{Article}.
+
+\index{Version@{Version}!creer\+Interface@{creer\+Interface}}
+\index{creer\+Interface@{creer\+Interface}!Version@{Version}}
+\subsubsection[{\texorpdfstring{creer\+Interface(const Q\+String \&id) const =0}{creerInterface(const QString &id) const =0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Note\+Interface\+Editable}$\ast$ Version\+::creer\+Interface (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{id}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{classVersion_abeb05ad12c9777bbac59bcd9037481b1}{}\label{classVersion_abeb05ad12c9777bbac59bcd9037481b1}
+
+
+Implemented in \hyperlink{classTache_a0e2d4df46f39442d430a06d0f21b4f7f}{Tache}, \hyperlink{classMultimedia_aa308d4052a66a7e6732f67e2490d8c1c}{Multimedia}, and \hyperlink{classArticle_a6de9b9126727b1e794baaa45926e97a8}{Article}.
+
+\index{Version@{Version}!get\+Date\+Modif@{get\+Date\+Modif}}
+\index{get\+Date\+Modif@{get\+Date\+Modif}!Version@{Version}}
+\subsubsection[{\texorpdfstring{get\+Date\+Modif() const }{getDateModif() const }}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Date\+Time\& Version\+::get\+Date\+Modif (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classVersion_adf8e8ec1339dfc88261e9692808cf460}{}\label{classVersion_adf8e8ec1339dfc88261e9692808cf460}
+\index{Version@{Version}!get\+Titre@{get\+Titre}}
+\index{get\+Titre@{get\+Titre}!Version@{Version}}
+\subsubsection[{\texorpdfstring{get\+Titre() const }{getTitre() const }}]{\setlength{\rightskip}{0pt plus 5cm}Q\+String Version\+::get\+Titre (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classVersion_a3b597de34a02b2c15c8c42e6abd5a0a5}{}\label{classVersion_a3b597de34a02b2c15c8c42e6abd5a0a5}
+\index{Version@{Version}!save@{save}}
+\index{save@{save}!Version@{Version}}
+\subsubsection[{\texorpdfstring{save(\+Q\+Xml\+Stream\+Writer \&stream) const =0}{save(QXmlStreamWriter &stream) const =0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Version\+::save (
+\begin{DoxyParamCaption}
+\item[{Q\+Xml\+Stream\+Writer \&}]{stream}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{classVersion_a65e19272c47be997deff146ab3ba1590}{}\label{classVersion_a65e19272c47be997deff146ab3ba1590}
+
+
+Implemented in \hyperlink{classTache_a13be8a47ac62f7cb7b3a902c5dee2963}{Tache}, \hyperlink{classMultimedia_ad36608ead685b515470630f7d7b25e9b}{Multimedia}, and \hyperlink{classArticle_a5489b53efe0b6bb043933928eecaf3df}{Article}.
+
+\index{Version@{Version}!set\+Titre@{set\+Titre}}
+\index{set\+Titre@{set\+Titre}!Version@{Version}}
+\subsubsection[{\texorpdfstring{set\+Titre(const Q\+String \&t)}{setTitre(const QString &t)}}]{\setlength{\rightskip}{0pt plus 5cm}void Version\+::set\+Titre (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{t}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classVersion_a7efdb586e3b9ddac31ee7ac3820ff9e3}{}\label{classVersion_a7efdb586e3b9ddac31ee7ac3820ff9e3}
+
+
+\subsection{Member Data Documentation}
+\index{Version@{Version}!date\+Modif@{date\+Modif}}
+\index{date\+Modif@{date\+Modif}!Version@{Version}}
+\subsubsection[{\texorpdfstring{date\+Modif}{dateModif}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Date\+Time Version\+::date\+Modif\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classVersion_aaa03eab0aacd55d7b7c96f02cb4c8ff0}{}\label{classVersion_aaa03eab0aacd55d7b7c96f02cb4c8ff0}
+\index{Version@{Version}!titre@{titre}}
+\index{titre@{titre}!Version@{Version}}
+\subsubsection[{\texorpdfstring{titre}{titre}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+String Version\+::titre\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classVersion_aca8fa55366506ebef8df8fc91ccf9523}{}\label{classVersion_aca8fa55366506ebef8df8fc91ccf9523}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/thanhtrungdinh/\+Desktop/utc/lo21/\+Pluri\+Notes/source/\+Pluri\+Notes/\+Note\+Manager/\hyperlink{notes_8h}{notes.\+h}\end{DoxyCompactItemize}

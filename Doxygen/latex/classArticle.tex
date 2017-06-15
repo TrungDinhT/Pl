@@ -1,0 +1,119 @@
+\hypertarget{classArticle}{}\section{Article Class Reference}
+\label{classArticle}\index{Article@{Article}}
+
+
+{\ttfamily \#include $<$notes.\+h$>$}
+
+
+
+Inheritance diagram for Article\+:
+% FIG 0
+
+
+Collaboration diagram for Article\+:
+% FIG 1
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classArticle_a0f8481cad6354b7b40b4a33d56b6c773}{Article} (const Q\+String ti, const Q\+Date\+Time d, const Q\+String te)
+\item 
+\hyperlink{classArticle_a3d9be271173996a6c099bdd591ea9463}{Article} (const Q\+String ti=\char`\"{}\char`\"{}, const Q\+String te=\char`\"{}\char`\"{})
+\item 
+const Q\+String \& \hyperlink{classArticle_a9698d53f05f9b21c03a9acf891e9275e}{get\+Text} () const 
+\item 
+void \hyperlink{classArticle_a7144942027b1761cfcbd21761dd5cee8}{set\+Text} (const Q\+String \&t)
+\item 
+void \hyperlink{classArticle_a5489b53efe0b6bb043933928eecaf3df}{save} (Q\+Xml\+Stream\+Writer \&stream) const 
+\item 
+\hyperlink{classNoteInterfaceEditable}{Note\+Interface\+Editable} $\ast$ \hyperlink{classArticle_a6de9b9126727b1e794baaa45926e97a8}{creer\+Interface} (const Q\+String \&id) const 
+\item 
+void \hyperlink{classArticle_a9b70265df89e6b3d0de0f3af9d8bc229}{afficher} (Q\+String \&contenu) const 
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classArticle_a1b61100356afbfa0857a78513cf99160}{article\+Interface}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Article@{Article}!Article@{Article}}
+\index{Article@{Article}!Article@{Article}}
+\subsubsection[{\texorpdfstring{Article(const Q\+String ti, const Q\+Date\+Time d, const Q\+String te)}{Article(const QString ti, const QDateTime d, const QString te)}}]{\setlength{\rightskip}{0pt plus 5cm}Article\+::\+Article (
+\begin{DoxyParamCaption}
+\item[{const Q\+String}]{ti, }
+\item[{const Q\+Date\+Time}]{d, }
+\item[{const Q\+String}]{te}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classArticle_a0f8481cad6354b7b40b4a33d56b6c773}{}\label{classArticle_a0f8481cad6354b7b40b4a33d56b6c773}
+\index{Article@{Article}!Article@{Article}}
+\index{Article@{Article}!Article@{Article}}
+\subsubsection[{\texorpdfstring{Article(const Q\+String ti="""", const Q\+String te="""")}{Article(const QString ti="", const QString te="")}}]{\setlength{\rightskip}{0pt plus 5cm}Article\+::\+Article (
+\begin{DoxyParamCaption}
+\item[{const Q\+String}]{ti = {\ttfamily \char`\"{}\char`\"{}}, }
+\item[{const Q\+String}]{te = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classArticle_a3d9be271173996a6c099bdd591ea9463}{}\label{classArticle_a3d9be271173996a6c099bdd591ea9463}
+
+
+\subsection{Member Function Documentation}
+\index{Article@{Article}!afficher@{afficher}}
+\index{afficher@{afficher}!Article@{Article}}
+\subsubsection[{\texorpdfstring{afficher(\+Q\+String \&contenu) const }{afficher(QString &contenu) const }}]{\setlength{\rightskip}{0pt plus 5cm}void Article\+::afficher (
+\begin{DoxyParamCaption}
+\item[{Q\+String \&}]{contenu}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classArticle_a9b70265df89e6b3d0de0f3af9d8bc229}{}\label{classArticle_a9b70265df89e6b3d0de0f3af9d8bc229}
+
+
+Implements \hyperlink{classVersion_a1974f6753709e04f50a58cbe73c23f31}{Version}.
+
+\index{Article@{Article}!creer\+Interface@{creer\+Interface}}
+\index{creer\+Interface@{creer\+Interface}!Article@{Article}}
+\subsubsection[{\texorpdfstring{creer\+Interface(const Q\+String \&id) const }{creerInterface(const QString &id) const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Note\+Interface\+Editable}$\ast$ Article\+::creer\+Interface (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{id}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classArticle_a6de9b9126727b1e794baaa45926e97a8}{}\label{classArticle_a6de9b9126727b1e794baaa45926e97a8}
+
+
+Implements \hyperlink{classVersion_abeb05ad12c9777bbac59bcd9037481b1}{Version}.
+
+\index{Article@{Article}!get\+Text@{get\+Text}}
+\index{get\+Text@{get\+Text}!Article@{Article}}
+\subsubsection[{\texorpdfstring{get\+Text() const }{getText() const }}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+String\& Article\+::get\+Text (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classArticle_a9698d53f05f9b21c03a9acf891e9275e}{}\label{classArticle_a9698d53f05f9b21c03a9acf891e9275e}
+\index{Article@{Article}!save@{save}}
+\index{save@{save}!Article@{Article}}
+\subsubsection[{\texorpdfstring{save(\+Q\+Xml\+Stream\+Writer \&stream) const }{save(QXmlStreamWriter &stream) const }}]{\setlength{\rightskip}{0pt plus 5cm}void Article\+::save (
+\begin{DoxyParamCaption}
+\item[{Q\+Xml\+Stream\+Writer \&}]{stream}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classArticle_a5489b53efe0b6bb043933928eecaf3df}{}\label{classArticle_a5489b53efe0b6bb043933928eecaf3df}
+
+
+Implements \hyperlink{classVersion_a65e19272c47be997deff146ab3ba1590}{Version}.
+
+\index{Article@{Article}!set\+Text@{set\+Text}}
+\index{set\+Text@{set\+Text}!Article@{Article}}
+\subsubsection[{\texorpdfstring{set\+Text(const Q\+String \&t)}{setText(const QString &t)}}]{\setlength{\rightskip}{0pt plus 5cm}void Article\+::set\+Text (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{t}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classArticle_a7144942027b1761cfcbd21761dd5cee8}{}\label{classArticle_a7144942027b1761cfcbd21761dd5cee8}
+
+
+\subsection{Friends And Related Function Documentation}
+\index{Article@{Article}!article\+Interface@{article\+Interface}}
+\index{article\+Interface@{article\+Interface}!Article@{Article}}
+\subsubsection[{\texorpdfstring{article\+Interface}{articleInterface}}]{\setlength{\rightskip}{0pt plus 5cm}friend class article\+Interface\hspace{0.3cm}{\ttfamily [friend]}}\hypertarget{classArticle_a1b61100356afbfa0857a78513cf99160}{}\label{classArticle_a1b61100356afbfa0857a78513cf99160}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/thanhtrungdinh/\+Desktop/utc/lo21/\+Pluri\+Notes/source/\+Pluri\+Notes/\+Note\+Manager/\hyperlink{notes_8h}{notes.\+h}\item 
+/home/thanhtrungdinh/\+Desktop/utc/lo21/\+Pluri\+Notes/source/\+Pluri\+Notes/\+Note\+Manager/\hyperlink{notes_8cpp}{notes.\+cpp}\end{DoxyCompactItemize}

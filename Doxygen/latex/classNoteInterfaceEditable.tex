@@ -1,0 +1,137 @@
+\hypertarget{classNoteInterfaceEditable}{}\section{Note\+Interface\+Editable Class Reference}
+\label{classNoteInterfaceEditable}\index{Note\+Interface\+Editable@{Note\+Interface\+Editable}}
+
+
+{\ttfamily \#include $<$Note\+Interface\+Editable.\+h$>$}
+
+
+
+Inheritance diagram for Note\+Interface\+Editable\+:
+% FIG 0
+
+
+Collaboration diagram for Note\+Interface\+Editable\+:
+% FIG 1
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classNoteInterfaceEditable_a13a04828f0643a863b15262060b72405}{save\+Note} ()=0
+\end{DoxyCompactItemize}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classNoteInterfaceEditable_a0224487bebe20ba4c9970b32c8321dd6}{sauvegarde} (\hyperlink{classVersion}{Version} $\ast$)
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classNoteInterfaceEditable_aa01164a7c0fa76571dd4dfc8d2ffb4f0}{Note\+Interface\+Editable} (const \hyperlink{classVersion}{Version} $\ast$v, const Q\+String \&\hyperlink{classNoteInterfaceEditable_a644ed9be4e9882c784a2667748d8501d}{id})
+\item 
+virtual void \hyperlink{classNoteInterfaceEditable_aea381fd67569e04ed9d35a48df1c0f19}{ajoute\+Reference} () const =0
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Q\+String \hyperlink{classNoteInterfaceEditable_a644ed9be4e9882c784a2667748d8501d}{id}
+\begin{DoxyCompactList}\small\item\em cela sert a distinguer les notes \end{DoxyCompactList}\item 
+const \hyperlink{classVersion}{Version} $\ast$ \hyperlink{classNoteInterfaceEditable_a675dc96abf62ead999fa4b62a0fed1e9}{version}
+\item 
+Q\+Line\+Edit $\ast$ \hyperlink{classNoteInterfaceEditable_a3f0e84bb4240af488e1d8feea5c33a0a}{titre}
+\item 
+Q\+Push\+Button $\ast$ \hyperlink{classNoteInterfaceEditable_aa87cefbc14f5b64c8f1fc7be82afbd5f}{save}
+\item 
+Q\+Push\+Button $\ast$ \hyperlink{classNoteInterfaceEditable_a2f059a66b8085ec4f7d617288555f466}{supprimer}
+\item 
+Q\+Push\+Button $\ast$ \hyperlink{classNoteInterfaceEditable_a9227ecdcb24b1d03527a393c28b4ac82}{add\+Rela}
+\item 
+Q\+Push\+Button $\ast$ \hyperlink{classNoteInterfaceEditable_a1f6857538729da4a3db98812a96f4865}{changerversion}
+\item 
+Q\+Push\+Button $\ast$ \hyperlink{classNoteInterfaceEditable_aa46c12ebba924982ed12a3eb53c97be4}{rendreversionactive}
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classNoteInterfaceEditable_a2250a78aa5cceb79c3e34da3f1fe0fde}{Global\+Interface}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Note\+Interface\+Editable@{Note\+Interface\+Editable}!Note\+Interface\+Editable@{Note\+Interface\+Editable}}
+\index{Note\+Interface\+Editable@{Note\+Interface\+Editable}!Note\+Interface\+Editable@{Note\+Interface\+Editable}}
+\subsubsection[{\texorpdfstring{Note\+Interface\+Editable(const Version $\ast$v, const Q\+String \&id)}{NoteInterfaceEditable(const Version *v, const QString &id)}}]{\setlength{\rightskip}{0pt plus 5cm}Note\+Interface\+Editable\+::\+Note\+Interface\+Editable (
+\begin{DoxyParamCaption}
+\item[{const {\bf Version} $\ast$}]{v, }
+\item[{const Q\+String \&}]{id}
+\end{DoxyParamCaption}
+)}\hypertarget{classNoteInterfaceEditable_aa01164a7c0fa76571dd4dfc8d2ffb4f0}{}\label{classNoteInterfaceEditable_aa01164a7c0fa76571dd4dfc8d2ffb4f0}
+
+
+\subsection{Member Function Documentation}
+\index{Note\+Interface\+Editable@{Note\+Interface\+Editable}!ajoute\+Reference@{ajoute\+Reference}}
+\index{ajoute\+Reference@{ajoute\+Reference}!Note\+Interface\+Editable@{Note\+Interface\+Editable}}
+\subsubsection[{\texorpdfstring{ajoute\+Reference() const =0}{ajouteReference() const =0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Note\+Interface\+Editable\+::ajoute\+Reference (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{classNoteInterfaceEditable_aea381fd67569e04ed9d35a48df1c0f19}{}\label{classNoteInterfaceEditable_aea381fd67569e04ed9d35a48df1c0f19}
+fonction pour ajouter reference. quand l\textquotesingle{}utilisateur entre id\} dans n\textquotesingle{}importe quel champs de l\textquotesingle{}note (où on peut avoir texte) 
+
+Implemented in \hyperlink{classarticleInterfaceEditable_aae2c1eeb679347c2fa689f14d3e4c828}{article\+Interface\+Editable}, \hyperlink{classMultimediaInterfaceEditable_a0fc71cbf21a889fd89ea06eed65e103d}{Multimedia\+Interface\+Editable}, and \hyperlink{classTacheInterfaceEditable_aeedb2160392dd7cfc8f74f51eba96373}{Tache\+Interface\+Editable}.
+
+\index{Note\+Interface\+Editable@{Note\+Interface\+Editable}!sauvegarde@{sauvegarde}}
+\index{sauvegarde@{sauvegarde}!Note\+Interface\+Editable@{Note\+Interface\+Editable}}
+\subsubsection[{\texorpdfstring{sauvegarde}{sauvegarde}}]{\setlength{\rightskip}{0pt plus 5cm}void Note\+Interface\+Editable\+::sauvegarde (
+\begin{DoxyParamCaption}
+\item[{{\bf Version} $\ast$}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\hypertarget{classNoteInterfaceEditable_a0224487bebe20ba4c9970b32c8321dd6}{}\label{classNoteInterfaceEditable_a0224487bebe20ba4c9970b32c8321dd6}
+\index{Note\+Interface\+Editable@{Note\+Interface\+Editable}!save\+Note@{save\+Note}}
+\index{save\+Note@{save\+Note}!Note\+Interface\+Editable@{Note\+Interface\+Editable}}
+\subsubsection[{\texorpdfstring{save\+Note}{saveNote}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Note\+Interface\+Editable\+::save\+Note (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}, {\ttfamily [slot]}}\hypertarget{classNoteInterfaceEditable_a13a04828f0643a863b15262060b72405}{}\label{classNoteInterfaceEditable_a13a04828f0643a863b15262060b72405}
+
+
+\subsection{Friends And Related Function Documentation}
+\index{Note\+Interface\+Editable@{Note\+Interface\+Editable}!Global\+Interface@{Global\+Interface}}
+\index{Global\+Interface@{Global\+Interface}!Note\+Interface\+Editable@{Note\+Interface\+Editable}}
+\subsubsection[{\texorpdfstring{Global\+Interface}{GlobalInterface}}]{\setlength{\rightskip}{0pt plus 5cm}friend class {\bf Global\+Interface}\hspace{0.3cm}{\ttfamily [friend]}}\hypertarget{classNoteInterfaceEditable_a2250a78aa5cceb79c3e34da3f1fe0fde}{}\label{classNoteInterfaceEditable_a2250a78aa5cceb79c3e34da3f1fe0fde}
+
+
+\subsection{Member Data Documentation}
+\index{Note\+Interface\+Editable@{Note\+Interface\+Editable}!add\+Rela@{add\+Rela}}
+\index{add\+Rela@{add\+Rela}!Note\+Interface\+Editable@{Note\+Interface\+Editable}}
+\subsubsection[{\texorpdfstring{add\+Rela}{addRela}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Push\+Button$\ast$ Note\+Interface\+Editable\+::add\+Rela\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classNoteInterfaceEditable_a9227ecdcb24b1d03527a393c28b4ac82}{}\label{classNoteInterfaceEditable_a9227ecdcb24b1d03527a393c28b4ac82}
+\index{Note\+Interface\+Editable@{Note\+Interface\+Editable}!changerversion@{changerversion}}
+\index{changerversion@{changerversion}!Note\+Interface\+Editable@{Note\+Interface\+Editable}}
+\subsubsection[{\texorpdfstring{changerversion}{changerversion}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Push\+Button$\ast$ Note\+Interface\+Editable\+::changerversion\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classNoteInterfaceEditable_a1f6857538729da4a3db98812a96f4865}{}\label{classNoteInterfaceEditable_a1f6857538729da4a3db98812a96f4865}
+\index{Note\+Interface\+Editable@{Note\+Interface\+Editable}!id@{id}}
+\index{id@{id}!Note\+Interface\+Editable@{Note\+Interface\+Editable}}
+\subsubsection[{\texorpdfstring{id}{id}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+String Note\+Interface\+Editable\+::id\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classNoteInterfaceEditable_a644ed9be4e9882c784a2667748d8501d}{}\label{classNoteInterfaceEditable_a644ed9be4e9882c784a2667748d8501d}
+
+
+cela sert a distinguer les notes 
+
+\index{Note\+Interface\+Editable@{Note\+Interface\+Editable}!rendreversionactive@{rendreversionactive}}
+\index{rendreversionactive@{rendreversionactive}!Note\+Interface\+Editable@{Note\+Interface\+Editable}}
+\subsubsection[{\texorpdfstring{rendreversionactive}{rendreversionactive}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Push\+Button$\ast$ Note\+Interface\+Editable\+::rendreversionactive\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classNoteInterfaceEditable_aa46c12ebba924982ed12a3eb53c97be4}{}\label{classNoteInterfaceEditable_aa46c12ebba924982ed12a3eb53c97be4}
+\index{Note\+Interface\+Editable@{Note\+Interface\+Editable}!save@{save}}
+\index{save@{save}!Note\+Interface\+Editable@{Note\+Interface\+Editable}}
+\subsubsection[{\texorpdfstring{save}{save}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Push\+Button$\ast$ Note\+Interface\+Editable\+::save\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classNoteInterfaceEditable_aa87cefbc14f5b64c8f1fc7be82afbd5f}{}\label{classNoteInterfaceEditable_aa87cefbc14f5b64c8f1fc7be82afbd5f}
+\index{Note\+Interface\+Editable@{Note\+Interface\+Editable}!supprimer@{supprimer}}
+\index{supprimer@{supprimer}!Note\+Interface\+Editable@{Note\+Interface\+Editable}}
+\subsubsection[{\texorpdfstring{supprimer}{supprimer}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Push\+Button$\ast$ Note\+Interface\+Editable\+::supprimer\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classNoteInterfaceEditable_a2f059a66b8085ec4f7d617288555f466}{}\label{classNoteInterfaceEditable_a2f059a66b8085ec4f7d617288555f466}
+\index{Note\+Interface\+Editable@{Note\+Interface\+Editable}!titre@{titre}}
+\index{titre@{titre}!Note\+Interface\+Editable@{Note\+Interface\+Editable}}
+\subsubsection[{\texorpdfstring{titre}{titre}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Line\+Edit$\ast$ Note\+Interface\+Editable\+::titre\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classNoteInterfaceEditable_a3f0e84bb4240af488e1d8feea5c33a0a}{}\label{classNoteInterfaceEditable_a3f0e84bb4240af488e1d8feea5c33a0a}
+\index{Note\+Interface\+Editable@{Note\+Interface\+Editable}!version@{version}}
+\index{version@{version}!Note\+Interface\+Editable@{Note\+Interface\+Editable}}
+\subsubsection[{\texorpdfstring{version}{version}}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Version}$\ast$ Note\+Interface\+Editable\+::version\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classNoteInterfaceEditable_a675dc96abf62ead999fa4b62a0fed1e9}{}\label{classNoteInterfaceEditable_a675dc96abf62ead999fa4b62a0fed1e9}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/thanhtrungdinh/\+Desktop/utc/lo21/\+Pluri\+Notes/source/\+Pluri\+Notes/\+Interface/\hyperlink{NoteInterfaceEditable_8h}{Note\+Interface\+Editable.\+h}\item 
+/home/thanhtrungdinh/\+Desktop/utc/lo21/\+Pluri\+Notes/source/\+Pluri\+Notes/\+Interface/\hyperlink{NoteInterfaceEditable_8cpp}{Note\+Interface\+Editable.\+cpp}\end{DoxyCompactItemize}

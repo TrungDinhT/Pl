@@ -1,0 +1,231 @@
+\hypertarget{classrelation}{}\section{relation Class Reference}
+\label{classrelation}\index{relation@{relation}}
+
+
+{\ttfamily \#include $<$relation.\+h$>$}
+
+
+
+Inheritance diagram for relation\+:
+% FIG 0
+
+
+Collaboration diagram for relation\+:
+% FIG 1
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classrelation_1_1Const__Iterator}{Const\+\_\+\+Iterator}
+\item 
+class \hyperlink{classrelation_1_1Iterator}{Iterator}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classrelation_aa7b9374ea48b4631c8cafd45d4cb192d}{delete\+Couple} (const Q\+String \&id\+From\+Note, const Q\+String \&id\+To\+Note)
+\item 
+void \hyperlink{classrelation_a5dd8bf4abb464c900a8e26894a044afb}{add\+Couple} (\hyperlink{classNote}{Note} $\ast$fn, \hyperlink{classNote}{Note} $\ast$tn, const Q\+String \&lab)
+\begin{DoxyCompactList}\small\item\em public pour pouvoir enrichir une relation \end{DoxyCompactList}\item 
+\hyperlink{classrelation_acedb0771ade551dbb48f573821c9d922}{relation} (Q\+String ti, Q\+String desc=\char`\"{}\char`\"{}, bool ori=true)
+\item 
+virtual \hyperlink{classrelation_a66b87b81c206f2b28bd3010158ebb96b}{$\sim$relation} ()
+\item 
+const Q\+String \& \hyperlink{classrelation_a0c0a8324ee5d209ded62d42af7972ec5}{get\+Titre} () const 
+\item 
+const Q\+String \& \hyperlink{classrelation_a7e3d22034aa9c3e6a605a29ccc3fa528}{get\+Description} () const 
+\item 
+bool \hyperlink{classrelation_a3c83c98b0eae28344dd6d0a7df6a2fb3}{get\+Oriente} () const 
+\item 
+virtual void \hyperlink{classrelation_acc17f66306544fa52006af4b5303b629}{set\+Titre} (const Q\+String \&ti)=0
+\item 
+virtual void \hyperlink{classrelation_a1770dcc13cd80586d69be8c52dba4da7}{set\+Description} (const Q\+String \&d)=0
+\item 
+virtual void \hyperlink{classrelation_ac8dda23c3ba2b25eef2aebb16b14c312}{set\+Oriente} (bool ori)=0
+\item 
+\hyperlink{classrelation_1_1Iterator}{Iterator} \hyperlink{classrelation_ad43d1bf857a56db0a45c286bc5386865}{begin} () const 
+\item 
+\hyperlink{classrelation_1_1Iterator}{Iterator} \hyperlink{classrelation_a490c4710e434658d749df5d766301621}{end} () const 
+\item 
+\hyperlink{classrelation_1_1Const__Iterator}{Const\+\_\+\+Iterator} \hyperlink{classrelation_ae1fb94a1b37edd1c003db2563c5baf81}{cbegin} () const 
+\item 
+\hyperlink{classrelation_1_1Const__Iterator}{Const\+\_\+\+Iterator} \hyperlink{classrelation_aff46d1fa1acbf96a8874eaeb7d119e12}{cend} () const 
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classrelation_ab787d124231f153ab8d777ef717b0d90}{delete\+Couple} (const Q\+String \&id\+Note)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Q\+String \hyperlink{classrelation_a6258e8bb61b74f21f592830d0c252524}{titre}
+\item 
+Q\+String \hyperlink{classrelation_ad4596e53bef9877bb2047c64a31b51de}{description}
+\item 
+bool \hyperlink{classrelation_a7d9c025d5947d26494321d97049c2bc2}{oriente}
+\item 
+\hyperlink{classcouple}{couple} $\ast$$\ast$ \hyperlink{classrelation_a0538de8d6ba28bcf00648cba15d404bb}{couples}
+\item 
+unsigned int \hyperlink{classrelation_aab4b3cf31947f889052c30a23c1b8b59}{nb\+Couples}
+\item 
+unsigned int \hyperlink{classrelation_a8eb4534c23819a78d142841ddf28dd6e}{nb\+Max\+Couples}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{relation@{relation}!relation@{relation}}
+\index{relation@{relation}!relation@{relation}}
+\subsubsection[{\texorpdfstring{relation(\+Q\+String ti, Q\+String desc="""", bool ori=true)}{relation(QString ti, QString desc="", bool ori=true)}}]{\setlength{\rightskip}{0pt plus 5cm}relation\+::relation (
+\begin{DoxyParamCaption}
+\item[{Q\+String}]{ti, }
+\item[{Q\+String}]{desc = {\ttfamily \char`\"{}\char`\"{}}, }
+\item[{bool}]{ori = {\ttfamily true}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classrelation_acedb0771ade551dbb48f573821c9d922}{}\label{classrelation_acedb0771ade551dbb48f573821c9d922}
+\index{relation@{relation}!````~relation@{$\sim$relation}}
+\index{````~relation@{$\sim$relation}!relation@{relation}}
+\subsubsection[{\texorpdfstring{$\sim$relation()}{~relation()}}]{\setlength{\rightskip}{0pt plus 5cm}virtual relation\+::$\sim$relation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classrelation_a66b87b81c206f2b28bd3010158ebb96b}{}\label{classrelation_a66b87b81c206f2b28bd3010158ebb96b}
+
+
+\subsection{Member Function Documentation}
+\index{relation@{relation}!add\+Couple@{add\+Couple}}
+\index{add\+Couple@{add\+Couple}!relation@{relation}}
+\subsubsection[{\texorpdfstring{add\+Couple(\+Note $\ast$fn, Note $\ast$tn, const Q\+String \&lab)}{addCouple(Note *fn, Note *tn, const QString &lab)}}]{\setlength{\rightskip}{0pt plus 5cm}void relation\+::add\+Couple (
+\begin{DoxyParamCaption}
+\item[{{\bf Note} $\ast$}]{fn, }
+\item[{{\bf Note} $\ast$}]{tn, }
+\item[{const Q\+String \&}]{lab}
+\end{DoxyParamCaption}
+)}\hypertarget{classrelation_a5dd8bf4abb464c900a8e26894a044afb}{}\label{classrelation_a5dd8bf4abb464c900a8e26894a044afb}
+
+
+public pour pouvoir enrichir une relation 
+
+\index{relation@{relation}!begin@{begin}}
+\index{begin@{begin}!relation@{relation}}
+\subsubsection[{\texorpdfstring{begin() const }{begin() const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Iterator} relation\+::begin (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classrelation_ad43d1bf857a56db0a45c286bc5386865}{}\label{classrelation_ad43d1bf857a56db0a45c286bc5386865}
+\index{relation@{relation}!cbegin@{cbegin}}
+\index{cbegin@{cbegin}!relation@{relation}}
+\subsubsection[{\texorpdfstring{cbegin() const }{cbegin() const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Const\+\_\+\+Iterator} relation\+::cbegin (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classrelation_ae1fb94a1b37edd1c003db2563c5baf81}{}\label{classrelation_ae1fb94a1b37edd1c003db2563c5baf81}
+\index{relation@{relation}!cend@{cend}}
+\index{cend@{cend}!relation@{relation}}
+\subsubsection[{\texorpdfstring{cend() const }{cend() const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Const\+\_\+\+Iterator} relation\+::cend (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classrelation_aff46d1fa1acbf96a8874eaeb7d119e12}{}\label{classrelation_aff46d1fa1acbf96a8874eaeb7d119e12}
+\index{relation@{relation}!delete\+Couple@{delete\+Couple}}
+\index{delete\+Couple@{delete\+Couple}!relation@{relation}}
+\subsubsection[{\texorpdfstring{delete\+Couple(const Q\+String \&id\+Note)}{deleteCouple(const QString &idNote)}}]{\setlength{\rightskip}{0pt plus 5cm}void relation\+::delete\+Couple (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{id\+Note}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classrelation_ab787d124231f153ab8d777ef717b0d90}{}\label{classrelation_ab787d124231f153ab8d777ef717b0d90}
+trouver la position de couple c dans le tableau de couple\index{relation@{relation}!delete\+Couple@{delete\+Couple}}
+\index{delete\+Couple@{delete\+Couple}!relation@{relation}}
+\subsubsection[{\texorpdfstring{delete\+Couple(const Q\+String \&id\+From\+Note, const Q\+String \&id\+To\+Note)}{deleteCouple(const QString &idFromNote, const QString &idToNote)}}]{\setlength{\rightskip}{0pt plus 5cm}void relation\+::delete\+Couple (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{id\+From\+Note, }
+\item[{const Q\+String \&}]{id\+To\+Note}
+\end{DoxyParamCaption}
+)}\hypertarget{classrelation_aa7b9374ea48b4631c8cafd45d4cb192d}{}\label{classrelation_aa7b9374ea48b4631c8cafd45d4cb192d}
+trouver la position de couple c dans le tableau de couple\index{relation@{relation}!end@{end}}
+\index{end@{end}!relation@{relation}}
+\subsubsection[{\texorpdfstring{end() const }{end() const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Iterator} relation\+::end (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classrelation_a490c4710e434658d749df5d766301621}{}\label{classrelation_a490c4710e434658d749df5d766301621}
+\index{relation@{relation}!get\+Description@{get\+Description}}
+\index{get\+Description@{get\+Description}!relation@{relation}}
+\subsubsection[{\texorpdfstring{get\+Description() const }{getDescription() const }}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+String\& relation\+::get\+Description (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classrelation_a7e3d22034aa9c3e6a605a29ccc3fa528}{}\label{classrelation_a7e3d22034aa9c3e6a605a29ccc3fa528}
+\index{relation@{relation}!get\+Oriente@{get\+Oriente}}
+\index{get\+Oriente@{get\+Oriente}!relation@{relation}}
+\subsubsection[{\texorpdfstring{get\+Oriente() const }{getOriente() const }}]{\setlength{\rightskip}{0pt plus 5cm}bool relation\+::get\+Oriente (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classrelation_a3c83c98b0eae28344dd6d0a7df6a2fb3}{}\label{classrelation_a3c83c98b0eae28344dd6d0a7df6a2fb3}
+\index{relation@{relation}!get\+Titre@{get\+Titre}}
+\index{get\+Titre@{get\+Titre}!relation@{relation}}
+\subsubsection[{\texorpdfstring{get\+Titre() const }{getTitre() const }}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+String\& relation\+::get\+Titre (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classrelation_a0c0a8324ee5d209ded62d42af7972ec5}{}\label{classrelation_a0c0a8324ee5d209ded62d42af7972ec5}
+\index{relation@{relation}!set\+Description@{set\+Description}}
+\index{set\+Description@{set\+Description}!relation@{relation}}
+\subsubsection[{\texorpdfstring{set\+Description(const Q\+String \&d)=0}{setDescription(const QString &d)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void relation\+::set\+Description (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{d}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{classrelation_a1770dcc13cd80586d69be8c52dba4da7}{}\label{classrelation_a1770dcc13cd80586d69be8c52dba4da7}
+
+
+Implemented in \hyperlink{classrelationNonPreexistance_a97321894a56ce237fdf37ae35d95f771}{relation\+Non\+Preexistance}.
+
+\index{relation@{relation}!set\+Oriente@{set\+Oriente}}
+\index{set\+Oriente@{set\+Oriente}!relation@{relation}}
+\subsubsection[{\texorpdfstring{set\+Oriente(bool ori)=0}{setOriente(bool ori)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void relation\+::set\+Oriente (
+\begin{DoxyParamCaption}
+\item[{bool}]{ori}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{classrelation_ac8dda23c3ba2b25eef2aebb16b14c312}{}\label{classrelation_ac8dda23c3ba2b25eef2aebb16b14c312}
+
+
+Implemented in \hyperlink{classrelationNonPreexistance_a4ecfa15030cff3caab09cfe7ed76fc68}{relation\+Non\+Preexistance}.
+
+\index{relation@{relation}!set\+Titre@{set\+Titre}}
+\index{set\+Titre@{set\+Titre}!relation@{relation}}
+\subsubsection[{\texorpdfstring{set\+Titre(const Q\+String \&ti)=0}{setTitre(const QString &ti)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void relation\+::set\+Titre (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{ti}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{classrelation_acc17f66306544fa52006af4b5303b629}{}\label{classrelation_acc17f66306544fa52006af4b5303b629}
+
+
+Implemented in \hyperlink{classrelationNonPreexistance_ae3d01f6d8c081235d54f6494b7de81c5}{relation\+Non\+Preexistance}.
+
+
+
+\subsection{Member Data Documentation}
+\index{relation@{relation}!couples@{couples}}
+\index{couples@{couples}!relation@{relation}}
+\subsubsection[{\texorpdfstring{couples}{couples}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf couple}$\ast$$\ast$ relation\+::couples\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classrelation_a0538de8d6ba28bcf00648cba15d404bb}{}\label{classrelation_a0538de8d6ba28bcf00648cba15d404bb}
+\index{relation@{relation}!description@{description}}
+\index{description@{description}!relation@{relation}}
+\subsubsection[{\texorpdfstring{description}{description}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+String relation\+::description\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classrelation_ad4596e53bef9877bb2047c64a31b51de}{}\label{classrelation_ad4596e53bef9877bb2047c64a31b51de}
+\index{relation@{relation}!nb\+Couples@{nb\+Couples}}
+\index{nb\+Couples@{nb\+Couples}!relation@{relation}}
+\subsubsection[{\texorpdfstring{nb\+Couples}{nbCouples}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int relation\+::nb\+Couples\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classrelation_aab4b3cf31947f889052c30a23c1b8b59}{}\label{classrelation_aab4b3cf31947f889052c30a23c1b8b59}
+\index{relation@{relation}!nb\+Max\+Couples@{nb\+Max\+Couples}}
+\index{nb\+Max\+Couples@{nb\+Max\+Couples}!relation@{relation}}
+\subsubsection[{\texorpdfstring{nb\+Max\+Couples}{nbMaxCouples}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int relation\+::nb\+Max\+Couples\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classrelation_a8eb4534c23819a78d142841ddf28dd6e}{}\label{classrelation_a8eb4534c23819a78d142841ddf28dd6e}
+\index{relation@{relation}!oriente@{oriente}}
+\index{oriente@{oriente}!relation@{relation}}
+\subsubsection[{\texorpdfstring{oriente}{oriente}}]{\setlength{\rightskip}{0pt plus 5cm}bool relation\+::oriente\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classrelation_a7d9c025d5947d26494321d97049c2bc2}{}\label{classrelation_a7d9c025d5947d26494321d97049c2bc2}
+\index{relation@{relation}!titre@{titre}}
+\index{titre@{titre}!relation@{relation}}
+\subsubsection[{\texorpdfstring{titre}{titre}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+String relation\+::titre\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classrelation_a6258e8bb61b74f21f592830d0c252524}{}\label{classrelation_a6258e8bb61b74f21f592830d0c252524}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/thanhtrungdinh/\+Desktop/utc/lo21/\+Pluri\+Notes/source/\+Pluri\+Notes/\+Relation\+Manager/\hyperlink{relation_8h}{relation.\+h}\item 
+/home/thanhtrungdinh/\+Desktop/utc/lo21/\+Pluri\+Notes/source/\+Pluri\+Notes/\+Relation\+Manager/\hyperlink{relation_8cpp}{relation.\+cpp}\end{DoxyCompactItemize}

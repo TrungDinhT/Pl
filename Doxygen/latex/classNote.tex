@@ -1,0 +1,205 @@
+\hypertarget{classNote}{}\section{Note Class Reference}
+\label{classNote}\index{Note@{Note}}
+
+
+{\ttfamily \#include $<$notes.\+h$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classNote_1_1Const__Iterator}{Const\+\_\+\+Iterator}
+\item 
+class \hyperlink{classNote_1_1Iterator}{Iterator}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classNote_aa14ef19a570f816f5e1676274cbb2ec8}{Note} (const Q\+String \&id)
+\item 
+\hyperlink{classNote_a09f97956f6e0eebde92fb2eff0824285}{Note} (const Q\+Date\+Time dC, const Q\+String id, \hyperlink{notes_8h_af31cb418aefc865e5631c7f76c4aea9d}{Etat\+Note} etat)
+\item 
+\hyperlink{classNote_ade484273015c82e7fa59a028de0d8818}{$\sim$\+Note} ()
+\item 
+const Q\+String \& \hyperlink{classNote_aa8ab92c055d599f3eeafcc745b83b74d}{get\+Id} () const 
+\item 
+const Q\+Date\+Time \& \hyperlink{classNote_a593982547e5e6321af31847aa5b98872}{get\+Date\+Creation} () const 
+\item 
+const \hyperlink{notes_8h_af31cb418aefc865e5631c7f76c4aea9d}{Etat\+Note} \& \hyperlink{classNote_a8e12c5fa596ca0acfc583f5f4f1a259e}{get\+Etat} () const 
+\item 
+void \hyperlink{classNote_a4f6a36078ffb122e921e47a99f99c96b}{set\+Etat} (const \hyperlink{notes_8h_af31cb418aefc865e5631c7f76c4aea9d}{Etat\+Note} status)
+\item 
+void \hyperlink{classNote_a86b84819e19ac9857af178682ee53a45}{add\+Version} (\hyperlink{classVersion}{Version} $\ast$v)
+\item 
+void \hyperlink{classNote_a1608cf058a6af2c5ea85cb832fb4fb15}{set\+Version\+Active} (\hyperlink{classVersion}{Version} $\ast$v)
+\item 
+\hyperlink{classVersion}{Version} $\ast$ \hyperlink{classNote_a17459a5620f6e0695d61815bfcf6c38c}{Version\+Active} ()
+\item 
+\hyperlink{classVersion}{Version} $\ast$ \hyperlink{classNote_a37256574f7cf8b99055de42b690b0a33}{get\+Ver} (const Q\+String \&titre)
+\item 
+\hyperlink{classVersion}{Version} $\ast$ \hyperlink{classNote_a4eb65d5ed46274013e6d9a7f21434425}{get\+Ver\+Par\+Date} (const Q\+String \&date)
+\item 
+void \hyperlink{classNote_a3da45485357d159c9c2948891b6f7e02}{save} (Q\+Xml\+Stream\+Writer \&stream) const 
+\item 
+void \hyperlink{classNote_a61bb6152ac12145129a4a2ef70fe97d0}{afficher} (Q\+String \&contenu) const 
+\item 
+\hyperlink{classNote_1_1Iterator}{Iterator} \hyperlink{classNote_abd7bd6e221b72c3d0b31e76b2c3842eb}{begin} () const 
+\item 
+\hyperlink{classNote_1_1Iterator}{Iterator} \hyperlink{classNote_a2956dca10da1ac6015389bb8fe00495d}{end} () const 
+\item 
+\hyperlink{classNote_1_1Const__Iterator}{Const\+\_\+\+Iterator} \hyperlink{classNote_ac1fb72c7dd6568cfcbd678c0ffcc60ae}{cbegin} () const 
+\item 
+\hyperlink{classNote_1_1Const__Iterator}{Const\+\_\+\+Iterator} \hyperlink{classNote_a32060bd56a39dd438d79ffc6df72420c}{cend} () const 
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classNote}{Note} $\ast$ \hyperlink{classNote_afe74ce595c5c89f4365acb5cd7b17970}{get\+New\+Note} (const Q\+String \&id, \hyperlink{classVersion}{Version} $\ast$v)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Note@{Note}!Note@{Note}}
+\index{Note@{Note}!Note@{Note}}
+\subsubsection[{\texorpdfstring{Note(const Q\+String \&id)}{Note(const QString &id)}}]{\setlength{\rightskip}{0pt plus 5cm}Note\+::\+Note (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{id}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classNote_aa14ef19a570f816f5e1676274cbb2ec8}{}\label{classNote_aa14ef19a570f816f5e1676274cbb2ec8}
+\index{Note@{Note}!Note@{Note}}
+\index{Note@{Note}!Note@{Note}}
+\subsubsection[{\texorpdfstring{Note(const Q\+Date\+Time d\+C, const Q\+String id, Etat\+Note etat)}{Note(const QDateTime dC, const QString id, EtatNote etat)}}]{\setlength{\rightskip}{0pt plus 5cm}Note\+::\+Note (
+\begin{DoxyParamCaption}
+\item[{const Q\+Date\+Time}]{dC, }
+\item[{const Q\+String}]{id, }
+\item[{{\bf Etat\+Note}}]{etat}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classNote_a09f97956f6e0eebde92fb2eff0824285}{}\label{classNote_a09f97956f6e0eebde92fb2eff0824285}
+\index{Note@{Note}!````~Note@{$\sim$\+Note}}
+\index{````~Note@{$\sim$\+Note}!Note@{Note}}
+\subsubsection[{\texorpdfstring{$\sim$\+Note()}{~Note()}}]{\setlength{\rightskip}{0pt plus 5cm}Note\+::$\sim$\+Note (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classNote_ade484273015c82e7fa59a028de0d8818}{}\label{classNote_ade484273015c82e7fa59a028de0d8818}
+
+
+\subsection{Member Function Documentation}
+\index{Note@{Note}!add\+Version@{add\+Version}}
+\index{add\+Version@{add\+Version}!Note@{Note}}
+\subsubsection[{\texorpdfstring{add\+Version(\+Version $\ast$v)}{addVersion(Version *v)}}]{\setlength{\rightskip}{0pt plus 5cm}void Note\+::add\+Version (
+\begin{DoxyParamCaption}
+\item[{{\bf Version} $\ast$}]{v}
+\end{DoxyParamCaption}
+)}\hypertarget{classNote_a86b84819e19ac9857af178682ee53a45}{}\label{classNote_a86b84819e19ac9857af178682ee53a45}
+\index{Note@{Note}!afficher@{afficher}}
+\index{afficher@{afficher}!Note@{Note}}
+\subsubsection[{\texorpdfstring{afficher(\+Q\+String \&contenu) const }{afficher(QString &contenu) const }}]{\setlength{\rightskip}{0pt plus 5cm}void Note\+::afficher (
+\begin{DoxyParamCaption}
+\item[{Q\+String \&}]{contenu}
+\end{DoxyParamCaption}
+) const}\hypertarget{classNote_a61bb6152ac12145129a4a2ef70fe97d0}{}\label{classNote_a61bb6152ac12145129a4a2ef70fe97d0}
+\index{Note@{Note}!begin@{begin}}
+\index{begin@{begin}!Note@{Note}}
+\subsubsection[{\texorpdfstring{begin() const }{begin() const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Iterator} Note\+::begin (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classNote_abd7bd6e221b72c3d0b31e76b2c3842eb}{}\label{classNote_abd7bd6e221b72c3d0b31e76b2c3842eb}
+\index{Note@{Note}!cbegin@{cbegin}}
+\index{cbegin@{cbegin}!Note@{Note}}
+\subsubsection[{\texorpdfstring{cbegin() const }{cbegin() const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Const\+\_\+\+Iterator} Note\+::cbegin (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classNote_ac1fb72c7dd6568cfcbd678c0ffcc60ae}{}\label{classNote_ac1fb72c7dd6568cfcbd678c0ffcc60ae}
+\index{Note@{Note}!cend@{cend}}
+\index{cend@{cend}!Note@{Note}}
+\subsubsection[{\texorpdfstring{cend() const }{cend() const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Const\+\_\+\+Iterator} Note\+::cend (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classNote_a32060bd56a39dd438d79ffc6df72420c}{}\label{classNote_a32060bd56a39dd438d79ffc6df72420c}
+\index{Note@{Note}!end@{end}}
+\index{end@{end}!Note@{Note}}
+\subsubsection[{\texorpdfstring{end() const }{end() const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Iterator} Note\+::end (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classNote_a2956dca10da1ac6015389bb8fe00495d}{}\label{classNote_a2956dca10da1ac6015389bb8fe00495d}
+\index{Note@{Note}!get\+Date\+Creation@{get\+Date\+Creation}}
+\index{get\+Date\+Creation@{get\+Date\+Creation}!Note@{Note}}
+\subsubsection[{\texorpdfstring{get\+Date\+Creation() const }{getDateCreation() const }}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Date\+Time\& Note\+::get\+Date\+Creation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classNote_a593982547e5e6321af31847aa5b98872}{}\label{classNote_a593982547e5e6321af31847aa5b98872}
+\index{Note@{Note}!get\+Etat@{get\+Etat}}
+\index{get\+Etat@{get\+Etat}!Note@{Note}}
+\subsubsection[{\texorpdfstring{get\+Etat() const }{getEtat() const }}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Etat\+Note}\& Note\+::get\+Etat (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classNote_a8e12c5fa596ca0acfc583f5f4f1a259e}{}\label{classNote_a8e12c5fa596ca0acfc583f5f4f1a259e}
+\index{Note@{Note}!get\+Id@{get\+Id}}
+\index{get\+Id@{get\+Id}!Note@{Note}}
+\subsubsection[{\texorpdfstring{get\+Id() const }{getId() const }}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+String\& Note\+::get\+Id (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classNote_aa8ab92c055d599f3eeafcc745b83b74d}{}\label{classNote_aa8ab92c055d599f3eeafcc745b83b74d}
+\index{Note@{Note}!get\+New\+Note@{get\+New\+Note}}
+\index{get\+New\+Note@{get\+New\+Note}!Note@{Note}}
+\subsubsection[{\texorpdfstring{get\+New\+Note(const Q\+String \&id, Version $\ast$v)}{getNewNote(const QString &id, Version *v)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Note} $\ast$ Note\+::get\+New\+Note (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{id, }
+\item[{{\bf Version} $\ast$}]{v}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classNote_afe74ce595c5c89f4365acb5cd7b17970}{}\label{classNote_afe74ce595c5c89f4365acb5cd7b17970}
+\index{Note@{Note}!get\+Ver@{get\+Ver}}
+\index{get\+Ver@{get\+Ver}!Note@{Note}}
+\subsubsection[{\texorpdfstring{get\+Ver(const Q\+String \&titre)}{getVer(const QString &titre)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Version} $\ast$ Note\+::get\+Ver (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{titre}
+\end{DoxyParamCaption}
+)}\hypertarget{classNote_a37256574f7cf8b99055de42b690b0a33}{}\label{classNote_a37256574f7cf8b99055de42b690b0a33}
+\index{Note@{Note}!get\+Ver\+Par\+Date@{get\+Ver\+Par\+Date}}
+\index{get\+Ver\+Par\+Date@{get\+Ver\+Par\+Date}!Note@{Note}}
+\subsubsection[{\texorpdfstring{get\+Ver\+Par\+Date(const Q\+String \&date)}{getVerParDate(const QString &date)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Version} $\ast$ Note\+::get\+Ver\+Par\+Date (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{date}
+\end{DoxyParamCaption}
+)}\hypertarget{classNote_a4eb65d5ed46274013e6d9a7f21434425}{}\label{classNote_a4eb65d5ed46274013e6d9a7f21434425}
+\index{Note@{Note}!save@{save}}
+\index{save@{save}!Note@{Note}}
+\subsubsection[{\texorpdfstring{save(\+Q\+Xml\+Stream\+Writer \&stream) const }{save(QXmlStreamWriter &stream) const }}]{\setlength{\rightskip}{0pt plus 5cm}void Note\+::save (
+\begin{DoxyParamCaption}
+\item[{Q\+Xml\+Stream\+Writer \&}]{stream}
+\end{DoxyParamCaption}
+) const}\hypertarget{classNote_a3da45485357d159c9c2948891b6f7e02}{}\label{classNote_a3da45485357d159c9c2948891b6f7e02}
+\index{Note@{Note}!set\+Etat@{set\+Etat}}
+\index{set\+Etat@{set\+Etat}!Note@{Note}}
+\subsubsection[{\texorpdfstring{set\+Etat(const Etat\+Note status)}{setEtat(const EtatNote status)}}]{\setlength{\rightskip}{0pt plus 5cm}void Note\+::set\+Etat (
+\begin{DoxyParamCaption}
+\item[{const {\bf Etat\+Note}}]{status}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classNote_a4f6a36078ffb122e921e47a99f99c96b}{}\label{classNote_a4f6a36078ffb122e921e47a99f99c96b}
+\index{Note@{Note}!set\+Version\+Active@{set\+Version\+Active}}
+\index{set\+Version\+Active@{set\+Version\+Active}!Note@{Note}}
+\subsubsection[{\texorpdfstring{set\+Version\+Active(\+Version $\ast$v)}{setVersionActive(Version *v)}}]{\setlength{\rightskip}{0pt plus 5cm}void Note\+::set\+Version\+Active (
+\begin{DoxyParamCaption}
+\item[{{\bf Version} $\ast$}]{v}
+\end{DoxyParamCaption}
+)}\hypertarget{classNote_a1608cf058a6af2c5ea85cb832fb4fb15}{}\label{classNote_a1608cf058a6af2c5ea85cb832fb4fb15}
+\index{Note@{Note}!Version\+Active@{Version\+Active}}
+\index{Version\+Active@{Version\+Active}!Note@{Note}}
+\subsubsection[{\texorpdfstring{Version\+Active()}{VersionActive()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Version} $\ast$ Note\+::\+Version\+Active (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classNote_a17459a5620f6e0695d61815bfcf6c38c}{}\label{classNote_a17459a5620f6e0695d61815bfcf6c38c}
+$<$ c\textquotesingle{}est à dire la fait passer en dernier version 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/thanhtrungdinh/\+Desktop/utc/lo21/\+Pluri\+Notes/source/\+Pluri\+Notes/\+Note\+Manager/\hyperlink{notes_8h}{notes.\+h}\item 
+/home/thanhtrungdinh/\+Desktop/utc/lo21/\+Pluri\+Notes/source/\+Pluri\+Notes/\+Note\+Manager/\hyperlink{notes_8cpp}{notes.\+cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,22 @@
+var searchData=
+[
+  ['raffraichissementmi',['raffraichissementMI',['../classGlobalInterface.html#a56dc1e9a28e69cd30fb52007f57c46bc',1,'GlobalInterface']]],
+  ['rafrachir',['rafrachir',['../classManagerInterface.html#a491c96cf723b10d066fe6571722cc868',1,'ManagerInterface']]],
+  ['reallydeletenote',['reallyDeleteNote',['../classNotesManager.html#ab050fc2721a9e75aa0eca11496aa787e',1,'NotesManager']]],
+  ['refresh',['refresh',['../classManagerInterface.html#ab43ba07ee3509089770d4066177bb38a',1,'ManagerInterface']]],
+  ['refreshcor',['refreshCor',['../classcorbeilleInterface.html#a6d260a87d91e4e55276489247e1f7275',1,'corbeilleInterface']]],
+  ['regardernote',['regarderNote',['../classcorbeilleInterface.html#a088e648ca32080265d8b3f8207bd6035',1,'corbeilleInterface']]],
+  ['relaman',['relaman',['../ArticleInterfaceEditable_8cpp.html#a44d7c91fb4be2dc6b526523559f3965a',1,'ArticleInterfaceEditable.cpp']]],
+  ['relation',['relation',['../classrelation.html',1,'relation'],['../classrelation_1_1Iterator.html#abf93246f9fba84b81cde8501c84c3fa2',1,'relation::Iterator::relation()'],['../classrelation_1_1Const__Iterator.html#abf93246f9fba84b81cde8501c84c3fa2',1,'relation::Const_Iterator::relation()'],['../classrelation.html#acedb0771ade551dbb48f573821c9d922',1,'relation::relation()']]],
+  ['relation_2ecpp',['relation.cpp',['../relation_8cpp.html',1,'']]],
+  ['relation_2eh',['relation.h',['../relation_8h.html',1,'']]],
+  ['relationmanager_2ecpp',['RelationManager.cpp',['../RelationManager_8cpp.html',1,'']]],
+  ['relationmanager_2eh',['RelationManager.h',['../RelationManager_8h.html',1,'']]],
+  ['relationnonpreexistance',['relationNonPreexistance',['../classrelationNonPreexistance.html',1,'relationNonPreexistance'],['../classrelationNonPreexistance.html#a0b1f7788ba51e527c71587c3b228272d',1,'relationNonPreexistance::relationNonPreexistance()']]],
+  ['relationpreexistance',['relationPreexistance',['../classrelationPreexistance.html',1,'']]],
+  ['relationsmanager',['RelationsManager',['../classRelationsManager.html',1,'RelationsManager'],['../classRelationsManager_1_1Iterator.html#ac617894445bd4f12c905741b1b4f9f6a',1,'RelationsManager::Iterator::RelationsManager()'],['../classRelationsManager_1_1Const__Iterator.html#ac617894445bd4f12c905741b1b4f9f6a',1,'RelationsManager::Const_Iterator::RelationsManager()']]],
+  ['rendreversionactive',['rendreversionactive',['../classNoteInterfaceEditable.html#aa46c12ebba924982ed12a3eb53c97be4',1,'NoteInterfaceEditable']]],
+  ['restaurer',['restaurer',['../classcorbeilleInterface.html#ace4a8e973165f5546ddb549685ab813c',1,'corbeilleInterface']]],
+  ['restaurernote',['restaurerNote',['../classNotesManager.html#a517a77d36ccefd26d197f0fce26adc74',1,'NotesManager']]],
+  ['rip',['RIP',['../notes_8h.html#af31cb418aefc865e5631c7f76c4aea9da95f547371794b996ebe4b0012438dd99',1,'notes.h']]]
+];

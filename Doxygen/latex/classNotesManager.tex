@@ -1,0 +1,225 @@
+\hypertarget{classNotesManager}{}\section{Notes\+Manager Class Reference}
+\label{classNotesManager}\index{Notes\+Manager@{Notes\+Manager}}
+
+
+{\ttfamily \#include $<$Note\+Manager.\+h$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classNotesManager_1_1Const__Iterator}{Const\+\_\+\+Iterator}
+\item 
+class \hyperlink{classNotesManager_1_1Iterator}{Iterator}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classNotesManager_af603aa285213c1ae667c65e97eb63ce3}{add\+Notes} (\hyperlink{classNote}{Note} $\ast$n)
+\item 
+void \hyperlink{classNotesManager_a989429244c36c35ef68204f6ae2a0a5f}{delete\+Note} (const Q\+String \&id)
+\item 
+void \hyperlink{classNotesManager_a517a77d36ccefd26d197f0fce26adc74}{restaurer\+Note} (const Q\+String \&id)
+\item 
+void \hyperlink{classNotesManager_ab050fc2721a9e75aa0eca11496aa787e}{really\+Delete\+Note} (const Q\+String \&id)
+\item 
+void \hyperlink{classNotesManager_a624a4f618af06aaad53ed57dd2e924ad}{vider\+Corbeille} ()
+\item 
+void \hyperlink{classNotesManager_a4178ff422d1eb1b9693c45e054b37df5}{afficher} (const Q\+String \&id\+Note\+Afficher, Q\+String \&contenu) const 
+\item 
+Q\+String \hyperlink{classNotesManager_aedbb97d0664b5809fa9af602e9ca47e4}{get\+Filename} () const 
+\item 
+void \hyperlink{classNotesManager_ad91ac409c3c42399e702a0863d4274b1}{set\+Filename} (const Q\+String \&f)
+\item 
+void \hyperlink{classNotesManager_ad4fb2de50633dd25b71024343341cd64}{load} ()
+\begin{DoxyCompactList}\small\item\em load all notes \end{DoxyCompactList}\item 
+\hyperlink{classNote}{Note} $\ast$ \hyperlink{classNotesManager_aae62fb036915ee05b67af6e9d2560d10}{load} (const Q\+String \&id)
+\item 
+void \hyperlink{classNotesManager_a96c34db9c22dcdde2dfd92286de037e0}{save} () const 
+\begin{DoxyCompactList}\small\item\em save all notes (at the beginning) \end{DoxyCompactList}\item 
+void \hyperlink{classNotesManager_a7a90adc3eb75c7ace0c634664b8b7ccd}{save} (const Q\+String \&id, \hyperlink{classVersion}{Version} $\ast$v)
+\begin{DoxyCompactList}\small\item\em create a note in array notes \end{DoxyCompactList}\item 
+\hyperlink{classNotesManager_1_1Iterator}{Iterator} \hyperlink{classNotesManager_adab4cf70d82aac7564f669668040f92a}{begin} () const 
+\item 
+\hyperlink{classNotesManager_1_1Iterator}{Iterator} \hyperlink{classNotesManager_a45ca49b31f274e76d9d07d47a50a857b}{end} () const 
+\item 
+\hyperlink{classNotesManager_1_1Const__Iterator}{Const\+\_\+\+Iterator} \hyperlink{classNotesManager_aef38c53f9b0a63e7bf7c5e5e9436883d}{cbegin} () const 
+\item 
+\hyperlink{classNotesManager_1_1Const__Iterator}{Const\+\_\+\+Iterator} \hyperlink{classNotesManager_a182f134c7b384f3a18c9a1b07378dc83}{cend} () const 
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classNotesManager}{Notes\+Manager} \& \hyperlink{classNotesManager_a5a3c2da250aafc199f05eb903a0f6b4e}{get\+Manager} ()
+\item 
+static void \hyperlink{classNotesManager_a4d27e75da7b4a2a1e0b3d13c58f5099a}{free\+Manager} ()
+\begin{DoxyCompactList}\small\item\em free the memory used by the \hyperlink{classNotesManager}{Notes\+Manager}; it can be rebuild later \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classNotesManager_a4b150521959ecff7ff127445ba406b0f}{corbeille}
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\index{Notes\+Manager@{Notes\+Manager}!add\+Notes@{add\+Notes}}
+\index{add\+Notes@{add\+Notes}!Notes\+Manager@{Notes\+Manager}}
+\subsubsection[{\texorpdfstring{add\+Notes(\+Note $\ast$n)}{addNotes(Note *n)}}]{\setlength{\rightskip}{0pt plus 5cm}void Notes\+Manager\+::add\+Notes (
+\begin{DoxyParamCaption}
+\item[{{\bf Note} $\ast$}]{n}
+\end{DoxyParamCaption}
+)}\hypertarget{classNotesManager_af603aa285213c1ae667c65e97eb63ce3}{}\label{classNotesManager_af603aa285213c1ae667c65e97eb63ce3}
+\index{Notes\+Manager@{Notes\+Manager}!afficher@{afficher}}
+\index{afficher@{afficher}!Notes\+Manager@{Notes\+Manager}}
+\subsubsection[{\texorpdfstring{afficher(const Q\+String \&id\+Note\+Afficher, Q\+String \&contenu) const }{afficher(const QString &idNoteAfficher, QString &contenu) const }}]{\setlength{\rightskip}{0pt plus 5cm}void Notes\+Manager\+::afficher (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{id\+Note\+Afficher, }
+\item[{Q\+String \&}]{contenu}
+\end{DoxyParamCaption}
+) const}\hypertarget{classNotesManager_a4178ff422d1eb1b9693c45e054b37df5}{}\label{classNotesManager_a4178ff422d1eb1b9693c45e054b37df5}
+\index{Notes\+Manager@{Notes\+Manager}!begin@{begin}}
+\index{begin@{begin}!Notes\+Manager@{Notes\+Manager}}
+\subsubsection[{\texorpdfstring{begin() const }{begin() const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Iterator} Notes\+Manager\+::begin (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classNotesManager_adab4cf70d82aac7564f669668040f92a}{}\label{classNotesManager_adab4cf70d82aac7564f669668040f92a}
+\index{Notes\+Manager@{Notes\+Manager}!cbegin@{cbegin}}
+\index{cbegin@{cbegin}!Notes\+Manager@{Notes\+Manager}}
+\subsubsection[{\texorpdfstring{cbegin() const }{cbegin() const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Const\+\_\+\+Iterator} Notes\+Manager\+::cbegin (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classNotesManager_aef38c53f9b0a63e7bf7c5e5e9436883d}{}\label{classNotesManager_aef38c53f9b0a63e7bf7c5e5e9436883d}
+\index{Notes\+Manager@{Notes\+Manager}!cend@{cend}}
+\index{cend@{cend}!Notes\+Manager@{Notes\+Manager}}
+\subsubsection[{\texorpdfstring{cend() const }{cend() const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Const\+\_\+\+Iterator} Notes\+Manager\+::cend (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classNotesManager_a182f134c7b384f3a18c9a1b07378dc83}{}\label{classNotesManager_a182f134c7b384f3a18c9a1b07378dc83}
+\index{Notes\+Manager@{Notes\+Manager}!delete\+Note@{delete\+Note}}
+\index{delete\+Note@{delete\+Note}!Notes\+Manager@{Notes\+Manager}}
+\subsubsection[{\texorpdfstring{delete\+Note(const Q\+String \&id)}{deleteNote(const QString &id)}}]{\setlength{\rightskip}{0pt plus 5cm}void Notes\+Manager\+::delete\+Note (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{id}
+\end{DoxyParamCaption}
+)}\hypertarget{classNotesManager_a989429244c36c35ef68204f6ae2a0a5f}{}\label{classNotesManager_a989429244c36c35ef68204f6ae2a0a5f}
+code pour la corbeille. On utilise le Notesmanager pour gérer la corbeille aussi \index{Notes\+Manager@{Notes\+Manager}!end@{end}}
+\index{end@{end}!Notes\+Manager@{Notes\+Manager}}
+\subsubsection[{\texorpdfstring{end() const }{end() const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Iterator} Notes\+Manager\+::end (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classNotesManager_a45ca49b31f274e76d9d07d47a50a857b}{}\label{classNotesManager_a45ca49b31f274e76d9d07d47a50a857b}
+\index{Notes\+Manager@{Notes\+Manager}!free\+Manager@{free\+Manager}}
+\index{free\+Manager@{free\+Manager}!Notes\+Manager@{Notes\+Manager}}
+\subsubsection[{\texorpdfstring{free\+Manager()}{freeManager()}}]{\setlength{\rightskip}{0pt plus 5cm}void Notes\+Manager\+::free\+Manager (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classNotesManager_a4d27e75da7b4a2a1e0b3d13c58f5099a}{}\label{classNotesManager_a4d27e75da7b4a2a1e0b3d13c58f5099a}
+
+
+free the memory used by the \hyperlink{classNotesManager}{Notes\+Manager}; it can be rebuild later 
+
+\index{Notes\+Manager@{Notes\+Manager}!get\+Filename@{get\+Filename}}
+\index{get\+Filename@{get\+Filename}!Notes\+Manager@{Notes\+Manager}}
+\subsubsection[{\texorpdfstring{get\+Filename() const }{getFilename() const }}]{\setlength{\rightskip}{0pt plus 5cm}Q\+String Notes\+Manager\+::get\+Filename (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classNotesManager_aedbb97d0664b5809fa9af602e9ca47e4}{}\label{classNotesManager_aedbb97d0664b5809fa9af602e9ca47e4}
+\index{Notes\+Manager@{Notes\+Manager}!get\+Manager@{get\+Manager}}
+\index{get\+Manager@{get\+Manager}!Notes\+Manager@{Notes\+Manager}}
+\subsubsection[{\texorpdfstring{get\+Manager()}{getManager()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Notes\+Manager} \& Notes\+Manager\+::get\+Manager (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classNotesManager_a5a3c2da250aafc199f05eb903a0f6b4e}{}\label{classNotesManager_a5a3c2da250aafc199f05eb903a0f6b4e}
+\index{Notes\+Manager@{Notes\+Manager}!load@{load}}
+\index{load@{load}!Notes\+Manager@{Notes\+Manager}}
+\subsubsection[{\texorpdfstring{load()}{load()}}]{\setlength{\rightskip}{0pt plus 5cm}void Notes\+Manager\+::load (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classNotesManager_ad4fb2de50633dd25b71024343341cd64}{}\label{classNotesManager_ad4fb2de50633dd25b71024343341cd64}
+
+
+load all notes 
+
+article
+
+tache
+
+multimedia
+
+Error handling.\index{Notes\+Manager@{Notes\+Manager}!load@{load}}
+\index{load@{load}!Notes\+Manager@{Notes\+Manager}}
+\subsubsection[{\texorpdfstring{load(const Q\+String \&id)}{load(const QString &id)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Note} $\ast$ Notes\+Manager\+::load (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{id}
+\end{DoxyParamCaption}
+)}\hypertarget{classNotesManager_aae62fb036915ee05b67af6e9d2560d10}{}\label{classNotesManager_aae62fb036915ee05b67af6e9d2560d10}
+\index{Notes\+Manager@{Notes\+Manager}!really\+Delete\+Note@{really\+Delete\+Note}}
+\index{really\+Delete\+Note@{really\+Delete\+Note}!Notes\+Manager@{Notes\+Manager}}
+\subsubsection[{\texorpdfstring{really\+Delete\+Note(const Q\+String \&id)}{reallyDeleteNote(const QString &id)}}]{\setlength{\rightskip}{0pt plus 5cm}void Notes\+Manager\+::really\+Delete\+Note (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{id}
+\end{DoxyParamCaption}
+)}\hypertarget{classNotesManager_ab050fc2721a9e75aa0eca11496aa787e}{}\label{classNotesManager_ab050fc2721a9e75aa0eca11496aa787e}
+\index{Notes\+Manager@{Notes\+Manager}!restaurer\+Note@{restaurer\+Note}}
+\index{restaurer\+Note@{restaurer\+Note}!Notes\+Manager@{Notes\+Manager}}
+\subsubsection[{\texorpdfstring{restaurer\+Note(const Q\+String \&id)}{restaurerNote(const QString &id)}}]{\setlength{\rightskip}{0pt plus 5cm}void Notes\+Manager\+::restaurer\+Note (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{id}
+\end{DoxyParamCaption}
+)}\hypertarget{classNotesManager_a517a77d36ccefd26d197f0fce26adc74}{}\label{classNotesManager_a517a77d36ccefd26d197f0fce26adc74}
+\index{Notes\+Manager@{Notes\+Manager}!save@{save}}
+\index{save@{save}!Notes\+Manager@{Notes\+Manager}}
+\subsubsection[{\texorpdfstring{save() const }{save() const }}]{\setlength{\rightskip}{0pt plus 5cm}void Notes\+Manager\+::save (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classNotesManager_a96c34db9c22dcdde2dfd92286de037e0}{}\label{classNotesManager_a96c34db9c22dcdde2dfd92286de037e0}
+
+
+save all notes (at the beginning) 
+
+\index{Notes\+Manager@{Notes\+Manager}!save@{save}}
+\index{save@{save}!Notes\+Manager@{Notes\+Manager}}
+\subsubsection[{\texorpdfstring{save(const Q\+String \&id, Version $\ast$v)}{save(const QString &id, Version *v)}}]{\setlength{\rightskip}{0pt plus 5cm}void Notes\+Manager\+::save (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{id, }
+\item[{{\bf Version} $\ast$}]{v}
+\end{DoxyParamCaption}
+)}\hypertarget{classNotesManager_a7a90adc3eb75c7ace0c634664b8b7ccd}{}\label{classNotesManager_a7a90adc3eb75c7ace0c634664b8b7ccd}
+
+
+create a note in array notes 
+
+\index{Notes\+Manager@{Notes\+Manager}!set\+Filename@{set\+Filename}}
+\index{set\+Filename@{set\+Filename}!Notes\+Manager@{Notes\+Manager}}
+\subsubsection[{\texorpdfstring{set\+Filename(const Q\+String \&f)}{setFilename(const QString &f)}}]{\setlength{\rightskip}{0pt plus 5cm}void Notes\+Manager\+::set\+Filename (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{f}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classNotesManager_ad91ac409c3c42399e702a0863d4274b1}{}\label{classNotesManager_ad91ac409c3c42399e702a0863d4274b1}
+\index{Notes\+Manager@{Notes\+Manager}!vider\+Corbeille@{vider\+Corbeille}}
+\index{vider\+Corbeille@{vider\+Corbeille}!Notes\+Manager@{Notes\+Manager}}
+\subsubsection[{\texorpdfstring{vider\+Corbeille()}{viderCorbeille()}}]{\setlength{\rightskip}{0pt plus 5cm}void Notes\+Manager\+::vider\+Corbeille (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classNotesManager_a624a4f618af06aaad53ed57dd2e924ad}{}\label{classNotesManager_a624a4f618af06aaad53ed57dd2e924ad}
+
+
+\subsection{Friends And Related Function Documentation}
+\index{Notes\+Manager@{Notes\+Manager}!corbeille@{corbeille}}
+\index{corbeille@{corbeille}!Notes\+Manager@{Notes\+Manager}}
+\subsubsection[{\texorpdfstring{corbeille}{corbeille}}]{\setlength{\rightskip}{0pt plus 5cm}friend class corbeille\hspace{0.3cm}{\ttfamily [friend]}}\hypertarget{classNotesManager_a4b150521959ecff7ff127445ba406b0f}{}\label{classNotesManager_a4b150521959ecff7ff127445ba406b0f}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/thanhtrungdinh/\+Desktop/utc/lo21/\+Pluri\+Notes/source/\+Pluri\+Notes/\+Note\+Manager/\hyperlink{NoteManager_8h}{Note\+Manager.\+h}\item 
+/home/thanhtrungdinh/\+Desktop/utc/lo21/\+Pluri\+Notes/source/\+Pluri\+Notes/\+Note\+Manager/\hyperlink{NoteManager_8cpp}{Note\+Manager.\+cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,13 @@
+\hypertarget{exception_8h}{}\section{/home/thanhtrungdinh/\+Desktop/utc/lo21/\+Pluri\+Notes/source/\+Pluri\+Notes/exception.h File Reference}
+\label{exception_8h}\index{/home/thanhtrungdinh/\+Desktop/utc/lo21/\+Pluri\+Notes/source/\+Pluri\+Notes/exception.\+h@{/home/thanhtrungdinh/\+Desktop/utc/lo21/\+Pluri\+Notes/source/\+Pluri\+Notes/exception.\+h}}
+{\ttfamily \#include $<$Q\+String$>$}\\*
+{\ttfamily \#include $<$Q\+Debug$>$}\\*
+Include dependency graph for exception.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class__Exception}{\+\_\+\+Exception}
+\end{DoxyCompactItemize}

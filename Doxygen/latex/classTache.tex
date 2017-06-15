@@ -1,0 +1,167 @@
+\hypertarget{classTache}{}\section{Tache Class Reference}
+\label{classTache}\index{Tache@{Tache}}
+
+
+{\ttfamily \#include $<$notes.\+h$>$}
+
+
+
+Inheritance diagram for Tache\+:
+% FIG 0
+
+
+Collaboration diagram for Tache\+:
+% FIG 1
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classTache_ae226d0bfd8d10c6a0924f476c9939ba9}{Tache} (const Q\+Date\+Time \&dE, const Q\+String \&action=\char`\"{}\char`\"{}, const int p=0, const \hyperlink{notes_8h_a3134b3f30eabd82d809c2f22704d2408}{Etat\+Tache} e=\hyperlink{notes_8h_a3134b3f30eabd82d809c2f22704d2408a82d9921c9b44d1c2c7b5e169f28d309f}{E\+N\+\_\+\+C\+O\+U\+RS})
+\item 
+\hyperlink{classTache_a9d4747a28ec7ad98e58a217826e50cf1}{Tache} (const Q\+String ti=\char`\"{}\char`\"{}, const Q\+Date\+Time d=Q\+Date\+Time\+::current\+Date\+Time(), const Q\+Date\+Time \&dE=Q\+Date\+Time\+::current\+Date\+Time().add\+Days(1), const Q\+String \&action=\char`\"{}\char`\"{}, const int p=0, const \hyperlink{notes_8h_a3134b3f30eabd82d809c2f22704d2408}{Etat\+Tache} e=\hyperlink{notes_8h_a3134b3f30eabd82d809c2f22704d2408a82d9921c9b44d1c2c7b5e169f28d309f}{E\+N\+\_\+\+C\+O\+U\+RS})
+\item 
+const Q\+String \& \hyperlink{classTache_a8fe5c528aee5e1f5f720e9833cae27f5}{get\+Action} () const 
+\item 
+const unsigned int \& \hyperlink{classTache_af83b9288941da6e3031813c982ab0ae8}{get\+Priorite} () const 
+\item 
+const Q\+Date\+Time \& \hyperlink{classTache_a90b98eca131c7e2e38be14ef05f72d93}{get\+Date\+Echeance} () const 
+\item 
+const \hyperlink{notes_8h_a3134b3f30eabd82d809c2f22704d2408}{Etat\+Tache} \& \hyperlink{classTache_a797e2d40dce297a731ac2e0219922b5f}{get\+Statut} () const 
+\item 
+void \hyperlink{classTache_a8b7080efc2f5075567118e22853282b3}{set\+Action} (const Q\+String \&a)
+\item 
+void \hyperlink{classTache_a9653defcca491740923a4ae4e8c06029}{set\+Priorite} (const unsigned int p)
+\item 
+void \hyperlink{classTache_a2d0d6567e2b396c5136c5efcc275e70d}{set\+Date\+Echeance} (const Q\+Date\+Time \&d)
+\item 
+void \hyperlink{classTache_adb4ef14d829b34b259617d8d0a09ccb6}{set\+Statut} (const \hyperlink{notes_8h_a3134b3f30eabd82d809c2f22704d2408}{Etat\+Tache} s)
+\item 
+void \hyperlink{classTache_a6a8f93bb84569afdaf191e83027b63f8}{afficher} (Q\+String \&contenu) const 
+\item 
+void \hyperlink{classTache_a13be8a47ac62f7cb7b3a902c5dee2963}{save} (Q\+Xml\+Stream\+Writer \&str) const 
+\item 
+\hyperlink{classNoteInterfaceEditable}{Note\+Interface\+Editable} $\ast$ \hyperlink{classTache_a0e2d4df46f39442d430a06d0f21b4f7f}{creer\+Interface} (const Q\+String \&id) const 
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Tache@{Tache}!Tache@{Tache}}
+\index{Tache@{Tache}!Tache@{Tache}}
+\subsubsection[{\texorpdfstring{Tache(const Q\+Date\+Time \&d\+E, const Q\+String \&action="""", const int p=0, const Etat\+Tache e=\+E\+N\+\_\+\+C\+O\+U\+R\+S)}{Tache(const QDateTime &dE, const QString &action="", const int p=0, const EtatTache e=EN_COURS)}}]{\setlength{\rightskip}{0pt plus 5cm}Tache\+::\+Tache (
+\begin{DoxyParamCaption}
+\item[{const Q\+Date\+Time \&}]{dE, }
+\item[{const Q\+String \&}]{action = {\ttfamily \char`\"{}\char`\"{}}, }
+\item[{const int}]{p = {\ttfamily 0}, }
+\item[{const {\bf Etat\+Tache}}]{e = {\ttfamily {\bf E\+N\+\_\+\+C\+O\+U\+RS}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classTache_ae226d0bfd8d10c6a0924f476c9939ba9}{}\label{classTache_ae226d0bfd8d10c6a0924f476c9939ba9}
+\index{Tache@{Tache}!Tache@{Tache}}
+\index{Tache@{Tache}!Tache@{Tache}}
+\subsubsection[{\texorpdfstring{Tache(const Q\+String ti="""", const Q\+Date\+Time d=\+Q\+Date\+Time\+::current\+Date\+Time(), const Q\+Date\+Time \&d\+E=\+Q\+Date\+Time\+::current\+Date\+Time().\+add\+Days(1), const Q\+String \&action="""", const int p=0, const Etat\+Tache e=\+E\+N\+\_\+\+C\+O\+U\+R\+S)}{Tache(const QString ti="", const QDateTime d=QDateTime::currentDateTime(), const QDateTime &dE=QDateTime::currentDateTime().addDays(1), const QString &action="", const int p=0, const EtatTache e=EN_COURS)}}]{\setlength{\rightskip}{0pt plus 5cm}Tache\+::\+Tache (
+\begin{DoxyParamCaption}
+\item[{const Q\+String}]{ti = {\ttfamily \char`\"{}\char`\"{}}, }
+\item[{const Q\+Date\+Time}]{d = {\ttfamily QDateTime\+:\+:currentDateTime()}, }
+\item[{const Q\+Date\+Time \&}]{dE = {\ttfamily QDateTime\+:\+:currentDateTime().addDays(1)}, }
+\item[{const Q\+String \&}]{action = {\ttfamily \char`\"{}\char`\"{}}, }
+\item[{const int}]{p = {\ttfamily 0}, }
+\item[{const {\bf Etat\+Tache}}]{e = {\ttfamily {\bf E\+N\+\_\+\+C\+O\+U\+RS}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classTache_a9d4747a28ec7ad98e58a217826e50cf1}{}\label{classTache_a9d4747a28ec7ad98e58a217826e50cf1}
+
+
+\subsection{Member Function Documentation}
+\index{Tache@{Tache}!afficher@{afficher}}
+\index{afficher@{afficher}!Tache@{Tache}}
+\subsubsection[{\texorpdfstring{afficher(\+Q\+String \&contenu) const }{afficher(QString &contenu) const }}]{\setlength{\rightskip}{0pt plus 5cm}void Tache\+::afficher (
+\begin{DoxyParamCaption}
+\item[{Q\+String \&}]{contenu}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classTache_a6a8f93bb84569afdaf191e83027b63f8}{}\label{classTache_a6a8f93bb84569afdaf191e83027b63f8}
+
+
+Implements \hyperlink{classVersion_a1974f6753709e04f50a58cbe73c23f31}{Version}.
+
+\index{Tache@{Tache}!creer\+Interface@{creer\+Interface}}
+\index{creer\+Interface@{creer\+Interface}!Tache@{Tache}}
+\subsubsection[{\texorpdfstring{creer\+Interface(const Q\+String \&id) const }{creerInterface(const QString &id) const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Note\+Interface\+Editable}$\ast$ Tache\+::creer\+Interface (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{id}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classTache_a0e2d4df46f39442d430a06d0f21b4f7f}{}\label{classTache_a0e2d4df46f39442d430a06d0f21b4f7f}
+
+
+Implements \hyperlink{classVersion_abeb05ad12c9777bbac59bcd9037481b1}{Version}.
+
+\index{Tache@{Tache}!get\+Action@{get\+Action}}
+\index{get\+Action@{get\+Action}!Tache@{Tache}}
+\subsubsection[{\texorpdfstring{get\+Action() const }{getAction() const }}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+String\& Tache\+::get\+Action (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classTache_a8fe5c528aee5e1f5f720e9833cae27f5}{}\label{classTache_a8fe5c528aee5e1f5f720e9833cae27f5}
+\index{Tache@{Tache}!get\+Date\+Echeance@{get\+Date\+Echeance}}
+\index{get\+Date\+Echeance@{get\+Date\+Echeance}!Tache@{Tache}}
+\subsubsection[{\texorpdfstring{get\+Date\+Echeance() const }{getDateEcheance() const }}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Date\+Time\& Tache\+::get\+Date\+Echeance (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classTache_a90b98eca131c7e2e38be14ef05f72d93}{}\label{classTache_a90b98eca131c7e2e38be14ef05f72d93}
+\index{Tache@{Tache}!get\+Priorite@{get\+Priorite}}
+\index{get\+Priorite@{get\+Priorite}!Tache@{Tache}}
+\subsubsection[{\texorpdfstring{get\+Priorite() const }{getPriorite() const }}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned int\& Tache\+::get\+Priorite (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classTache_af83b9288941da6e3031813c982ab0ae8}{}\label{classTache_af83b9288941da6e3031813c982ab0ae8}
+\index{Tache@{Tache}!get\+Statut@{get\+Statut}}
+\index{get\+Statut@{get\+Statut}!Tache@{Tache}}
+\subsubsection[{\texorpdfstring{get\+Statut() const }{getStatut() const }}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Etat\+Tache}\& Tache\+::get\+Statut (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classTache_a797e2d40dce297a731ac2e0219922b5f}{}\label{classTache_a797e2d40dce297a731ac2e0219922b5f}
+\index{Tache@{Tache}!save@{save}}
+\index{save@{save}!Tache@{Tache}}
+\subsubsection[{\texorpdfstring{save(\+Q\+Xml\+Stream\+Writer \&str) const }{save(QXmlStreamWriter &str) const }}]{\setlength{\rightskip}{0pt plus 5cm}void Tache\+::save (
+\begin{DoxyParamCaption}
+\item[{Q\+Xml\+Stream\+Writer \&}]{str}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classTache_a13be8a47ac62f7cb7b3a902c5dee2963}{}\label{classTache_a13be8a47ac62f7cb7b3a902c5dee2963}
+
+
+Implements \hyperlink{classVersion_a65e19272c47be997deff146ab3ba1590}{Version}.
+
+\index{Tache@{Tache}!set\+Action@{set\+Action}}
+\index{set\+Action@{set\+Action}!Tache@{Tache}}
+\subsubsection[{\texorpdfstring{set\+Action(const Q\+String \&a)}{setAction(const QString &a)}}]{\setlength{\rightskip}{0pt plus 5cm}void Tache\+::set\+Action (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{a}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classTache_a8b7080efc2f5075567118e22853282b3}{}\label{classTache_a8b7080efc2f5075567118e22853282b3}
+\index{Tache@{Tache}!set\+Date\+Echeance@{set\+Date\+Echeance}}
+\index{set\+Date\+Echeance@{set\+Date\+Echeance}!Tache@{Tache}}
+\subsubsection[{\texorpdfstring{set\+Date\+Echeance(const Q\+Date\+Time \&d)}{setDateEcheance(const QDateTime &d)}}]{\setlength{\rightskip}{0pt plus 5cm}void Tache\+::set\+Date\+Echeance (
+\begin{DoxyParamCaption}
+\item[{const Q\+Date\+Time \&}]{d}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classTache_a2d0d6567e2b396c5136c5efcc275e70d}{}\label{classTache_a2d0d6567e2b396c5136c5efcc275e70d}
+\index{Tache@{Tache}!set\+Priorite@{set\+Priorite}}
+\index{set\+Priorite@{set\+Priorite}!Tache@{Tache}}
+\subsubsection[{\texorpdfstring{set\+Priorite(const unsigned int p)}{setPriorite(const unsigned int p)}}]{\setlength{\rightskip}{0pt plus 5cm}void Tache\+::set\+Priorite (
+\begin{DoxyParamCaption}
+\item[{const unsigned int}]{p}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classTache_a9653defcca491740923a4ae4e8c06029}{}\label{classTache_a9653defcca491740923a4ae4e8c06029}
+\index{Tache@{Tache}!set\+Statut@{set\+Statut}}
+\index{set\+Statut@{set\+Statut}!Tache@{Tache}}
+\subsubsection[{\texorpdfstring{set\+Statut(const Etat\+Tache s)}{setStatut(const EtatTache s)}}]{\setlength{\rightskip}{0pt plus 5cm}void Tache\+::set\+Statut (
+\begin{DoxyParamCaption}
+\item[{const {\bf Etat\+Tache}}]{s}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classTache_adb4ef14d829b34b259617d8d0a09ccb6}{}\label{classTache_adb4ef14d829b34b259617d8d0a09ccb6}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/thanhtrungdinh/\+Desktop/utc/lo21/\+Pluri\+Notes/source/\+Pluri\+Notes/\+Note\+Manager/\hyperlink{notes_8h}{notes.\+h}\item 
+/home/thanhtrungdinh/\+Desktop/utc/lo21/\+Pluri\+Notes/source/\+Pluri\+Notes/\+Note\+Manager/\hyperlink{notes_8cpp}{notes.\+cpp}\end{DoxyCompactItemize}
