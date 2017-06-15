@@ -7,7 +7,7 @@
 #include "NoteInterfaceEditable.h"
 #include "ManagerInterface.h"
 #include "RelationManager/RelationManager.h"
-
+#include "corbeilleinterface.h"
 
 
 class GlobalInterface : public QWidget {
@@ -22,6 +22,7 @@ class GlobalInterface : public QWidget {
   Note* NoteCurrent;
   Version* VersionCurrent;
   QListWidget* liste;
+
 
   
 public :

@@ -1,5 +1,8 @@
 #include "ManagerInterface.h"
 #include "ArticleInterfaceEditable.h"
+#include "corbeilleinterface.h"
+
+
 ManagerInterface::ManagerInterface(){
   NM = &(NotesManager::getManager());
   NotesManager::Iterator itn = NM->begin();
@@ -14,10 +17,13 @@ ManagerInterface::ManagerInterface(){
   }
   ajouter = new QPushButton("ajouter");
   sauvegarder = new QPushButton("sauvegarder");
+  corbeille = new QPushButton("corbeille");
   bouttons->addWidget(ajouter);
   bouttons->addWidget(sauvegarder);
+  bouttons->addWidget(corbeille);
 
   principale->addWidget(liste_note);
+  connect(corbeille,SIGNAL(clicked()),this,SLOT(ouvrirCorbeille()));
   connect(ajouter, SIGNAL(clicked()),this, SLOT(ajoutNote()));
   //connect(liste_note, SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)),this, SLOT(changerNote(QListWidgetItem*)));
 
@@ -28,7 +34,10 @@ ManagerInterface::ManagerInterface(){
 
 }
 
-
+void ManagerInterface::ouvrirCorbeille(){
+    corbeilleInterface c;
+    c.exec();
+}
 
 
 void ManagerInterface::ajoutNote(){

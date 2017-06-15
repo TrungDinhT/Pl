@@ -19,7 +19,8 @@ HEADERS += \
     Interface/globalInterface.h \
     Interface/ArticleInterfaceEditable.h \
     iterator.h \
-    exception.h
+    exception.h \
+    Interface/corbeilleinterface.h
 
 
 SOURCES += \
@@ -35,7 +36,8 @@ SOURCES += \
     Interface/GlobalInterface.cpp \
     Interface/ArticleInterfaceEditable.cpp \
     Interface/ArticleInterface.cpp \
-    Interface/ManagerInterface.cpp
+    Interface/ManagerInterface.cpp \
+    Interface/corbeilleinterface.cpp
 
 
 

@@ -76,7 +76,17 @@ void GlobalInterface::sauverNote(Version* v){
 
 }
 void GlobalInterface::supprimerNote(){
-//à completer
+    qDebug()<<"delete Item\n";
+    NM->deleteNote(MI->liste_note->currentItem()->text());
+    //MI->liste_note->clear();
+    qDebug()<<"id: \n";
+    for(NotesManager::Iterator it = NM->begin(); it!= NM->end();it++)
+    {
+        if((*it)->getEtat()==ACTIVE)
+        {
+            MI->liste_note->addItem((*it)->getId());
+        }
+    }
 }
 
 void GlobalInterface::sauvegardeGeneral(){

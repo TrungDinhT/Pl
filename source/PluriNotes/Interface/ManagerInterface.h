@@ -6,6 +6,7 @@
 #include "NoteManager/NoteManager.h"
 #include "NoteManager/notes.h"
 #include "RelationManager/RelationManager.h" //ca sert apres
+#include "Corbeille/corbeille.h"
 
 class GLobalInterface;
 class list_version_item;
@@ -22,6 +23,8 @@ protected:
   QPushButton* ajouter;
   QPushButton* sauvegarder;
   QListWidget* listeVersion;
+  QPushButton* corbeille;
+
 public :
   ManagerInterface();
   virtual void extension_choix_version(){}
@@ -30,6 +33,7 @@ public slots :
   void ajoutNote();
   //void choixAjoutNote(list_version_item *item);
   void choixAjoutNote(QListWidgetItem *item);
+  void ouvrirCorbeille();
 
 signals :
   void refresh();
