@@ -1,8 +1,13 @@
 
-#include "GlobalInterface.h"
+#include "globalInterface.h"
 #include "ArticleInterfaceEditable.h"
-#include "managerinterface.h"
-GlobalInterface::GlobalInterface(){
+#include "ImageInterface.h"
+#include "ManagerInterface.h"
+#include "TacheInterface.h"
+#include <QWidget>
+
+
+GlobalInterface::GlobalInterface(): QWidget(){
   principale = new QGridLayout(this);
   /*MI = new ManagerInterface();
   connect(MI->liste_note, SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)),this, SLOT(changerNote(QListWidgetItem*)));
@@ -10,15 +15,19 @@ GlobalInterface::GlobalInterface(){
   principale->addWidget(MI,0,0);*/
   raffraichissementMI();
   NM = &(NotesManager::getManager());
+  RM = &(RelationsManager::getInstance());
   NotesManager::Iterator itn = NM->begin();
   NoteCurrent = *itn;
   /*Note::Iterator itv = NoteCurrent->begin();
   VersionCurrent = *itv;*/
   VersionCurrent = NoteCurrent->VersionActive();
 
-  //if(typeid(*VersionCurrent).name()=="Article"){
-  NIE = new articleInterfaceEditable(static_cast <Article*>(VersionCurrent));
-  //}
+  if(NoteCurrent->getId()!="coco"){
+  NIE = new articleInterfaceEditable(NoteCurrent->getId(),static_cast <Article*>(VersionCurrent));
+  }
+  else{//NIE = new MultimediaInterfaceEditable(NoteCurrent->getId(),static_cast <Multimedia*>(VersionCurrent));
+  NIE = new TacheInterfaceEditable(NoteCurrent->getId(),static_cast <Tache*>(VersionCurrent));
+  }
 
   principale->addWidget(NIE,0,1);
   //qDebug()<<"ajout article\n";
@@ -39,6 +48,7 @@ void GlobalInterface::raffraichissementMI(){
     MI = new ManagerInterface();
     connect(MI->liste_note, SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)),this, SLOT(changerNote(QListWidgetItem*)));
     connect(MI, SIGNAL(refresh()),this, SLOT(raffraichissementMI()));
+    connect(MI->sauvegarder, SIGNAL(clicked()),this, SLOT(sauvegardeGeneral()));
     principale->addWidget(MI,0,0);
 }
 
@@ -72,8 +82,19 @@ void GlobalInterface::sauverNote(Version* v){
 
 }
 void GlobalInterface::supprimerNote(){
-//à completer
+    qDebug()<<"delete Item\n";
+    QString idDel = MI->liste_note->currentItem()->text();
+    NM->deleteNote(idDel);
+    qDebug()<<"idDel (view Interface): "<<idDel<<"\n";
+    raffraichissementMI();
 }
+
+void GlobalInterface::sauvegardeGeneral(){
+    qDebug()<<"save";
+    NM->save();
+    RM->save();
+}
+
 void GlobalInterface::miseEnRelationNote(){
 //à completer
 }
@@ -94,7 +115,7 @@ void GlobalInterface::choixVersionNote(QListWidgetItem* item){
     VersionCurrent = NoteCurrent->getVerParDate(item->text());
     //NoteCurrent->setVersionActive(VersionCurrent);
     delete NIE;
-    NIE = new articleInterfaceEditable(static_cast <Article*>(VersionCurrent));
+    NIE = new articleInterfaceEditable(NoteCurrent->getId(),static_cast <Article*>(VersionCurrent));
     connect(NIE,SIGNAL(sauvegarde(Version*)),this,SLOT(sauverNote(Version*)));
     connect(NIE->relier,SIGNAL(clicked()),this,SLOT(miseEnRelationNote()));
     connect(NIE->supprimer,SIGNAL(clicked()),this,SLOT(supprimerNote()));
@@ -113,7 +134,7 @@ void GlobalInterface::changerNote(QListWidgetItem* item){
  /*Note::Iterator itv = NoteCurrent->begin();
  VersionCurrent = *itv;*/
  VersionCurrent = NoteCurrent->VersionActive();
- NIE = new articleInterfaceEditable(static_cast <Article*>(VersionCurrent));
+ NIE = new articleInterfaceEditable(NoteCurrent->getId(),static_cast <Article*>(VersionCurrent));
  connect(NIE,SIGNAL(sauvegarde(Version*)),this,SLOT(sauverNote(Version*)));
  connect(NIE->relier,SIGNAL(clicked()),this,SLOT(miseEnRelationNote()));
  connect(NIE->supprimer,SIGNAL(clicked()),this,SLOT(supprimerNote()));
