@@ -1,8 +1,9 @@
 #ifndef CORBEILLEINTERFACE_H
 #define CORBEILLEINTERFACE_H
 
-#include "Corbeille/corbeille.h"
 #include <QtWidgets>
+#include "ManagerInterface.h"
+#include "NoteManager/NoteManager.h"
 
 class GlobalInterface;
 
@@ -11,8 +12,10 @@ class corbeilleInterface: public QDialog{
 
 
 public slots:
-    void restore();
-    void emptyBin();
+    void regarderNote();
+    void supprimerNote();
+    void restaurer();
+    void viderCorbeille();
 
 public:
     corbeilleInterface();
@@ -21,9 +24,10 @@ private:
     QPushButton *del;
     QPushButton *rstore;
     QPushButton *vider;
-    QPushButton *close;
+    QPushButton * view;
     QListWidget* mainView;
-
+    ManagerInterface* MI;
+    void refreshCorbeille() const;
     friend class GlobalInterface;
 
 };

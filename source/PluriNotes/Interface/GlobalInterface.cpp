@@ -13,6 +13,7 @@ GlobalInterface::GlobalInterface(): QWidget(){
   principale->addWidget(MI,0,0);*/
   raffraichissementMI();
   NM = &(NotesManager::getManager());
+  RM = &(RelationsManager::getInstance());
   NotesManager::Iterator itn = NM->begin();
   NoteCurrent = *itn;
   /*Note::Iterator itv = NoteCurrent->begin();
@@ -77,22 +78,16 @@ void GlobalInterface::sauverNote(Version* v){
 }
 void GlobalInterface::supprimerNote(){
     qDebug()<<"delete Item\n";
-    NM->deleteNote(MI->liste_note->currentItem()->text());
-    //MI->liste_note->clear();
-    qDebug()<<"id: \n";
-    for(NotesManager::Iterator it = NM->begin(); it!= NM->end();it++)
-    {
-        if((*it)->getEtat()==ACTIVE)
-        {
-            MI->liste_note->addItem((*it)->getId());
-        }
-    }
+    QString idDel = MI->liste_note->currentItem()->text();
+    NM->deleteNote(idDel);
+    qDebug()<<"idDel (view Interface): "<<idDel<<"\n";
+    raffraichissementMI();
 }
 
 void GlobalInterface::sauvegardeGeneral(){
     qDebug()<<"save";
     NM->save();
-    RelationsManager::getInstance().save();
+    RM->save();
 }
 
 void GlobalInterface::miseEnRelationNote(){

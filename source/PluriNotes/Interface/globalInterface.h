@@ -19,6 +19,7 @@ class GlobalInterface : public QWidget {
   ManagerInterface* MI;
   //MyQToolbar* TB;
   NotesManager* NM;
+  RelationsManager *RM;
   Note* NoteCurrent;
   Version* VersionCurrent;
   QListWidget* liste;

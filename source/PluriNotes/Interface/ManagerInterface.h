@@ -6,7 +6,7 @@
 #include "NoteManager/NoteManager.h"
 #include "NoteManager/notes.h"
 #include "RelationManager/RelationManager.h" //ca sert apres
-#include "Corbeille/corbeille.h"
+
 
 class GLobalInterface;
 class list_version_item;

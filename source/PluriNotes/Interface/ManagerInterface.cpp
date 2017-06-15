@@ -13,7 +13,8 @@ ManagerInterface::ManagerInterface(){
   liste_note = new QListWidget();
 
   for(; itn!= NM->end();itn++){
-      liste_note->addItem((*itn)->getId());
+      if((*itn)->getEtat()==ACTIVE)
+          liste_note->addItem((*itn)->getId());
   }
   ajouter = new QPushButton("ajouter");
   sauvegarder = new QPushButton("sauvegarder");

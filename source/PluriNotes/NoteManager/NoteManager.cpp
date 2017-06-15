@@ -12,7 +12,7 @@
 #include "exception.h"
 #include "RelationManager/RelationManager.h"
 #include "RelationManager/relation.h"
-#include "Corbeille/corbeille.h"
+//#include "Corbeille/corbeille.h"
 
 NotesManager* NotesManager::instance = nullptr;
 
@@ -61,15 +61,49 @@ void NotesManager::deleteNote(const QString &id){
         throw _Exception("Note not found");
     relation* ref = RelationsManager::getInstance().getRelation("reference");
     relation::Iterator it;
-    for(it=ref->begin();it!=ref->end() && (*it)->getFromNote()->getId()!=id; it++); //search for note referencé
+    for(it=ref->begin();it!=ref->end() && (*it)->getToNote()->getId()!=id; it++); //search for note referencé
     if(it!=ref->end())
+    {
         notes[i]->setEtat(ARCHIVE);
+    }
     else
     {
         notes[i]->setEtat(RIP);
-        corbeille::getCorbeille().addNotes(notes[i]);
     }
 }
+
+void NotesManager::restaurerNote(const QString &id){
+    unsigned int i;
+    for(i=0;i<nbNotes && notes[i]->getId()!=id;i++);
+    qDebug()<<"arg: "<<id<<", id found: "<<notes[i]->getId()<<"\n";
+    notes[i]->setEtat(ACTIVE);
+}
+
+void NotesManager::reallyDeleteNote(const QString &id){
+    unsigned int i;
+    for(i=0;i<nbNotes && notes[i]->getId()!=id;i++);
+    delete notes[i];
+    nbNotes--;
+    if(nbNotes==0)
+    {
+        delete[] notes;
+    }
+    else
+    {
+        for(;i<nbNotes;i++){
+            notes[i]=notes[i+1];
+        }
+    }
+    nbNotes--;
+}
+
+void NotesManager::viderCorbeille(){
+    for(unsigned int i=0;i<nbNotes;i++)
+    {
+        if(notes[i]->getEtat()==RIP) reallyDeleteNote(notes[i]->getId());
+    }
+}
+
 
 void NotesManager::save(const QString& id, Version *v) {
     unsigned int i;

@@ -39,6 +39,9 @@ public:
     //Note* getNewNote(char type);
 
     void deleteNote(const QString& id);
+    void restaurerNote(const QString& id);
+    void reallyDeleteNote(const QString& id);
+    void viderCorbeille();
 
     QString getFilename() const { return filename; }
     void setFilename(const QString& f) { filename=f; }

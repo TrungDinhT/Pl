@@ -1,35 +1,60 @@
 #include "corbeilleinterface.h"
 
-corbeille& c = corbeille::getCorbeille();
+NotesManager& managerNote = NotesManager::getManager();
 
 corbeilleInterface::corbeilleInterface():QDialog(){
-    QVBoxLayout* mainLay = new QVBoxLayout;
 
     mainView = new QListWidget;
-    mainLay->addWidget(mainView);
-    for(corbeille::Iterator it = c.begin();it!=c.end();it++)
-    {
-        mainView->addItem((*it)->getId());
-    }
+    refreshCorbeille();
 
-    QHBoxLayout* buttonLay = new QHBoxLayout;
+    QHBoxLayout* buttonLay1 = new QHBoxLayout;
+    view = new QPushButton("Regarder");
     del = new QPushButton("Supprimer");
     rstore = new QPushButton("Restaurer");
-    vider = new QPushButton("Vider");
-    close = new QPushButton("Fermer");
-    buttonLay->addWidget(del);
-    buttonLay->addWidget(rstore);
-    buttonLay->addWidget(vider);
-    buttonLay->addWidget(close);
+    vider = new QPushButton("Vider corbeille");
+    buttonLay1->addWidget(view);
+    buttonLay1->addWidget(rstore);
+    buttonLay1->addWidget(del);
+    QHBoxLayout* buttonLay2 = new QHBoxLayout;
+    buttonLay2->addWidget(vider);
 
-    mainLay->addLayout(buttonLay);
+    QVBoxLayout* mainLay = new QVBoxLayout;
+    mainLay->addLayout(buttonLay1);
+    mainLay->addWidget(mainView);
+    mainLay->addLayout(buttonLay2);
 
     setLayout(mainLay);
+
+    connect(rstore,SIGNAL(clicked()),this,SLOT(restaurer()));
+    connect(del,SIGNAL(clicked()),this,SLOT(supprimerNote()));
+    connect(vider,SIGNAL(clicked()),this,SLOT(viderCorbeille()));
 }
 
+void corbeilleInterface::refreshCorbeille() const {
 
-void corbeilleInterface::restore(){
+    mainView->clear();
+    for(NotesManager::Iterator it = managerNote.begin(); it!=managerNote.end();it++)
+    {
+        if((*it)->getEtat()==RIP) mainView->addItem((*it)->getId());
+    }
+}
+
+void corbeilleInterface::restaurer(){
+    managerNote.restaurerNote(mainView->currentItem()->text());
+    refreshCorbeille();
+}
+
+void corbeilleInterface::supprimerNote(){
+    managerNote.reallyDeleteNote(mainView->currentItem()->text());
+    refreshCorbeille();
+}
+
+void corbeilleInterface::regarderNote(){
 
 }
 
-void corbeilleInterface::emptyBin(){}
+void corbeilleInterface::viderCorbeille(){
+    managerNote.viderCorbeille();
+    refreshCorbeille();
+}
+
