@@ -17,8 +17,6 @@ enum EtatTache {EN_ATTENTE, EN_COURS, TERMINE};
 enum EtatNote {ARCHIVE, ACTIVE, RIP};
 enum Media {VIDEO, AUDIO, IMAGE};
 
-//class articleInterface;
-
 class Version {
 protected:
     QString titre;
@@ -64,7 +62,6 @@ public:
     Version* getVerParDate(const QString& date);
     void save(QXmlStreamWriter& stream) const;
     void afficher(QString& contenu) const ;
-    //creerInterface() const { versions[nbVer-1]->creerInterface(); }
 
     //iterator + methodes servent a parcourir
     class Iterator: public _Iterator<Version>{
@@ -109,7 +106,6 @@ private:
     QString description;
     QString nomFichier;
     Media typeEnregistrement;
-    //friend class imageInterface;
 public:
     Multimedia(const QString ti, const QDateTime d, const QString& f, const QString desc=""): Version(ti,d), description(desc), nomFichier(f){}
     Multimedia(const QString& f = "", const QString desc=""): Version(),description(desc), nomFichier(f){}

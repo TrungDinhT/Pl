@@ -40,24 +40,6 @@ public slots :
 signals :
   void refresh();
 };
-/*
-class list_version_item : public QListWidgetItem {
-    Q_OBJECT
-    friend class ManagerInterface;
-protected:
 
-  Version* version;
-
-public :
-  list_version_item(QString s,Version *v):QListWidgetItem(s,nullptr,1000),version(v){}
-  Version* getVersion(){return version;}
-
-public slots :
-  //void clickNote();
-
-signals :
-  //void clicNote();
-};
-*/
 #endif // MANAGERINTERFACE_H
 

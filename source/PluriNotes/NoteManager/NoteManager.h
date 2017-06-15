@@ -35,9 +35,6 @@ public:
     static NotesManager& getManager();
     static void freeManager(); // free the memory used by the NotesManager; it can be rebuild later
 
-    //Note* getNote(const QString& id);
-    //Note* getNewNote(char type);
-
     //code pour la corbeille
     void deleteNote(const QString& id);
     void restaurerNote(const QString& id);

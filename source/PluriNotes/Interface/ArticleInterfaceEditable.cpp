@@ -18,13 +18,8 @@ void articleInterfaceEditable::saveNote(){
 
 articleInterfaceEditable::articleInterfaceEditable(const QString id, const Article *a):NoteInterfaceEditable(a,id){
    article = a;
-  //titre = new QLineEdit(article.titre,this);
   if (a == 0){text = new QTextEdit("");}
   else{text = new QTextEdit(article->getText());}
-  //text = new QLineEdit(article->texte);
-  //this->save = new QPushButton(/*objet QIcon,*/"sauvegarder");
-  //connect(save,SIGNAL(clicked()),this,SLOT(saveArticle()));
-  //disposition à revoir
   principale = new QVBoxLayout(this);
   principale->addWidget(titre);
   principale->addWidget(text);

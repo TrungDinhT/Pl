@@ -82,12 +82,7 @@ void TacheInterfaceEditable::ajouteReference() const {
 }
 
 void TacheInterfaceEditable::saveNote(){
-  /*int i;
-  if(statut->currentText()=="en attente"){i=0;}
-  if(statut->currentText()=="en cours"){i=1;}
-  if(statut->currentText()=="terminé"){i=2;}*/
   int i = statut->currentIndex();
-
   Tache* t = new Tache(titre->text(),QDateTime::currentDateTime(),dateEcheance->dateTime(),action->toPlainText(),priorite->value(),EtatTache(i));
   ajouteReference();
   emit sauvegarde(t);

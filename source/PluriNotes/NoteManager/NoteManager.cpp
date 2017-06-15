@@ -12,7 +12,6 @@
 #include "exception.h"
 #include "RelationManager/RelationManager.h"
 #include "RelationManager/relation.h"
-//#include "Corbeille/corbeille.h"
 
 NotesManager* NotesManager::instance = nullptr;
 

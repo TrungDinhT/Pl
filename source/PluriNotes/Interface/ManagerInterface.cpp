@@ -30,13 +30,6 @@ ManagerInterface::ManagerInterface(){
   principale->addWidget(rafrachir);
   connect(corbeille,SIGNAL(clicked()),this,SLOT(ouvrirCorbeille()));
   connect(ajouter, SIGNAL(clicked()),this, SLOT(ajoutNote()));
-  //connect(liste_note, SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)),this, SLOT(changerNote(QListWidgetItem*)));
-
-  //connect(NIE,SIGNAL(sauvegarde(Version*)),this,SLOT(sauverNote(Version*)));
-
-  //connect(ajouter,SIGNAL(clicked()),this,SLOT(creationNote())); à créer
-  //connect(sauvegarder,SIGNAL(clicked()),this,SLOT(sauvegardeNotes()));
-
 }
 
 void ManagerInterface::ouvrirCorbeille(){
@@ -47,10 +40,7 @@ void ManagerInterface::ouvrirCorbeille(){
 void ManagerInterface::ajoutNote(){
     qDebug()<<"ajout Note\n";
     listeVersion = new QListWidget();
-    /*
-    listeVersion->addItem(new list_version_item("Article",new Article ));
-    listeVersion->addItem(new list_version_item("Tache",new Tache));
-    listeVersion->addItem(new list_version_item("Multimedia",new Multimedia));*/
+
     QVariant vA = qVariantFromValue((void *) new Article);
     //yourPointer = (YourClass *) v.value<void *>();
     QListWidgetItem* a = new QListWidgetItem("Article");
@@ -75,34 +65,14 @@ void ManagerInterface::ajoutNote(){
 
 void ManagerInterface::choixAjoutNote(QListWidgetItem *item){
     Version* v = (Version *) item->data(Qt::UserRole).value<void *>();
-    //Version* v = item->data(Qt::UserRole);//
     qDebug()<<"choix Note\n";
     listeVersion->close();
     qDebug()<<"titre : \""<<v->getTitre()<<"\", date modif : \""<<v->getDateModif().toString("dd.MM.yyyy-hh:mm:ss")<<"\", texte : "<<static_cast <Article*>(v)->getText()<<"\n";
-    //NoteCurrent = Note::getNewNote(QDateTime::currentDateTime().toString("dd.MM.yyyy-hh:mm:ss"),item->getVersion());
     NoteCurrent = Note::getNewNote(QDateTime::currentDateTime().toString("dd.MM.yyyy-hh:mm:ss"),v);
     //delete principale;
     NM->addNotes(NoteCurrent);
     emit refresh();
     qDebug()<<"fin choix Note\n";
 }
-/*
-void refresh(){
-    NotesManager::Iterator itn = NM->begin();
-    NoteCurrent = *itn;
-    principale = new QVBoxLayout(this);
-    bouttons = new QHBoxLayout();
-    principale->addLayout(bouttons);
-    liste_note = new QListWidget();
 
-    for(; itn!= NM->end();itn++){
-        liste_note->addItem((*itn)->getId());
-    }
-    ajouter = new QPushButton("ajouter");
-    sauvegarder = new QPushButton("sauvegarder");
-    bouttons->addWidget(ajouter);
-    bouttons->addWidget(sauvegarder);
-
-    principale->addWidget(liste_note);
-}*/
 

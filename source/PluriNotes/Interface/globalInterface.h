@@ -13,11 +13,8 @@
 class GlobalInterface : public QWidget {
   Q_OBJECT
   QGridLayout* principale;
-  //NoteInterface* NI;
   NoteInterfaceEditable* NIE;
-  //RelationInterface* RI;
   ManagerInterface* MI;
-  //MyQToolbar* TB;
   NotesManager* NM;
   RelationsManager *RM;
   Note* NoteCurrent;

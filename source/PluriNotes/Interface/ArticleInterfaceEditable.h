@@ -22,17 +22,11 @@ public:
 public slots:
    virtual void saveNote();
 
-
-signals:
-  //void sauvegarde(Article* a);
 private:
-   //QLineEdit* titre;
    QTextEdit* text;
    QVBoxLayout* principale;
-   //QPushButton* save;
 
-   const Article* article;//Article* article;
-   //QString savedName;
+   const Article* article;
 
 };
 

@@ -87,9 +87,19 @@ void GlobalInterface::afficherCouple(){
     conCouples->setLineWrapMode(QTextEdit::NoWrap);
     QString couples;
     relation* r = RM->getRelation(listRela->currentItem()->text());
+    bool oriente = r->getOriente();
     for(relation::Iterator it = r->begin();it!=r->end();it++)
     {
-        couples+= (*it)->label + "\n";
+        couples+= "----------\n";
+        couples+= "label: " + (*it)->label + "\n";
+        couples+= "notes: (forme IDFromNote -> IDToNote) \n";
+        if(oriente) couples+= "    " + (*it)->getFromNote()->getId() + " -> " + (*it)->getToNote()->getId() + "\n";
+        else
+        {
+            couples+= "    " + (*it)->getFromNote()->getId() + " -> " + (*it)->getToNote()->getId() + "\n";
+            couples+= "    " + (*it)->getToNote()->getId() + " -> " + (*it)->getFromNote()->getId() + "\n";
+        }
+        couples+="----------\n";
     }
     conCouples->setPlainText(couples);
     lay->addWidget(conCouples);
@@ -100,7 +110,6 @@ void GlobalInterface::afficherCouple(){
 void GlobalInterface::changerVersionNote(){
     qDebug()<<"changement version\n";
     liste = new QListWidget();
-    //VersionCurrent = *itv;
     for(Note::Iterator itv = NoteCurrent->begin();itv!= NoteCurrent->end();itv++){
         liste->addItem((*itv)->getDateModif().toString("dd.MM.yyyy-hh:mm:ss"));
     }
@@ -120,24 +129,20 @@ void GlobalInterface::choixVersionNote(QListWidgetItem* item){
     connect(NIE->rendreversionactive,SIGNAL(clicked()),this,SLOT(versionActiveNote()));
     principale->addWidget(NIE,0,1);
     liste->close();
-    //liste->hide();
-    //delete liste;
     qDebug()<<"fin choix version\n";
 }
 
 void GlobalInterface::changerNote(QListWidgetItem* item){
- delete NIE;
- NoteCurrent = NM->load(item->text());//item contient ID
- /*Note::Iterator itv = NoteCurrent->begin();
- VersionCurrent = *itv;*/
- VersionCurrent = NoteCurrent->VersionActive();
+    delete NIE;
+    NoteCurrent = NM->load(item->text());//item contient ID
+    VersionCurrent = NoteCurrent->VersionActive();
     NIE = VersionCurrent->creerInterface(NoteCurrent->getId());
- connect(NIE,SIGNAL(sauvegarde(Version*)),this,SLOT(sauverNote(Version*)));
- connect(NIE->addRela,SIGNAL(clicked()),this,SLOT(miseEnRelationNote()));
- connect(NIE->supprimer,SIGNAL(clicked()),this,SLOT(supprimerNote()));
- connect(NIE->changerversion,SIGNAL(clicked()),this,SLOT(changerVersionNote()));
- connect(NIE->rendreversionactive,SIGNAL(clicked()),this,SLOT(versionActiveNote()));
- principale->addWidget(NIE,0,1);
+    connect(NIE,SIGNAL(sauvegarde(Version*)),this,SLOT(sauverNote(Version*)));
+    connect(NIE->addRela,SIGNAL(clicked()),this,SLOT(miseEnRelationNote()));
+    connect(NIE->supprimer,SIGNAL(clicked()),this,SLOT(supprimerNote()));
+    connect(NIE->changerversion,SIGNAL(clicked()),this,SLOT(changerVersionNote()));
+    connect(NIE->rendreversionactive,SIGNAL(clicked()),this,SLOT(versionActiveNote()));
+    principale->addWidget(NIE,0,1);
 }
 void GlobalInterface::versionActiveNote(){
     NoteCurrent->setVersionActive(VersionCurrent);
