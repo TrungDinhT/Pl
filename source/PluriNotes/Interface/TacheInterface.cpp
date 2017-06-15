@@ -93,7 +93,7 @@ void TacheInterfaceEditable::saveNote(){
   int i = statut->currentIndex();
   //EtatTache etat;
 
-  Tache* t = new Tache(titre->text(),dateEcheance->dateTime(),action->toPlainText(),priorite->value(),EtatTache(i));
+  Tache* t = new Tache(titre->text(),QDateTime::currentDateTime(),dateEcheance->dateTime(),action->toPlainText(),priorite->value(),EtatTache(i));
   ajouteReference();
   emit sauvegarde(t);
 }
