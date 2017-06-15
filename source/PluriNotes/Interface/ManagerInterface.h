@@ -6,7 +6,7 @@
 #include "NoteManager/NoteManager.h"
 #include "NoteManager/notes.h"
 #include "RelationManager/RelationManager.h" //ca sert apres
-
+#include "corbeilleinterface.h"
 
 class GLobalInterface;
 class list_version_item;
@@ -24,6 +24,8 @@ protected:
   QPushButton* sauvegarder;
   QListWidget* listeVersion;
   QPushButton* corbeille;
+  QPushButton* rafrachir;
+  corbeilleInterface* c;
 
 public :
   ManagerInterface();

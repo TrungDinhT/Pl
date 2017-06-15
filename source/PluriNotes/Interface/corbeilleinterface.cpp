@@ -43,6 +43,7 @@ void corbeilleInterface::refreshCorbeille() const {
 void corbeilleInterface::restaurer(){
     managerNote.restaurerNote(mainView->currentItem()->text());
     refreshCorbeille();
+    emit refreshCor();
 }
 
 void corbeilleInterface::supprimerNote(){
