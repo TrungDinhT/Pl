@@ -1,7 +1,10 @@
 
 #include "globalInterface.h"
 #include "ArticleInterfaceEditable.h"
+#include "ImageInterface.h"
 #include "ManagerInterface.h"
+#include "TacheInterface.h"
+
 #include <QWidget>
 
 
@@ -20,9 +23,13 @@ GlobalInterface::GlobalInterface(): QWidget(){
   VersionCurrent = *itv;*/
   VersionCurrent = NoteCurrent->VersionActive();
 
-  //if(typeid(*VersionCurrent).name()=="Article"){
+  if(NoteCurrent->getId()!="coco"){
   NIE = new articleInterfaceEditable(NoteCurrent->getId(),static_cast <Article*>(VersionCurrent));
-  //}
+  }
+  else{//NIE = new MultimediaInterfaceEditable(NoteCurrent->getId(),static_cast <Multimedia*>(VersionCurrent));
+  NIE = new TacheInterfaceEditable(NoteCurrent->getId(),static_cast <Tache*>(VersionCurrent));
+  }
+
 
   principale->addWidget(NIE,0,1);
   this->setMinimumSize(600,600);
