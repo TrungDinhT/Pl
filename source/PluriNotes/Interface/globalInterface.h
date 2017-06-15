@@ -23,14 +23,14 @@ class GlobalInterface : public QWidget {
   Note* NoteCurrent;
   Version* VersionCurrent;
   QListWidget* liste;
-
+  QListWidget* listRela;
+  QPushButton* AfficherRela;
 
   
 public :
   GlobalInterface();
   
 public slots : 
-  //void modifierNote();
   void changerNote(QListWidgetItem* item);
   void sauverNote(Version* v);
   void supprimerNote();
@@ -40,6 +40,7 @@ public slots :
   void choixVersionNote(QListWidgetItem* item);
   void raffraichissementMI();
   void sauvegardeGeneral();
+  void afficherCouple();
 };
 
 

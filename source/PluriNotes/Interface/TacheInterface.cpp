@@ -18,11 +18,7 @@ TacheInterfaceEditable::TacheInterfaceEditable(const QString id, const Tache *t)
     statut->addItem("en attente");
     statut->addItem("en cours");
     statut->addItem("terminé");
-    /*
-    if(t->getStatut()==0){statut->setCurrentText("en attente");}
-    if(t->getStatut()==1){statut->setCurrentText("en cours");}
-    if(t->getStatut()==2){statut->setCurrentText("terminé");}
-*/
+
     statut->setCurrentIndex(t->getStatut());
     dateEcheance = new QDateTimeEdit(t->getDateEcheance());
     QVBoxLayout* principale;
@@ -35,7 +31,7 @@ TacheInterfaceEditable::TacheInterfaceEditable(const QString id, const Tache *t)
 
     principale->addWidget(save);
     principale->addWidget(supprimer);
-    principale->addWidget(relier);
+    principale->addWidget(addRela);
     principale->addWidget(changerversion);
     principale->addWidget(rendreversionactive);
     this->setLayout(principale);
@@ -91,7 +87,6 @@ void TacheInterfaceEditable::saveNote(){
   if(statut->currentText()=="en cours"){i=1;}
   if(statut->currentText()=="terminé"){i=2;}*/
   int i = statut->currentIndex();
-  //EtatTache etat;
 
   Tache* t = new Tache(titre->text(),QDateTime::currentDateTime(),dateEcheance->dateTime(),action->toPlainText(),priorite->value(),EtatTache(i));
   ajouteReference();

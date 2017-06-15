@@ -27,7 +27,7 @@ MultimediaInterfaceEditable::MultimediaInterfaceEditable(const QString id, const
     principale->addWidget(changer_media);
     principale->addWidget(save);
     principale->addWidget(supprimer);
-    principale->addWidget(relier);
+    principale->addWidget(addRela);
     principale->addWidget(changerversion);
     principale->addWidget(rendreversionactive);
     connect(changer_media,SIGNAL(clicked()),this,SLOT(changer_chemin()));

@@ -30,7 +30,7 @@ articleInterfaceEditable::articleInterfaceEditable(const QString id, const Artic
   principale->addWidget(text);
   principale->addWidget(save);
   principale->addWidget(supprimer);
-  principale->addWidget(relier);
+  principale->addWidget(addRela);
   principale->addWidget(changerversion);
   principale->addWidget(rendreversionactive);
 

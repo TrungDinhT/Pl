@@ -20,7 +20,7 @@ protected:
   QLineEdit* titre;
   QPushButton* save;
   QPushButton* supprimer;
-  QPushButton* relier;
+  QPushButton* addRela;
   QPushButton* changerversion;
   QPushButton* rendreversionactive;
   

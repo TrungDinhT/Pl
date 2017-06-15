@@ -11,41 +11,25 @@
 GlobalInterface::GlobalInterface(): QWidget(){
   principale = new QGridLayout(this);
   MI = new ManagerInterface;
-  /*connect(MI->liste_note, SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)),this, SLOT(changerNote(QListWidgetItem*)));
-  connect(MI, SIGNAL(refresh()),this, SLOT(raffraichissementMI()));
-  principale->addWidget(MI,0,0);*/
   raffraichissementMI();
   NM = &(NotesManager::getManager());
   RM = &(RelationsManager::getInstance());
   NotesManager::Iterator itn = NM->begin();
+
   NoteCurrent = *itn;
-  /*Note::Iterator itv = NoteCurrent->begin();
-  VersionCurrent = *itv;*/
   VersionCurrent = NoteCurrent->VersionActive();
-/*
-  if(NoteCurrent->getId()!="coco"){
-  NIE = new articleInterfaceEditable(NoteCurrent->getId(),static_cast <Article*>(VersionCurrent));
-  }
-  else{//NIE = new MultimediaInterfaceEditable(NoteCurrent->getId(),static_cast <Multimedia*>(VersionCurrent));
-  NIE = new TacheInterfaceEditable(NoteCurrent->getId(),static_cast <Tache*>(VersionCurrent));
-  }*/
-
   NIE = VersionCurrent->creerInterface(NoteCurrent->getId());
-
-
   principale->addWidget(NIE,0,1);
+
   this->setMinimumSize(600,600);
-  //qDebug()<<"ajout article\n";
 
-  //RI = new RelationInterface() ;
-
-  //TB  =MyQToolbar();
   connect(NIE,SIGNAL(sauvegarde(Version*)),this,SLOT(sauverNote(Version*)));
-  connect(NIE->relier,SIGNAL(clicked()),this,SLOT(miseEnRelationNote()));
+  connect(NIE->addRela,SIGNAL(clicked()),this,SLOT(miseEnRelationNote()));
   connect(NIE->supprimer,SIGNAL(clicked()),this,SLOT(supprimerNote()));
   connect(NIE->changerversion,SIGNAL(clicked()),this,SLOT(changerVersionNote()));
   connect(NIE->rendreversionactive,SIGNAL(clicked()),this,SLOT(versionActiveNote()));
 }
+
 
 void GlobalInterface::raffraichissementMI(){
     qDebug()<<"raffraichissement\n";
@@ -58,35 +42,13 @@ void GlobalInterface::raffraichissementMI(){
     principale->addWidget(MI,0,0);
 }
 
-/*
-void GlobalInterface::modifierNote(){
-  delete NI;
-  NIE = new NoteInterfaceEditable(VersionCurrent);
-  principale->addWidget(NIE,0,1);
-  //connect(NIE->save,SIGNAL(clicked()),this,SLOT(sauverNote()));
-  connect(NIE,SIGNAL(sauvegarde(Version*)),this,SLOT(sauverNote(Version*)));
-}*/
-void GlobalInterface::sauverNote(Version* v){
-  //article->getText() = texte.text;
-  //article.actualiserDateModif(); //à définir
-  //articleInterface a = new articleInterface(article);
 
+void GlobalInterface::sauverNote(Version* v){
     VersionCurrent = v;
     NoteCurrent->addVersion(v);
     NoteCurrent->setVersionActive(v);
-
-  /*delete NIE;
-  NIE = new articleInterfaceEditable(static_cast <Article*>(VersionCurrent));
-  qDebug()<<"test2";
-  principale->addWidget(NIE,0,2);
-  qDebug()<<"test3";
-  connect(NIE,SIGNAL(sauvegarde(Version*)),this,SLOT(sauverNote(Version*)));
-  connect(NIE->relier,SIGNAL(clicked()),this,SLOT(miseEnRelationNote()));
-  connect(NIE->supprimer,SIGNAL(clicked()),this,SLOT(supprimerNote()));
-  connect(NIE->changerversion,SIGNAL(clicked()),this,SLOT(changerVersionNote()));
-  connect(NIE->rendreversionactive,SIGNAL(clicked()),this,SLOT(versionActiveNote()));*/
-
 }
+
 void GlobalInterface::supprimerNote(){
     qDebug()<<"delete Item\n";
     QString idDel = MI->liste_note->currentItem()->text();
@@ -102,7 +64,37 @@ void GlobalInterface::sauvegardeGeneral(){
 }
 
 void GlobalInterface::miseEnRelationNote(){
-//à completer
+    QVBoxLayout* lay = new QVBoxLayout;
+    listRela = new QListWidget;
+    for(RelationsManager::Iterator it = RM->begin();it!=RM->end();it++)
+    {
+        listRela->addItem((*it)->getTitre());
+    }
+    AfficherRela = new QPushButton("afficher couples");
+    lay->addWidget(listRela);
+    lay->addWidget(AfficherRela);
+    principale->addLayout(lay,0,2);
+
+    connect(AfficherRela,SIGNAL(clicked()),this,SLOT(afficherCouple()));
+}
+
+void GlobalInterface::afficherCouple(){
+    QDialog* boxCouples = new QDialog;
+    QHBoxLayout* lay = new QHBoxLayout;
+    QTextEdit* conCouples = new QTextEdit;
+    conCouples->setReadOnly(true);
+    conCouples->setFont(QFont("Courier"));
+    conCouples->setLineWrapMode(QTextEdit::NoWrap);
+    QString couples;
+    relation* r = RM->getRelation(listRela->currentItem()->text());
+    for(relation::Iterator it = r->begin();it!=r->end();it++)
+    {
+        couples+= (*it)->label + "\n";
+    }
+    conCouples->setPlainText(couples);
+    lay->addWidget(conCouples);
+    boxCouples->setLayout(lay);
+    boxCouples->exec();
 }
 
 void GlobalInterface::changerVersionNote(){
@@ -119,12 +111,10 @@ void GlobalInterface::changerVersionNote(){
 void GlobalInterface::choixVersionNote(QListWidgetItem* item){
     qDebug()<<"choix version\n";
     VersionCurrent = NoteCurrent->getVerParDate(item->text());
-    //NoteCurrent->setVersionActive(VersionCurrent);
     delete NIE;
-    //NIE = new articleInterfaceEditable(NoteCurrent->getId(),static_cast <Article*>(VersionCurrent));
     NIE = VersionCurrent->creerInterface(NoteCurrent->getId());
     connect(NIE,SIGNAL(sauvegarde(Version*)),this,SLOT(sauverNote(Version*)));
-    connect(NIE->relier,SIGNAL(clicked()),this,SLOT(miseEnRelationNote()));
+    connect(NIE->addRela,SIGNAL(clicked()),this,SLOT(miseEnRelationNote()));
     connect(NIE->supprimer,SIGNAL(clicked()),this,SLOT(supprimerNote()));
     connect(NIE->changerversion,SIGNAL(clicked()),this,SLOT(changerVersionNote()));
     connect(NIE->rendreversionactive,SIGNAL(clicked()),this,SLOT(versionActiveNote()));
@@ -143,7 +133,7 @@ void GlobalInterface::changerNote(QListWidgetItem* item){
  VersionCurrent = NoteCurrent->VersionActive();
     NIE = VersionCurrent->creerInterface(NoteCurrent->getId());
  connect(NIE,SIGNAL(sauvegarde(Version*)),this,SLOT(sauverNote(Version*)));
- connect(NIE->relier,SIGNAL(clicked()),this,SLOT(miseEnRelationNote()));
+ connect(NIE->addRela,SIGNAL(clicked()),this,SLOT(miseEnRelationNote()));
  connect(NIE->supprimer,SIGNAL(clicked()),this,SLOT(supprimerNote()));
  connect(NIE->changerversion,SIGNAL(clicked()),this,SLOT(changerVersionNote()));
  connect(NIE->rendreversionactive,SIGNAL(clicked()),this,SLOT(versionActiveNote()));
