@@ -1,4 +1,3 @@
-
 #ifndef NOTES_H
 #define NOTES_H
 
@@ -63,7 +62,9 @@ public:
     void save(QXmlStreamWriter& stream) const;
     void afficher(QString& contenu) const ;
 
-    //iterator + methodes servent a parcourir
+    /** iterator.
+     * On parcours publiquement tous les versions dans une note par iterator
+     */
     class Iterator: public _Iterator<Version>{
         friend class Note;
         Iterator(Version** v, unsigned int n): _Iterator(v,n){}
@@ -110,7 +111,6 @@ public:
     Multimedia(const QString ti, const QDateTime d, const QString& f, const QString desc=""): Version(ti,d), description(desc), nomFichier(f){}
     Multimedia(const QString& f = "", const QString desc=""): Version(),description(desc), nomFichier(f){}
 
-    //accesseurs
     const QString& getDesc() const { return description; }
     const QString& getNomFichier() const { return nomFichier; }
     const Media& getType() const { return typeEnregistrement; }
@@ -137,7 +137,6 @@ public:
     Tache(const QString ti = "", const QDateTime d = QDateTime::currentDateTime(), const QDateTime& dE = QDateTime::currentDateTime().addDays(1), const QString& action ="", const int p= 0, const EtatTache e = EN_COURS):
         Version(ti,d),action(action),priorite(p),statut(e),dateEcheance(dE){}  //Une priorité faible=0
 
-    //accesseurs
     const QString& getAction() const { return action; }
     const unsigned int& getPriorite() const { return priorite; }
     const QDateTime& getDateEcheance() const { return dateEcheance; }

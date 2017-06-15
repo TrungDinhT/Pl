@@ -17,7 +17,7 @@ RelationsManager& RelationsManager::getInstance(){
         instance=new RelationsManager;
         QString location = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
         instance->setFileName(location+"/relationslog.xml");
-        if(instance->nbRelations==0) //quand fichier relationslog.xml est vide (premier lancement)
+        if(instance->nbRelations==0) ///< quand fichier relationslog.xml est vide (premier lancement)
         {
             relation* ref = &(relationPreexistance::getInstance());
             instance->addRelations(ref);
@@ -70,7 +70,7 @@ void RelationsManager::deleteRelation(const QString &titre){
     if(i==nbRelations) throw _Exception("Error: relation not found");
     else{
         delete relations[i];
-        for(;i<nbRelations-1;i++) relations[i]=relations[i+1]; //deplacer tous les relations apres cette relation a gauche
+        for(;i<nbRelations-1;i++) relations[i]=relations[i+1]; ///< deplacer tous les relations apres cette relation a gauche
     }
     nbRelations--;
 }
@@ -112,7 +112,8 @@ void RelationsManager::save(){
 void RelationsManager::load(){
     QFile file(filename);
 
-    // If we can't open it, show an error message.
+    /** If we can't open it, show an error message.
+     */
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
         throw _Exception("Error : cannot open file");
 
@@ -226,7 +227,8 @@ void RelationsManager::load(){
         }
     }
 
-    // Error handling.
+    /** Error handling.
+     */
     if(count && stream.hasError()) {
         throw _Exception("Error parsing xml : cannot read file");
     }

@@ -23,16 +23,14 @@ void Note::setVersionActive(Version *v){//çàd la fait passer en dernier
         }
     }
 }
-Version* Note::VersionActive(){//çàd la fait passer en dernier
+Version* Note::VersionActive(){///< c'est à dire la fait passer en dernier version
     return versions[nbVer-1];
 }
 
 Version* Note::getVer(const QString& titre){
-    // si l'article existe deja, on en renvoie une reference
     for(unsigned int i=0; i<nbVer; i++){
         if (versions[i]->getTitre()==titre) return versions[i];
     }
-    // sinon il envoie erreur
     throw _Exception("Error: version not found");
 }
 

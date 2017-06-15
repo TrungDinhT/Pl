@@ -1,8 +1,3 @@
-/*Pour generaliser les types de note, factory method ou adapter?
-*/
-
-
-
 #ifndef NOTEMANAGER_H
 #define NOTEMANAGER_H
 
@@ -20,10 +15,13 @@ private:
     unsigned int nbMaxNotes;
 
 
-    //filename à manager
+    /** filename à enregistrer les notes.
+     * On enregistre tous les notes dans une structure xml dans le fichier noteslog.xml
+     * Il faut créer en avant ce fichier dans le bureau
+     */
     mutable QString filename;
 
-    static NotesManager* instance; // pointeur sur l'unique instance
+    static NotesManager* instance; ///< pointeur sur l'unique instance
     NotesManager():notes(nullptr),nbNotes(0),nbMaxNotes(0),filename(""){}
     ~NotesManager();
     NotesManager(const NotesManager& m);
@@ -33,9 +31,11 @@ public:
 
     void addNotes(Note* n);
     static NotesManager& getManager();
-    static void freeManager(); // free the memory used by the NotesManager; it can be rebuild later
+    static void freeManager(); ///< free the memory used by the NotesManager; it can be rebuild later
 
-    //code pour la corbeille
+    /** code pour la corbeille.
+     * On utilise le Notesmanager pour gérer la corbeille aussi
+     */
     void deleteNote(const QString& id);
     void restaurerNote(const QString& id);
     void reallyDeleteNote(const QString& id);
@@ -45,10 +45,14 @@ public:
 
     QString getFilename() const { return filename; }
     void setFilename(const QString& f) { filename=f; }
-    void load(); // load all notes
+    void load(); ///< load all notes
     Note* load(const QString& id);
-    void save() const; //save all notes (at the beginning)
-    void save(const QString& id, Version* v); // create a note in array notes
+    void save() const; ///< save all notes (at the beginning)
+    void save(const QString& id, Version* v); ///< create a note in array notes
+
+    /** iterator.
+     * On parcours publiquement tous les notes par iterator
+     */
     class Iterator: public _Iterator<Note>{
         friend class NotesManager;
         Iterator(Note** notes, unsigned int n): _Iterator(notes,n){}

@@ -47,7 +47,7 @@ void NotesManager::addNotes(Note* n){
 }
 
 NotesManager::~NotesManager(){
-    save(); //save all file when exiting the program
+    save(); ///< save all file when exiting the program
     for(unsigned int i=0; i<nbNotes; i++) delete notes[i];
     delete[] notes;
 }
@@ -142,11 +142,9 @@ void NotesManager::save() const{
 }
 
 Note* NotesManager::load(const QString& id){
-    // si l'article existe deja, on en renvoie une reference
     for(unsigned int i=0; i<nbNotes; i++){
         if (notes[i]->getId()==id) return notes[i];
     }
-    // sinon il envoie erreur
     return nullptr;
 }
 
@@ -211,7 +209,8 @@ void NotesManager::load(){
                                 qDebug()<< "boucle version";
                                 stream.readNext();
 
-                                //article
+                                /** article
+                                 */
                                 if(stream.tokenType()==QXmlStreamReader::StartElement)
                                 {
                                     if(stream.name()=="article")
@@ -249,7 +248,8 @@ void NotesManager::load(){
                                         qDebug()<<"ajout article "<<titre<<"\n";
                                     }
 
-                                    //tache
+                                    /** tache
+                                     */
                                     if(stream.name() == "tache")
                                     {
                                         qDebug()<<"new tache\n";
@@ -312,7 +312,8 @@ void NotesManager::load(){
                                         qDebug()<<"ajout tache "<<titre<<"\n";
                                     }
 
-                                    //multimedia
+                                    /** multimedia
+                                     */
                                     if(stream.tokenType() == QXmlStreamReader::StartElement && stream.name() == "multimedia")
                                     {
                                         qDebug()<<"new multimedia\n";
@@ -377,7 +378,8 @@ void NotesManager::load(){
             }
         }
     }
-    // Error handling.
+    /** Error handling.
+     */
     if(countItems && stream.hasError())
         throw _Exception("Erreur lecteur fichier notes");
     stream.clear();

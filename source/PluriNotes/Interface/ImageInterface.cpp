@@ -19,7 +19,9 @@ MultimediaInterfaceEditable::MultimediaInterfaceEditable(const QString id, const
     im->setScaledContents(true);
     principale = new QVBoxLayout(this) ;
     principale->addWidget(titre);
-    //principale->addWidget(image);
+    /** principale->addWidget(image);
+     * cela sert à étendre le modèle pour les images
+     */
 
 
     principale->addWidget(im);
@@ -86,5 +88,5 @@ void MultimediaInterfaceEditable::saveNote(){
 
 
 void MultimediaInterfaceEditable::changer_chemin(){
-//
+///< à compléter
 }

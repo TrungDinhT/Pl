@@ -14,7 +14,7 @@ private:
     void addRelations(relation* r);
     QString filename;
 
-    static RelationsManager* instance; // pointeur sur l'unique instance
+    static RelationsManager* instance; ///< pointeur sur l'unique instance
     RelationsManager(): relations(nullptr),nbRelations(0),nbMaxRelations(0){}
     ~RelationsManager(){
         for(unsigned int i=0;i<nbRelations;i++)
@@ -26,16 +26,18 @@ private:
 
 public:
     static RelationsManager& getInstance();
-    static void freeInstance(); // free the memory used by the RelationsManager; it can be rebuilt later
+    static void freeInstance(); ///< free the memory used by the RelationsManager; it can be rebuilt later
     relation* getRelation(const QString& titre);
     relation* getNewRelation(const QString& titre, const QString& desc, bool ori=true);
     void deleteRelation(const QString& titre);
     void setFileName(const QString f) { filename = f; }
     const QString& getFileName () const { return filename; }
     void load();
-    void save(); //filename = name + path to save
+    void save(); ///< filename = name + path to save
 
-    //iterator et parcourir
+    /** iterator.
+     * On parcours publique tous les relations par iterator
+     */
     class Iterator: public _Iterator<relation>{
         friend class RelationsManager;
         Iterator(relation** r, unsigned int n): _Iterator(r,n){}

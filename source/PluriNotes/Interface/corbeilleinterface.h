@@ -2,7 +2,6 @@
 #define CORBEILLEINTERFACE_H
 
 #include <QtWidgets>
-//#include "ManagerInterface.h"
 #include "NoteManager/NoteManager.h"
 
 class GlobalInterface;

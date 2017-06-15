@@ -14,7 +14,7 @@ class articleInterfaceEditable: public NoteInterfaceEditable{
 public:
    articleInterfaceEditable(const QString id, const Article* a = nullptr);
 
-   /*fonction pour ajouter reference
+   /** fonction pour ajouter reference.
     *quand l'utilisateur entre \ref{id} dans n'importe quel champs de l'note (où on peut avoir texte)
     */
    void ajouteReference() const;

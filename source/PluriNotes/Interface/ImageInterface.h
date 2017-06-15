@@ -14,7 +14,7 @@ class MultimediaInterfaceEditable: public NoteInterfaceEditable{
 public:
    MultimediaInterfaceEditable(const QString id, const Multimedia* m = nullptr);
 
-   /*fonction pour ajouter reference
+   /** fonction pour ajouter reference.
     *quand l'utilisateur entre \ref{id} dans n'importe quel champs de l'note (où on peut avoir texte)
     */
    void ajouteReference() const;
@@ -32,7 +32,9 @@ private:
    QPixmap* image;
    QLabel* im;
    QString chemin;
-   //QMediaPlayer video;
+   /** QMediaPlayer video.
+    * cela sert à ouvrir les fichiers vidéos
+    */
 
    const Multimedia* multimedia;
 

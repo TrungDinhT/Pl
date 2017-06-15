@@ -4,6 +4,9 @@
 #include <QString>
 #include <QDebug>
 
+
+/** classe sert à débugger.
+ */
 class _Exception{
 public:
     _Exception(const QString& message):info(message){

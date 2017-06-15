@@ -3,6 +3,9 @@
 
 #include "exception.h"
 
+/** template iterator.
+ * classe sert à généraliser l'iterateur
+ */
 template <class T>
 class _Iterator{
     T** cur;

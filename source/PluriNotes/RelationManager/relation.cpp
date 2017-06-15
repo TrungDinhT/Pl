@@ -30,7 +30,8 @@ void relation::addCouple(Note* fn, Note* tn, const QString& lab){
 void relation::deleteCouple(const QString &idNote){
     unsigned int i;
 
-    //trouver la position de couple c dans le tableau de couple
+    /** trouver la position de couple c dans le tableau de couple
+     */
     for(i=0;i<nbCouples && couples[i]->getFromNote()->getId()!=idNote && couples[i]->getToNote()->getId()!=idNote;i++)
     if(i==nbCouples) throw _Exception("Error: couple not found");
     else{
@@ -43,7 +44,8 @@ void relation::deleteCouple(const QString &idNote){
 void relation::deleteCouple(const QString &idFromNote, const QString &idToNote){
     unsigned int i;
 
-    //trouver la position de couple c dans le tableau de couple
+    /** trouver la position de couple c dans le tableau de couple
+     */
     for(i=0;i<nbCouples && couples[i]->getFromNote()->getId()!=idFromNote && couples[i]->getToNote()->getId()!=idToNote;i++)
     if(i<nbCouples)
     {

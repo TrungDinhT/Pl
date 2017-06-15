@@ -33,14 +33,13 @@ articleInterfaceEditable::articleInterfaceEditable(const QString id, const Artic
 }
 
 
-/*fonction pour ajouter reference
+/** fonction pour ajouter reference
  *quand l'utilisateur entre \ref{id} dans n'importe quel champs de l'note (où on peut avoir texte)
  */
 void articleInterfaceEditable::ajouteReference() const {
     QSet<QString> listeRef;
     QRegExp regex("\\\\ref[{]([\\w]+)[}]");
     bool suite = false;
-    qDebug()<<"ajoute ref---\n";
     for(int pos=0; (pos=regex.indexIn(text->toPlainText(), pos)) != -1; pos += regex.matchedLength())
     {
         if(notemanager.load(regex.cap(1)) && regex.cap(1)!=id)

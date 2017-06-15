@@ -9,7 +9,7 @@ class couple{
     Note* fromNote;
     Note* toNote;
 public:
-    QString label;//public car on peut le modifier
+    QString label; ///< public car on peut le modifier et accéder aussi
     couple(Note* fn, Note* tn, const QString& lab): fromNote(fn), toNote(tn), label(lab){}
     Note* getFromNote() const { return fromNote; }
     Note* getToNote() const { return toNote; }
@@ -27,7 +27,7 @@ protected:
 
 public:
     void deleteCouple(const QString& idFromNote, const QString& idToNote);
-    void addCouple(Note *fn, Note *tn, const QString& lab); //public pour pouvoir enrichir une relation
+    void addCouple(Note *fn, Note *tn, const QString& lab); ///< public pour pouvoir enrichir une relation
     relation(QString ti, QString desc="", bool ori=true):
         titre(ti), description(desc),oriente(ori),couples(nullptr), nbCouples(0), nbMaxCouples(0) {}
     virtual ~relation(){
@@ -36,7 +36,6 @@ public:
         delete[] couples;
     }
 
-    //accesseurs
     const QString& getTitre() const { return titre; }
     const QString& getDescription() const { return description; }
     bool getOriente() const { return oriente; }
@@ -44,7 +43,9 @@ public:
     virtual void setDescription(const QString& d) =0;
     virtual void setOriente(bool ori) =0;
 
-    //iterator + methodes servent a parcourir
+    /** iterator.
+     * On parcours publique tous les couple dans une relation par iterator
+     */
     class Iterator: public _Iterator<couple>{
         friend class relation;
         Iterator(couple** c, unsigned int n): _Iterator(c,n){}

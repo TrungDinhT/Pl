@@ -14,7 +14,7 @@ class TacheInterfaceEditable: public NoteInterfaceEditable{
 public:
    TacheInterfaceEditable(const QString id, const Tache* m = nullptr);
 
-   /*fonction pour ajouter reference
+   /** fonction pour ajouter reference
     *quand l'utilisateur entre \ref{id} dans n'importe quel champs de l'note (où on peut avoir texte)
     */
    void ajouteReference() const;

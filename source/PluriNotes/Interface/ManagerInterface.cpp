@@ -41,18 +41,15 @@ void ManagerInterface::ajoutNote(){
     qDebug()<<"ajout Note\n";
     listeVersion = new QListWidget();
 
-    QVariant vA = qVariantFromValue((void *) new Article);
-    //yourPointer = (YourClass *) v.value<void *>();
+    QVariant vA = qVariantFromValue((void *) new Article); ///< yourPointer = (YourClass *) v.value<void *>();
     QListWidgetItem* a = new QListWidgetItem("Article");
     a->setData(Qt::UserRole,vA);
     listeVersion->addItem(a);
-    QVariant vT = qVariantFromValue((void *) new Tache);
-    //yourPointer = (YourClass *) v.value<void *>();
+    QVariant vT = qVariantFromValue((void *) new Tache); ///< yourPointer = (YourClass *) v.value<void *>();
     QListWidgetItem* t = new QListWidgetItem("Tache");
     t->setData(Qt::UserRole,vT);
     listeVersion->addItem(t);
-    QVariant vM = qVariantFromValue((void *) new Multimedia);
-    //yourPointer = (YourClass *) v.value<void *>();
+    QVariant vM = qVariantFromValue((void *) new Multimedia); ///< yourPointer = (YourClass *) v.value<void *>();
     QListWidgetItem* m = new QListWidgetItem("Multimedia");
     m->setData(Qt::UserRole,vM);
     listeVersion->addItem(m);
@@ -69,7 +66,6 @@ void ManagerInterface::choixAjoutNote(QListWidgetItem *item){
     listeVersion->close();
     qDebug()<<"titre : \""<<v->getTitre()<<"\", date modif : \""<<v->getDateModif().toString("dd.MM.yyyy-hh:mm:ss")<<"\", texte : "<<static_cast <Article*>(v)->getText()<<"\n";
     NoteCurrent = Note::getNewNote(QDateTime::currentDateTime().toString("dd.MM.yyyy-hh:mm:ss"),v);
-    //delete principale;
     NM->addNotes(NoteCurrent);
     emit refresh();
     qDebug()<<"fin choix Note\n";

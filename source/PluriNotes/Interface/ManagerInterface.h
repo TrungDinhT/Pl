@@ -33,7 +33,6 @@ public :
 
 public slots :
   void ajoutNote();
-  //void choixAjoutNote(list_version_item *item);
   void choixAjoutNote(QListWidgetItem *item);
   void ouvrirCorbeille();
 
