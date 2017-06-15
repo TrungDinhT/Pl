@@ -6,11 +6,13 @@
 
 class GlobalInterface;
 
+class Multimedia;
+
 class MultimediaInterfaceEditable: public NoteInterfaceEditable{
     Q_OBJECT
     friend class GlobalInterface;
 public:
-   MultimediaInterfaceEditable(const QString id, Multimedia* m = nullptr);
+   MultimediaInterfaceEditable(const QString id, const Multimedia* m = nullptr);
 
    /*fonction pour ajouter reference
     *quand l'utilisateur entre \ref{id} dans n'importe quel champs de l'note (où on peut avoir texte)
@@ -32,7 +34,7 @@ private:
    QString chemin;
    //QMediaPlayer video;
 
-   Multimedia* multimedia;
+   const Multimedia* multimedia;
 
 };
 

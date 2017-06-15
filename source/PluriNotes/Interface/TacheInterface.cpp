@@ -8,7 +8,7 @@
 #include "NoteManager/notes.h"
 
 
-TacheInterfaceEditable::TacheInterfaceEditable(const QString id, Tache* t):NoteInterfaceEditable(t,id){
+TacheInterfaceEditable::TacheInterfaceEditable(const QString id, const Tache *t):NoteInterfaceEditable(t,id){
     tache = t;
     action = new QTextEdit(t->getAction());
     priorite = new QSpinBox;

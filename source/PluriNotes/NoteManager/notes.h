@@ -153,7 +153,7 @@ public:
     void afficher(QString &contenu) const;
     void save(QXmlStreamWriter& str) const;
     NoteInterfaceEditable* creerInterface(const QString& id) const{
-        return TacheInterfaceEditable(id,this);
+        return new TacheInterfaceEditable(id,this);
     }
 };
 

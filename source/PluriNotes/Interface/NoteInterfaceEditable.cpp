@@ -1,8 +1,8 @@
 
 #include "NoteInterfaceEditable.h"
-NoteInterfaceEditable::NoteInterfaceEditable(Version* v, const QString& id):id(id),QWidget(),version(v){
+NoteInterfaceEditable::NoteInterfaceEditable(const Version *v, const QString& id):id(id),QWidget(),version(v){
   //version = v;
-  titre = new QLineEdit(v->getTitre());
+  titre = new QLineEdit();
   //sauver = new QPushButton("sauver");
   save = new QPushButton("save");
 

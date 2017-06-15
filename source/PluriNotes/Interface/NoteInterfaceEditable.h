@@ -3,10 +3,12 @@
 
 #include <QtWidgets>
 
-#include "NoteManager/notes.h"
+//#include "NoteManager/notes.h"
 
 //#include "globalInterface.h"
 class GLobalInterface;
+
+class Version;
 
 class NoteInterfaceEditable : public QWidget {
     Q_OBJECT
@@ -14,7 +16,7 @@ class NoteInterfaceEditable : public QWidget {
 
 protected:
   QString id; //ca sert a distinguer les notes
-  Version* version;
+  const Version* version;
   QLineEdit* titre;
   QPushButton* save;
   QPushButton* supprimer;
@@ -23,7 +25,7 @@ protected:
   QPushButton* rendreversionactive;
   
 public :
-  NoteInterfaceEditable(Version* v, const QString& id);
+  NoteInterfaceEditable(const Version* v, const QString& id);
 
   /*fonction pour ajouter reference
    *quand l'utilisateur entre \ref{id} dans n'importe quel champs de l'note (où on peut avoir texte)

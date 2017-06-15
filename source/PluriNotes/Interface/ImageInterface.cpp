@@ -8,7 +8,7 @@
 #include "NoteManager/NoteManager.h"
 #include "NoteManager/notes.h"
 
-MultimediaInterfaceEditable::MultimediaInterfaceEditable(const QString id, Multimedia* m):NoteInterfaceEditable(m,id){
+MultimediaInterfaceEditable::MultimediaInterfaceEditable(const QString id, const Multimedia *m):NoteInterfaceEditable(m,id){
     multimedia = m;
     description = new QTextEdit(m->getDesc());
     changer_media = new QPushButton("changer le contenu");

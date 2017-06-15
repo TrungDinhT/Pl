@@ -6,11 +6,13 @@
 
 class GlobalInterface;
 
+class Article;
+
 class articleInterfaceEditable: public NoteInterfaceEditable{
     Q_OBJECT
     friend class GlobalInterface;
 public:
-   articleInterfaceEditable(const QString id, Article* a = nullptr);
+   articleInterfaceEditable(const QString id, const Article* a = nullptr);
 
    /*fonction pour ajouter reference
     *quand l'utilisateur entre \ref{id} dans n'importe quel champs de l'note (où on peut avoir texte)
@@ -29,7 +31,7 @@ private:
    QVBoxLayout* principale;
    //QPushButton* save;
 
-   Article* article;//Article* article;
+   const Article* article;//Article* article;
    //QString savedName;
 
 };

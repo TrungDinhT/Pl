@@ -16,8 +16,8 @@ void articleInterfaceEditable::saveNote(){
   emit sauvegarde(a);
 }
 
-articleInterfaceEditable::articleInterfaceEditable(const QString id, Article* a):NoteInterfaceEditable(a,id){
-  article = a;
+articleInterfaceEditable::articleInterfaceEditable(const QString id, const Article *a):NoteInterfaceEditable(a,id){
+   article = a;
   //titre = new QLineEdit(article.titre,this);
   if (a == 0){text = new QTextEdit("");}
   else{text = new QTextEdit(article->getText());}
